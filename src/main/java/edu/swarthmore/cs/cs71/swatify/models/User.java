@@ -1,19 +1,18 @@
 package edu.swarthmore.cs.cs71.swatify.models;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table
 public class User {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     private String username;
     private String email;
+
+    public User() { }
 
     public User(Integer id, String username, String email) {
         this.id = id;
