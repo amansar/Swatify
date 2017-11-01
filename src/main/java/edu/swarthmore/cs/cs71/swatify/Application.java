@@ -12,10 +12,10 @@ public class Application {
     private static void setRoutes() {
         path("/api/v1", () -> {
             path("/users", () -> {
-                get("/*", (request, response) -> UsersController.getUser(request, response));
-                put("/*", (request, response) -> UsersController.createUser(request, response));
-                patch("/*", (request, response) -> UsersController.updateUser(request, response));
-                delete("/*", (request, response) -> UsersController.deleteUser(request, response));
+                get("/*", UsersController::getUser);
+                put("/*", UsersController::createUser);
+                patch("/*", UsersController::updateUser);
+                delete("/*", UsersController::deleteUser);
             });
         });
     }
