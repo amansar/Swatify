@@ -7,8 +7,8 @@ import spark.Response;
 
 public class UsersController {
     public static User getUser(Request request, Response response) {
-        int id = Integer.parseInt(request.params("id"));
-        return HibernateUtil.getObjectById(User.class, id);
+        int userId = Integer.parseInt(request.params("id"));
+        return HibernateUtil.getObjectById(User.class, userId);
     }
 
     public static User createUser(Request request, Response response) {
