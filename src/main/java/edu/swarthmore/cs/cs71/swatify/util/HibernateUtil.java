@@ -20,4 +20,8 @@ public class HibernateUtil {
 
         session.close();
     }
+
+    public static SessionFactory getSessionFactory() {
+        return sessionFactory;
+    }
 }
