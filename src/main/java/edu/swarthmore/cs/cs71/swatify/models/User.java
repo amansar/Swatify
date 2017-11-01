@@ -1,9 +1,12 @@
 package edu.swarthmore.cs.cs71.swatify.models;
 
+import org.hibernate.annotations.DynamicUpdate;
+
 import javax.persistence.*;
 
 @Entity
 @Table
+@DynamicUpdate
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
