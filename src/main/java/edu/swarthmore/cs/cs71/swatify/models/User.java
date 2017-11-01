@@ -1,6 +1,9 @@
 package edu.swarthmore.cs.cs71.swatify.models;
 
+import edu.swarthmore.cs.cs71.swatify.util.HibernateUtil;
+
 import javax.persistence.*;
+import java.util.ArrayList;
 
 @Entity
 @Table
@@ -11,7 +14,9 @@ public class User {
 
     private String username;
     private String email;
-
+    private ArrayList<User> following;
+    private ArrayList<User> followers;
+    private ArrayList<PublicAction> feed;
     public User(String username, String email) {
         this.username = username;
         this.email = email;
@@ -35,5 +40,25 @@ public class User {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public ArrayList<User> getFollowing() { return following;}
+
+    public ArrayList<User> getFollowers() { return followers;}
+
+    public void followUser(User user){
+        following.add(user);
+        HibernateUtil.updateObject(following); //need to update user object instead?
+    }
+
+    public void unfollowUser(User user){
+        if (following.contains(user)) {
+            following.remove(user);
+        }
+        HibernateUtil.updateObject(following); //need to update user object instead?
+    }
+
+    public ArrayList<PublicAction> getActions() {
+        return feed;
     }
 }
