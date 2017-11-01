@@ -1,5 +1,6 @@
 package edu.swarthmore.cs.cs71.swatify.models;
 
+import org.hibernate.annotations.DynamicUpdate;
 import edu.swarthmore.cs.cs71.swatify.util.HibernateUtil;
 
 import javax.persistence.*;
@@ -7,6 +8,7 @@ import java.util.ArrayList;
 
 @Entity
 @Table
+@DynamicUpdate
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
