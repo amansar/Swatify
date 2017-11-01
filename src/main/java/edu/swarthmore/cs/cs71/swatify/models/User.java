@@ -14,7 +14,7 @@ public class User {
 
     private String username;
     private String email;
-    private ArrayList<User> following;
+    private ArrayList<User> following;  // figure out follow implementation
     private ArrayList<User> followers;
     private ArrayList<PublicAction> feed;
     public User(String username, String email) {
@@ -32,6 +32,7 @@ public class User {
 
     public void setUsername(String username) {
         this.username = username;
+        HibernateUtil.updateObject(this);
     }
 
     public String getEmail() {
@@ -40,6 +41,7 @@ public class User {
 
     public void setEmail(String email) {
         this.email = email;
+        HibernateUtil.updateObject(this);
     }
 
     public ArrayList<User> getFollowing() { return following;}
@@ -49,6 +51,7 @@ public class User {
     public void followUser(User user){
         following.add(user);
         HibernateUtil.updateObject(following); //need to update user object instead?
+        HibernateUtil.updateObject(this);
     }
 
     public void unfollowUser(User user){
@@ -56,6 +59,7 @@ public class User {
             following.remove(user);
         }
         HibernateUtil.updateObject(following); //need to update user object instead?
+        HibernateUtil.updateObject(this);
     }
 
     public ArrayList<PublicAction> getActions() {
