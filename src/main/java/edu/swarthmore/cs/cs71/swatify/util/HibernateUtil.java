@@ -4,6 +4,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
+import javax.persistence.criteria.CriteriaQuery;
 import java.util.List;
 
 public class HibernateUtil {
@@ -38,15 +39,32 @@ public class HibernateUtil {
         return objectClass.cast(object);
     }
 
-    public static <T> T updateObject(Class<T> objectClass, int objectId) {
+    /**
+     * Update an object in the database.
+     * @param object The updated object to save to the database.
+     */
+    public static void updateObject(Object object) {
         Session session = sessionFactory.openSession();
-        Object object = session.get(objectClass, objectId);
-        session.close();
+        session.beginTransaction();
 
-        return objectClass.cast(object);
+        session.update(object);
+        session.getTransaction().commit();
+        session.close();
     }
 
+    /**
+     * Retrieve all the objects of a specified class from the database.
+     * @param objectClass The class of the objects to retrieve.
+     * @param <T> The class of the objects.
+     * @return A list of all objects of the specified class.
+     */
     public static <T> List<T> listObjects(Class<T> objectClass) {
-        return new List();
+        Session session = sessionFactory.openSession();
+        CriteriaQuery<T> cq = session.getCriteriaBuilder().createQuery(objectClass);
+        cq.from(objectClass);
+        List<T> objectList = session.createQuery(cq).getResultList();
+        session.close();
+
+        return objectList;
     }
 }
