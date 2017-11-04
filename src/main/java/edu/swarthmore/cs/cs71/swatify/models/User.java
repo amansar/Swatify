@@ -4,7 +4,7 @@ import org.hibernate.annotations.DynamicUpdate;
 import edu.swarthmore.cs.cs71.swatify.util.HibernateUtil;
 
 import javax.persistence.*;
-import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table
@@ -16,9 +16,12 @@ public class User {
 
     private String username;
     private String email;
-    private ArrayList<User> following;
-    private ArrayList<User> followers;
-    private ArrayList<PublicAction> feed;
+    private List<User> following;
+    private List<User> followers;
+    private List<PublicAction> feed;
+
+    public User() { }
+
     public User(String username, String email) {
         this.username = username;
         this.email = email;
@@ -44,9 +47,9 @@ public class User {
         this.email = email;
     }
 
-    public ArrayList<User> getFollowing() { return following;}
+    public List<User> getFollowing() { return following;}
 
-    public ArrayList<User> getFollowers() { return followers;}
+    public List<User> getFollowers() { return followers;}
 
     public void followUser(User user){
         following.add(user);
@@ -60,7 +63,7 @@ public class User {
         HibernateUtil.updateObject(following); //need to update user object instead?
     }
 
-    public ArrayList<PublicAction> getActions() {
+    public List<PublicAction> getActions() {
         return feed;
     }
 }
