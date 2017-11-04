@@ -1,13 +1,21 @@
 package edu.swarthmore.cs.cs71.swatify.models;
 
+import edu.swarthmore.cs.cs71.swatify.util.HibernateUtil;
+import org.hibernate.Hibernate;
+import org.hibernate.annotations.DynamicUpdate;
+
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table
+@DynamicUpdate
 public class Artist {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
+
     private String spotifyId;
     private String name;
 
@@ -20,6 +28,10 @@ public class Artist {
         this.spotifyId = spotifyId;
     }
 
+    public int getId() {
+        return id;
+    }
+
     public String getSpotifyId() {
         return spotifyId;
     }
@@ -27,4 +39,5 @@ public class Artist {
     public String getName() {
         return name;
     }
+
 }
