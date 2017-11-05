@@ -1,26 +1,38 @@
 package edu.swarthmore.cs.cs71.swatify.models;
 
-import edu.swarthmore.cs.cs71.swatify.models.MusicWorks.Album;
 import edu.swarthmore.cs.cs71.swatify.util.HibernateUtil;
-import org.junit.jupiter.api.Test;
+import org.junit.Assert;
+import org.junit.Test;
 
+import java.util.ArrayList;
 import java.util.Date;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import java.util.List;
 
 
 public class MusicWorksTests {
 
   @Test
-    public void givenAlbumJava_generatedAlbumPOJO(){
-      Album album = new Album();
-      Date releaseDate = new Date(63, 0, 16);
+    public void givenMultipleAlbums_returnAllAlbumsFromDatabase(){
+      List<Album> kanyeAlbums = new ArrayList<Album>();
 
-      album.setReleaseDate(releaseDate);
-      album.setSpotifyID(null);
-      album.setTitle("College Dropouts");
+      Album collegeDropouts = new Album();
+      Date genericReleaseDate = new Date(63, 0, 16);
+      collegeDropouts.setReleaseDate(genericReleaseDate);
+      collegeDropouts.setSpotifyID(null);
+      collegeDropouts.setTitle("College Dropouts");
 
-      HibernateUtil.saveObject(album);
+      Album graduation = new Album();
+      graduation.setReleaseDate(genericReleaseDate);
+      graduation.setSpotifyID(null);
+      graduation.setTitle("Graduation");
+
+      kanyeAlbums.add(collegeDropouts);
+      kanyeAlbums.add(graduation);
+
+      HibernateUtil.saveObject(collegeDropouts);
+      HibernateUtil.saveObject(graduation);
+
+      Assert.assertEquals(kanyeAlbums,HibernateUtil.listObjects(Album.class));
 
 
 

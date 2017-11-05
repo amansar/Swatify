@@ -1,4 +1,4 @@
-package edu.swarthmore.cs.cs71.swatify.models.MusicWorks;
+package edu.swarthmore.cs.cs71.swatify.models;
 
 public class MusicWork {
     private String titleOfWork;
