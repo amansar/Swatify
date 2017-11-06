@@ -6,6 +6,7 @@ import org.junit.Test;
 import static org.junit.Assert.assertEquals;
 
 public class RatingsController {
+    /*
     @Test
     public void createNewRating() {
         Rating rating = new Rating(1, 5, 2);
@@ -14,4 +15,5 @@ public class RatingsController {
 
         assertEquals(rating.getStars(), createdRating.getStars());
     }
+    */
 }

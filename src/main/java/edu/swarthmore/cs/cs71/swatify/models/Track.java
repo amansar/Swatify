@@ -51,4 +51,8 @@ public class Track {
     public void setTitle(String title){
         this.titleOfWork = title;
     }
+
+    public int getId() {
+        return id;
+    }
 }
