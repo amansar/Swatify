@@ -14,4 +14,6 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - cmarsh1: Create ArtistFollow class for Users to follow artists
 - amansar1: Create Album model and controller
 - amansar1: Create Album model tests and controller tests
+- cpillsb1: Create Post, Comment, and Rating model
+- cpillsb1: Created model tests for Post, Comment, and Rating
 
