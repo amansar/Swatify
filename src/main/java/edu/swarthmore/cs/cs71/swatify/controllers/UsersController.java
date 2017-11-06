@@ -40,7 +40,7 @@ public class UsersController {
         return HibernateUtil.updateObject(user);
     }
 
-    boolean deleteUser(Request request, Response response) {
+    User deleteUser(Request request, Response response) {
         int userId = Integer.parseInt(request.params("id"));
         return HibernateUtil.deleteObject(User.class, userId);
     }
