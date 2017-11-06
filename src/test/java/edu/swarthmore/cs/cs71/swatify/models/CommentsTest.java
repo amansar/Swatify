@@ -1,6 +1,5 @@
 package edu.swarthmore.cs.cs71.swatify.models;
 
-import edu.swarthmore.cs.cs71.swatify.models.PublicActions.Comment;
 import org.junit.Assert;
 import org.junit.Test;
 
