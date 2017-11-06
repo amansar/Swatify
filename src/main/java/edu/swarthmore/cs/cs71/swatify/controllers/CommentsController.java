@@ -36,34 +36,34 @@ public class CommentsController {
 //        //TODO how to delete using hibernate?
 //    }
 
-    public CommentsController() {
-        path("comments", () -> {
-            get("/:id", (request, response) -> {
-                int id = Integer.parseInt(request.params("id"));
-                return HibernateUtil.getObjectById(Comment.class, id);
-            }, GsonUtil::toJson);
-
-            post("", (request, response) -> {
-                Comment comment = GsonUtil.fromJson(Comment.class, request.body());
-                return HibernateUtil.saveObject(comment);
-            }, GsonUtil::toJson);
-
-            patch("/:id", (request, response) -> {
-                Comment comment = GsonUtil.fromJson(Comment.class, request.body());
-                return HibernateUtil.updateObject(comment);
-            }, GsonUtil::toJson);
-
-            delete("/:id", (request, response) -> {
-                int id = Integer.parseInt(request.params("id"));
-                return HibernateUtil.deleteObject(Comment.class, id);
-            }, GsonUtil::toJson);
-
-            after((req, res) -> res.type("application/json"));
-
-            exception(IllegalArgumentException.class, (e, req, res) -> {
-                res.status(400);
-            });
-
-        });
+//    public CommentsController() {
+//        path("comments", () -> {
+//            get("/:id", (request, response) -> {
+//                int id = Integer.parseInt(request.params("id"));
+//                return HibernateUtil.getObjectById(Comment.class, id);
+//            }, GsonUtil::toJson);
+//
+//            post("", (request, response) -> {
+//                Comment comment = GsonUtil.fromJson(Comment.class, request.body());
+//                return HibernateUtil.saveObject(comment);
+//            }, GsonUtil::toJson);
+//
+//            patch("/:id", (request, response) -> {
+//                Comment comment = GsonUtil.fromJson(Comment.class, request.body());
+//                return HibernateUtil.updateObject(comment);
+//            }, GsonUtil::toJson);
+//
+//            delete("/:id", (request, response) -> {
+//                int id = Integer.parseInt(request.params("id"));
+//                return HibernateUtil.deleteObject(Comment.class, id);
+//            }, GsonUtil::toJson);
+//
+//            after((req, res) -> res.type("application/json"));
+//
+//            exception(IllegalArgumentException.class, (e, req, res) -> {
+//                res.status(400);
+//            });
+//
+//        });
     }
 }
