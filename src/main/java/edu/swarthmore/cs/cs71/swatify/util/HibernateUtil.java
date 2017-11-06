@@ -20,10 +20,15 @@ public class HibernateUtil {
         Session session = sessionFactory.openSession();
         session.beginTransaction();
 
-        session.save(object);
-
-        session.getTransaction().commit();
-        session.close();
+        try {
+            session.save(object);
+            session.getTransaction().commit();
+        } catch (Exception e) {
+            session.getTransaction().rollback();
+            object = null;
+        } finally {
+            session.close();
+        }
 
         return object;
     }
@@ -40,7 +45,7 @@ public class HibernateUtil {
 
         try (Session session = sessionFactory.openSession()) {
             object = session.get(objectClass, objectId);
-        } catch (HibernateException e) {
+        } catch (Exception e) {
             object = null;
         }
 
@@ -59,7 +64,7 @@ public class HibernateUtil {
             session.update(object);
             session.getTransaction().commit();
         }
-        catch (HibernateException e) {
+        catch (Exception e) {
             session.getTransaction().rollback();
             object = null;
         }
@@ -86,7 +91,7 @@ public class HibernateUtil {
             session.delete(object);
             session.getTransaction().commit();
         }
-        catch (HibernateException e) {
+        catch (Exception e) {
             session.getTransaction().rollback();
         }
         finally {

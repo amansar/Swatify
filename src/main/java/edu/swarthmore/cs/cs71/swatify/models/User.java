@@ -1,10 +1,11 @@
 package edu.swarthmore.cs.cs71.swatify.models;
 
-import org.hibernate.annotations.DynamicUpdate;
-import edu.swarthmore.cs.cs71.swatify.util.HibernateUtil;
+import org.hibernate.annotations.*;
 
 import javax.persistence.*;
-import java.util.List;
+import javax.persistence.Entity;
+import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
 
 @Entity
 @Table
@@ -14,8 +15,17 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
+    @Column(unique = true)
+    @NotBlank
     private String username;
+
+    @Column(unique = true)
+    @NotBlank
     private String email;
+
+    @Column(unique = true)
+    @NotBlank
+    private String spotifyId;
 
     public User() { }
 
@@ -37,5 +47,13 @@ public class User {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getSpotifyId() {
+        return spotifyId;
+    }
+
+    public void setSpotifyId(String spotifyId) {
+        this.spotifyId = spotifyId;
     }
 }
