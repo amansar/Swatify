@@ -25,10 +25,6 @@ public class Rating extends PublicAction {
 
     public void setId(int id) { this.id = id; }
 
-    public int getUserId() {
-        return userId;
-    }
-
     public int getStars() {
         return stars;
     }

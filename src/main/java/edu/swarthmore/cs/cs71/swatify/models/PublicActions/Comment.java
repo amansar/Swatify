@@ -30,8 +30,6 @@ public class Comment extends PublicAction {
 
     public void setId(int id) { this.id = id; }
 
-    public int getUserId() { return userId; }
-
     public int getParentActionId() { return parentActionId; }
 
     public String getContent() {
