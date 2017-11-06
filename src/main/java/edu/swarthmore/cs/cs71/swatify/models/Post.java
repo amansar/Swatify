@@ -1,4 +1,4 @@
-package edu.swarthmore.cs.cs71.swatify.models.PublicActions;
+package edu.swarthmore.cs.cs71.swatify.models;
 
 import javax.persistence.*;
 
