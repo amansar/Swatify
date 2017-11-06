@@ -9,33 +9,36 @@ import static spark.Spark.*;
 
 public class AlbumsController {
     public AlbumsController() {
-        path("/albums", () -> {
-            get("/:id", (request, response) -> {
-                int id = Integer.parseInt(request.params("id"));
-                return HibernateUtil.getObjectById(Album.class, id);
-            }, GsonUtil::toJson);
+        path("/Albums", () -> {
+            get("/:id", (request, response) -> getAlbum(Integer.parseInt(request.params("id"))), GsonUtil::toJson);
 
-            post("", (request, response) -> {
-                Album album = GsonUtil.fromJson(Album.class, request.body());
-                return HibernateUtil.saveObject(album);
-            }, GsonUtil::toJson);
+            post("", (request, response) -> createAlbum(GsonUtil.fromJson(Album.class, request.body())),  GsonUtil::toJson);
 
-            patch("/:id", (request, response) -> {
-                Album album = GsonUtil.fromJson(Album.class, request.body());
-                return HibernateUtil.updateObject(album);
-            }, GsonUtil::toJson);
+            patch("/:id", (request, response) -> updateAlbum(GsonUtil.fromJson(Album.class, request.body())), GsonUtil::toJson);
 
-            delete("/:id", (request, response) -> {
-                int albumId = Integer.parseInt(request.params("id"));
-                return HibernateUtil.deleteObject(Album.class, albumId);
-            }, GsonUtil::toJson);
+            delete("/:id", (request, response) -> deleteAlbum(Integer.parseInt(request.params("id"))), GsonUtil::toJson);
 
             after((req, res) -> res.type("application/json"));
 
             exception(IllegalArgumentException.class, (e, req, res) -> {
                 res.status(400);
             });
-
         });
+    }
+
+    public static Album getAlbum(int id) {
+        return HibernateUtil.getObjectById(Album.class, id);
+    }
+
+    public static Album createAlbum(Album Album) {
+        return HibernateUtil.saveObject(Album);
+    }
+
+    public static Album updateAlbum(Album Album) {
+        return HibernateUtil.updateObject(Album);
+    }
+
+    public static Album deleteAlbum(int id) {
+        return HibernateUtil.deleteObject(Album.class, id);
     }
 }
