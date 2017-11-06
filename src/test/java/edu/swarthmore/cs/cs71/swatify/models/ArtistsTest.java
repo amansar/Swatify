@@ -6,7 +6,7 @@ import org.junit.Test;
 
 import java.util.List;
 
-public class ArtistTest {
+public class ArtistsTest {
 
     @Test
     public void createArtist() throws Exception {
