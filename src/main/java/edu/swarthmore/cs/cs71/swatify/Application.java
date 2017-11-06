@@ -10,7 +10,7 @@ public class Application {
         setRoutes();
     }
 
-    private static void setRoutes() {
+    public static void setRoutes() {
         path("/api/v1", () -> {
             new UsersController();
             new ArtistsController();
