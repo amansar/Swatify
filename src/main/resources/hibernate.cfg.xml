@@ -16,6 +16,10 @@
         <mapping class="edu.swarthmore.cs.cs71.swatify.models.Album"/>
         <mapping class="edu.swarthmore.cs.cs71.swatify.models.Track"/>
         <mapping class="edu.swarthmore.cs.cs71.swatify.models.Artist"/>
+        <mapping class="edu.swarthmore.cs.cs71.swatify.models.Comment"/>
+        <mapping class="edu.swarthmore.cs.cs71.swatify.models.Post"/>
+        <mapping class="edu.swarthmore.cs.cs71.swatify.models.Rating"/>
+
 
     </session-factory>
 </hibernate-configuration>
