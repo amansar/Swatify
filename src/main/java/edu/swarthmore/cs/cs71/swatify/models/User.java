@@ -29,6 +29,12 @@ public class User {
 
     public User() { }
 
+    public User(String username, String email, String spotifyId) {
+        this.username = username;
+        this.email = email;
+        this.spotifyId = spotifyId;
+    }
+
     public int getId() {
         return id;
     }
