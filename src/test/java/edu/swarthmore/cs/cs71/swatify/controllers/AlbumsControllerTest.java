@@ -5,13 +5,12 @@ import static org.junit.Assert.assertEquals;
 import org.junit.Test;
 
 import java.sql.Timestamp;
-import java.util.Date;
 
 
 public class AlbumsControllerTest {
-    /*
+
     @Test
-    public void givenAlbumGenerateCorrespondingAlbumFromDatabase(){
+    public void shouldCreateAndRetrieveCorrectAlbum(){
         Album collegeDropouts = new Album();
         collegeDropouts.setReleaseDate(new Timestamp(3L));
         collegeDropouts.setSpotifyID("843ghg48");
@@ -23,5 +22,5 @@ public class AlbumsControllerTest {
         assertEquals(collegeDropouts.getReleaseDate(), createdAlbum.getReleaseDate());
         assertEquals(collegeDropouts.getSpotifyID(), createdAlbum.getSpotifyID());
     }
-    */
+
 }
