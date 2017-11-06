@@ -6,7 +6,7 @@ import java.sql.Timestamp;
 import java.util.Date;
 import static org.junit.Assert.assertEquals;
 
-public class MusicWorksTest {
+public class AlbumTest {
 
   @Test
     public void givenAlbumReturnAllAlbumsFromDatabase(){

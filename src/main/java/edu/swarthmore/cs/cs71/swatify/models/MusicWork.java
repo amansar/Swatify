@@ -15,7 +15,6 @@ public class MusicWork {
         return titleOfWork;
     }
 
-    public MusicWork(){ }
 
 
     public void setSpotifyID(String spotifyId){
