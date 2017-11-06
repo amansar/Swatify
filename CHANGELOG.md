@@ -11,6 +11,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - onewman1: Set up basic directory structure
 - onewman1: Create User model, controllers, and service
 - cmarsh1: Create Artist model and controller
--amansar1: Create Album model and controller
--amansar1: Create Album model tests and controller tests
+- cmarsh1: Create ArtistFollow class for Users to follow artists
+- amansar1: Create Album model and controller
+- amansar1: Create Album model tests and controller tests
 
