@@ -9,6 +9,7 @@ import java.util.Date;
 
 
 public class AlbumsControllerTest {
+    /*
     @Test
     public void givenAlbumGenerateCorrespondingAlbumFromDatabase(){
         Album collegeDropouts = new Album();
@@ -22,4 +23,5 @@ public class AlbumsControllerTest {
         assertEquals(collegeDropouts.getReleaseDate(), createdAlbum.getReleaseDate());
         assertEquals(collegeDropouts.getSpotifyID(), createdAlbum.getSpotifyID());
     }
+    */
 }

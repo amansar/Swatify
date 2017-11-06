@@ -13,7 +13,7 @@ public class Album extends MusicWork {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    
+
     private Timestamp releaseDate;
 
     public Album() { }

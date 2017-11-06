@@ -1,4 +1,4 @@
-package edu.swarthmore.cs.cs71.swatify.models.PublicActions;
+package edu.swarthmore.cs.cs71.swatify.models;
 
 import javax.persistence.*;
 
@@ -13,7 +13,6 @@ public class Comment extends PublicAction {
     private int id;
 
     private String content;
-    private int userId;
     private int parentActionId;
 
     public Comment() { }
@@ -27,8 +26,6 @@ public class Comment extends PublicAction {
     public int getId() {
         return id;
     }
-
-    public void setId(int id) { this.id = id; }
 
     public int getParentActionId() { return parentActionId; }
 
