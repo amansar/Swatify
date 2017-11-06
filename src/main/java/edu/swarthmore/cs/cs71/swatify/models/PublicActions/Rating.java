@@ -10,7 +10,6 @@ public class Rating extends PublicAction {
     private int id;
 
     private int stars;
-    private int userId;
     private int musicWorkId;
 
     public Rating(int userId, int stars, int musicWorkId) {
@@ -23,10 +22,10 @@ public class Rating extends PublicAction {
         return id;
     }
 
-    public void setId(int id) { this.id = id; }
+    public int getMusicWorkId() { return musicWorkId; }
 
     public int getStars() {
-        return stars;
+        return this.stars;
     }
 
     public void setStars(int stars) { this.stars = stars; }

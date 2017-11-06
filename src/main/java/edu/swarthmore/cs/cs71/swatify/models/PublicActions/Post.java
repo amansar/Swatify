@@ -10,7 +10,6 @@ public class Post extends PublicAction {
     private int id;
 
     private String content;
-    private int userId;
 
     public Post() { }
 
@@ -22,8 +21,6 @@ public class Post extends PublicAction {
     public int getId() {
         return id;
     }
-
-    public void setId(int id) { this.id = id; }
 
     public String getContent() {
         return content;
