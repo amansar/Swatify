@@ -1,29 +1,34 @@
 package edu.swarthmore.cs.cs71.swatify.models;
 
+
+import org.hibernate.annotations.DynamicUpdate;
+
+import javax.persistence.*;
+
+@Entity
+@Table
+@DynamicUpdate
 public class Track {
 
-    private Integer lengthOfTrack;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
+
+    private Double lengthOfTrack;
 
     private String titleOfWork;
     private String spotifyID;
 
     //maybe add length field if we plan on adding this in for both tracks and albums
 
-    public void setSpotifyID(String spotifyId){
-        this.spotifyID = spotifyId;
-    }
-
-    public void setTitle(String title){
-        this.titleOfWork = title;
-    }
 
     public Track() { }
 
-    public void setLengthOfTrack(Integer lengthOfTrack) {
+    public void setLengthOfTrack(Double lengthOfTrack) {
         this.lengthOfTrack = lengthOfTrack;
     }
 
-    public Integer getLengthOfTrack() {
+    public Double getLengthOfTrack() {
 
         return lengthOfTrack;
     }
@@ -36,5 +41,14 @@ public class Track {
     public String getTitle() {
 
         return titleOfWork;
+    }
+
+
+    public void setSpotifyID(String spotifyId){
+        this.spotifyID = spotifyId;
+    }
+
+    public void setTitle(String title){
+        this.titleOfWork = title;
     }
 }
