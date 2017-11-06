@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+    <session-factory>
+        <property name="hibernate.hbm2ddl.auto">update</property>
+        <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+        <property name="hibernate.connection.username">username</property>
+        <property name="hibernate.connection.password">	password</property>
+        <property name="hibernate.connection.url">jdbc:mysql://chocolate.cs.swarthmore.edu:3306/ </property>
+        <property name="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect</property>
+        <property name="show_sql">true</property> 
+
+        <mapping class="edu.swarthmore.cs.cs71.swatify.models.User"/>
+        <mapping class="edu.swarthmore.cs.cs71.swatify.models.Album"/>
+        <mapping class="edu.swarthmore.cs.cs71.swatify.models.Track"/>
+        <mapping class="edu.swarthmore.cs.cs71.swatify.models.Artist"/>
+        <mapping class="edu.swarthmore.cs.cs71.swatify.models.Comment"/>
+        <mapping class="edu.swarthmore.cs.cs71.swatify.models.Post"/>
+        <mapping class="edu.swarthmore.cs.cs71.swatify.models.Rating"/>
+
+    </session-factory>
+</hibernate-configuration>
