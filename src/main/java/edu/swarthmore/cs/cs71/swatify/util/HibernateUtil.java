@@ -77,28 +77,24 @@ public class HibernateUtil {
      * @param objectId The ID of the object to delete.
      * @param <T> The class of the object.
      */
-    public static <T> boolean deleteObject(Class<T> objectClass, int objectId) {
+    public static <T> T deleteObject(Class<T> objectClass, int objectId) {
         Session session = sessionFactory.openSession();
         session.beginTransaction();
-        boolean deleted;
+        T object = null;
 
         try {
-            T object = objectClass.cast(session.load(objectClass, objectId));
+            object = objectClass.cast(session.get(objectClass, objectId));
             session.delete(object);
             session.getTransaction().commit();
-
-            deleted = true;
         }
         catch (HibernateException e) {
             session.getTransaction().rollback();
-
-            deleted = false;
         }
         finally {
             session.close();
         }
 
-        return deleted;
+        return object;
     }
 
     /**
