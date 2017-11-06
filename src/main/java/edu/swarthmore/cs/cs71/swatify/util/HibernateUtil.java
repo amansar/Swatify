@@ -1,6 +1,5 @@
 package edu.swarthmore.cs.cs71.swatify.util;
 
-import edu.swarthmore.cs.cs71.swatify.models.User;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;

@@ -2,6 +2,7 @@ package edu.swarthmore.cs.cs71.swatify;
 
 import edu.swarthmore.cs.cs71.swatify.controllers.ArtistsController;
 import edu.swarthmore.cs.cs71.swatify.controllers.UsersController;
+import edu.swarthmore.cs.cs71.swatify.models.Artist;
 
 import static spark.Spark.*;
 
@@ -12,8 +13,8 @@ public class Application {
 
     public static void setRoutes() {
         path("/api/v1", () -> {
-            new UsersController();
-            new ArtistsController();
+            UsersController usersController = new UsersController();
+            ArtistsController artistsController = new ArtistsController();
         });
     }
 }
