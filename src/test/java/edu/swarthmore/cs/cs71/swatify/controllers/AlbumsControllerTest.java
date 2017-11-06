@@ -10,7 +10,7 @@ import java.sql.Timestamp;
 public class AlbumsControllerTest {
 
     @Test
-    public void givenAlbumGenerateCorrespondingAlbumFromDatabase(){
+    public void shouldCreateAndRetrieveCorrectAlbum(){
         Album collegeDropouts = new Album();
         collegeDropouts.setReleaseDate(new Timestamp(3L));
         collegeDropouts.setSpotifyID("843ghg48");

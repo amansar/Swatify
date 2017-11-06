@@ -11,7 +11,7 @@ import javax.persistence.*;
 @Entity
 @Table
 @DynamicUpdate
-public class Album extends MusicWork {
+public class Album {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
