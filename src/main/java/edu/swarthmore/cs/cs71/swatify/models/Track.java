@@ -1,6 +1,4 @@
-package edu.swarthmore.cs.cs71.swatify.models.MusicWorks;
-
-import edu.swarthmore.cs.cs71.swatify.models.MusicWorks.MusicWork;
+package edu.swarthmore.cs.cs71.swatify.models;
 
 public class Track extends MusicWork {
 
