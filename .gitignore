@@ -28,6 +28,7 @@ hs_err_pid*
 .idea/dynamic.xml
 .idea/uiDesigner.xml
 
+
 # Gradle:
 .idea/gradle.xml
 .idea/libraries
@@ -62,3 +63,7 @@ fabric.properties
 # modules.xml
 # .idea/misc.xml 
 # *.ipr 
+
+
+# individual hibernate config file
+src/main/resources/hibernate.cfg.xml

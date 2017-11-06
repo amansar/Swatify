@@ -1,5 +1,6 @@
 package edu.swarthmore.cs.cs71.swatify.models;
 
+import java.sql.Timestamp;
 import java.util.Date;
 import org.hibernate.annotations.DynamicUpdate;
 
@@ -13,17 +14,16 @@ public class Album extends MusicWork {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 
-    private Date releaseDate;
+    private Timestamp releaseDate;
 
     public Album() { }
 
-    public void setReleaseDate(Date releaseDate) {
+    public void setReleaseDate(Timestamp releaseDate) {
         this.releaseDate = releaseDate;
     }
 
     public Date getReleaseDate() {
         return releaseDate;
     }
-
 
 }

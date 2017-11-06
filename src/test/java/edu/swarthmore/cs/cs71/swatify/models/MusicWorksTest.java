@@ -1,39 +1,24 @@
 package edu.swarthmore.cs.cs71.swatify.models;
 
-import edu.swarthmore.cs.cs71.swatify.util.HibernateUtil;
-import org.junit.Assert;
 import org.junit.Test;
 
-import java.util.ArrayList;
+import java.sql.Timestamp;
 import java.util.Date;
-import java.util.List;
+import static org.junit.Assert.assertEquals;
 
 public class MusicWorksTest {
 
   @Test
-    public void givenMultipleAlbums_returnAllAlbumsFromDatabase(){
-      List<Album> kanyeAlbums = new ArrayList<Album>();
+    public void givenAlbumReturnAllAlbumsFromDatabase(){
 
       Album collegeDropouts = new Album();
-      Date genericReleaseDate = new Date(63, 0, 16);
+      Timestamp genericReleaseDate = new Timestamp(0L);
       collegeDropouts.setReleaseDate(genericReleaseDate);
-      collegeDropouts.setSpotifyID(null);
+      collegeDropouts.setSpotifyID("47b7v7e");
       collegeDropouts.setTitle("College Dropouts");
 
-      Album graduation = new Album();
-      graduation.setReleaseDate(genericReleaseDate);
-      graduation.setSpotifyID(null);
-      graduation.setTitle("Graduation");
-
-      kanyeAlbums.add(collegeDropouts);
-      kanyeAlbums.add(graduation);
-
-      HibernateUtil.saveObject(collegeDropouts);
-      HibernateUtil.saveObject(graduation);
-
-      Assert.assertEquals(kanyeAlbums,HibernateUtil.listObjects(Album.class));
-
-
-
+      assertEquals(genericReleaseDate, collegeDropouts.getReleaseDate());
+      assertEquals("47b7v7e", collegeDropouts.getSpotifyID());
+      assertEquals("College Dropouts", collegeDropouts.getTitle());
   }
 }

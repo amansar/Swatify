@@ -18,6 +18,7 @@ public class UsersControllerTest {
         assertEquals(user.getUsername(), createdUser.getUsername());
     }
 
+
     @Test
     public void shouldNotAllowDuplicateUsernames() {
         User user1 = new User();
@@ -79,4 +80,5 @@ public class UsersControllerTest {
         User failedDeletedUser = UsersController.deleteUser(1243124);
         assertEquals(null, failedDeletedUser);
     }
+
 }
