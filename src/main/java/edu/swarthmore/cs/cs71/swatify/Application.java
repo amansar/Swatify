@@ -1,5 +1,6 @@
 package edu.swarthmore.cs.cs71.swatify;
 
+import edu.swarthmore.cs.cs71.swatify.controllers.AlbumsController;
 import edu.swarthmore.cs.cs71.swatify.controllers.ArtistsController;
 import edu.swarthmore.cs.cs71.swatify.controllers.UsersController;
 
@@ -14,6 +15,7 @@ public class Application {
         path("/api/v1", () -> {
             new UsersController();
             new ArtistsController();
+            new AlbumsController();
         });
     }
 }
