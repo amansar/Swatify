@@ -14,11 +14,12 @@
 
         <mapping class="edu.swarthmore.cs.cs71.swatify.models.User"/>
         <mapping class="edu.swarthmore.cs.cs71.swatify.models.Album"/>
-<<<<<<< HEAD
         <mapping class="edu.swarthmore.cs.cs71.swatify.models.Artist"/>
-=======
-        <mapping class="edu.swarthmore.cs.cs71.swatify.models.Track"/>
->>>>>>> 1582f2d00073b20dbb2740488ca2ea73954cb4da
+        <mapping class="edu.swarthmore.cs.cs71.swatify.models.Track"/>g
+        <mapping class="edu.swarthmore.cs.cs71.swatify.models.Comment"/>
+        <mapping class="edu.swarthmore.cs.cs71.swatify.models.Post"/>
+        <mapping class="edu.swarthmore.cs.cs71.swatify.models.Rating"/>
+
 
     </session-factory>
 </hibernate-configuration>
