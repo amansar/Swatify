@@ -18,6 +18,7 @@ public class Artist {
 
     private String spotifyId;
     private String name;
+//    private List<Album> albums;
 
 
 
@@ -40,4 +41,19 @@ public class Artist {
         return name;
     }
 
+//    public List<Album> getAlbums() {
+//        return albums;
+//    }
+
+    public void setSpotifyId(String spotifyId) {
+        this.spotifyId = spotifyId;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+//    public void setAlbums(List<Album> albums) {
+//        this.albums = albums;
+//    }
 }
