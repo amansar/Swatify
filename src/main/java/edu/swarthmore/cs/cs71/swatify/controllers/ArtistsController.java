@@ -22,20 +22,20 @@ public class ArtistsController {
             });
         });
     }
-
-    public static Artist createArtist(Artist artist){
-        return HibernateUtil.saveObject(artist);
     }
 
     public static Artist getArtist(int id){
         return HibernateUtil.getObjectById(Artist.class, id);
     }
 
-    public static Artist deleteArtist(int id){
+    public static boolean createArtist(Artist artist){
+        return HibernateUtil.saveObject(artist);
+
+    public static boolean deleteArtist(int id){
         return HibernateUtil.deleteObject(Artist.class, id);
     }
 
-    public static Artist updateArtist(Artist artist){
+    public static boolean updateArtist(Artist artist){
         return HibernateUtil.updateObject(artist);
     }
 

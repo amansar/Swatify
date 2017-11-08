@@ -31,15 +31,15 @@ public class UsersController {
         return HibernateUtil.getObjectById(User.class, id);
     }
 
-    public static User createUser(User user) {
+    public static boolean createUser(User user) {
         return HibernateUtil.saveObject(user);
     }
 
-    public static User updateUser(User user) {
+    public static boolean updateUser(User user) {
         return HibernateUtil.updateObject(user);
     }
 
-    public static User deleteUser(int id) {
+    public static boolean deleteUser(int id) {
         return HibernateUtil.deleteObject(User.class, id);
     }
 
