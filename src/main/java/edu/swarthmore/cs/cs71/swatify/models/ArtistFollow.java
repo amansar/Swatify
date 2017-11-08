@@ -5,6 +5,10 @@ import javax.persistence.*;
 @Entity
 @Table
 public class ArtistFollow {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
+
     private Artist artist;
     private User follower;
 
