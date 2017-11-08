@@ -3,13 +3,12 @@ package edu.swarthmore.cs.cs71.swatify.models;
 import org.junit.Test;
 
 import java.sql.Timestamp;
-import java.util.Date;
 import static org.junit.Assert.assertEquals;
 
-public class MusicWorksTest {
+public class AlbumTest {
 
   @Test
-    public void givenAlbumReturnAllAlbumsFromDatabase(){
+    public void setAndGetCorrectAlbumFields(){
 
       Album collegeDropouts = new Album();
       Timestamp genericReleaseDate = new Timestamp(0L);
