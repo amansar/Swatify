@@ -5,6 +5,8 @@ import edu.swarthmore.cs.cs71.swatify.util.HibernateUtil;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 public class UsersControllerTest {
     @Test
@@ -13,12 +15,10 @@ public class UsersControllerTest {
         user.setUsername("imjustatest");
         user.setEmail("imjustatest@example.com");
 
-        User createdUser = UsersController.createUser(user);
+        assertTrue(UsersController.createUser(user));
 
-        assertEquals(user.getUsername(), createdUser.getUsername());
     }
 
-    /*
     @Test
     public void shouldNotAllowDuplicateUsernames() {
         User user1 = new User();
@@ -30,10 +30,9 @@ public class UsersControllerTest {
 
         UsersController.createUser(user1);
 
-        UsersController.createUser(user2);
-        assertEquals(null, user2.getId());
+        assertFalse(UsersController.createUser(user2));
     }
-*/
+
     @Test
     public void shouldGetAnExistingUser() {
         String username = "userToGet";
@@ -64,11 +63,9 @@ public class UsersControllerTest {
 
         int id = user.getId();
 
-        User deletedUser = UsersController.deleteUser(id);
+        boolean deletedUser = UsersController.deleteUser(id);
 
-        assertEquals(deletedUser.getUsername(), user.getUsername());
-        assertEquals(deletedUser.getEmail(), user.getEmail());
-        assertEquals(deletedUser.getId(), id);
+        assertTrue(deletedUser);
 
         User gottenUser = UsersController.getUser(id);
 
@@ -77,8 +74,7 @@ public class UsersControllerTest {
 
     @Test
     public void shouldFailWhenDeletingNonExistentUser() {
-        User failedDeletedUser = UsersController.deleteUser(1243124);
-        assertEquals(null, failedDeletedUser);
+        assertFalse(UsersController.deleteUser(1243124));
     }
 
 }

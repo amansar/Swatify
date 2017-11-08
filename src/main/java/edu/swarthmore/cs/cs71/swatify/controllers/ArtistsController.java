@@ -1,11 +1,8 @@
 package edu.swarthmore.cs.cs71.swatify.controllers;
 
-import edu.swarthmore.cs.cs71.swatify.models.Album;
 import edu.swarthmore.cs.cs71.swatify.models.Artist;
 import edu.swarthmore.cs.cs71.swatify.util.GsonUtil;
 import edu.swarthmore.cs.cs71.swatify.util.HibernateUtil;
-import spark.Request;
-import spark.Response;
 
 
 import static spark.Spark.*;
@@ -22,14 +19,14 @@ public class ArtistsController {
             });
         });
     }
-    }
 
     public static Artist getArtist(int id){
         return HibernateUtil.getObjectById(Artist.class, id);
     }
 
-    public static boolean createArtist(Artist artist){
+    public static boolean createArtist(Artist artist) {
         return HibernateUtil.saveObject(artist);
+    }
 
     public static boolean deleteArtist(int id){
         return HibernateUtil.deleteObject(Artist.class, id);
