@@ -13,10 +13,15 @@ public class Album extends MusicWork {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
 
     private Timestamp releaseDate;
 
     public Album() { }
+
+    public int getId() {
+        return id;
+    }
 
     public void setReleaseDate(Timestamp releaseDate) {
         this.releaseDate = releaseDate;
