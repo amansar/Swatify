@@ -22,12 +22,10 @@ public class User {
     @Column(unique = true)
     @NotBlank
     private String email;
-<<<<<<< HEAD
     private ArrayList<User> following;  // figure out follow implementation
     private ArrayList<User> followers;
     private ArrayList<PublicAction> feed;
     public User(String username, String email) {
-=======
 
     @Column(unique = true)
     @NotBlank
@@ -36,7 +34,6 @@ public class User {
     public User() { }
 
     public User(String username, String email, String spotifyId) {
->>>>>>> 827907112d2d7d7930a63ef76acc8f50a1f1d9bc
         this.username = username;
         this.email = email;
         this.spotifyId = spotifyId;
@@ -50,19 +47,15 @@ public class User {
         return username;
     }
 
-<<<<<<< HEAD
     public void setUsername(String username) {
         this.username = username;
         HibernateUtil.updateObject(this);
     }
 
-=======
->>>>>>> 827907112d2d7d7930a63ef76acc8f50a1f1d9bc
     public String getEmail() {
         return email;
     }
 
-<<<<<<< HEAD
     public void setEmail(String email) {
         this.email = email;
         HibernateUtil.updateObject(this);
@@ -84,7 +77,7 @@ public class User {
         }
         HibernateUtil.updateObject(following); //need to update user object instead?
         HibernateUtil.updateObject(this);
-=======
+
     public void setUsername(String username) {
         this.username = username;
     }
@@ -95,7 +88,6 @@ public class User {
 
     public String getSpotifyId() {
         return spotifyId;
->>>>>>> 827907112d2d7d7930a63ef76acc8f50a1f1d9bc
     }
 
     public void setSpotifyId(String spotifyId) {
