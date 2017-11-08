@@ -66,4 +66,4 @@ fabric.properties
 
 
 # individual hibernate config file
-src/main/resources/hibernate.cfg.xml
+*hibernate.cfg.xml
