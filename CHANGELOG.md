@@ -8,5 +8,13 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 - Set up a Maven project ([#1](https://github.swarthmore.edu/CS71-F17/group-swatify/issues/1))
 - onewman1: Set up Hibernate and MySQL ([#4](https://github.swarthmore.edu/CS71-F17/group-swatify/issues/4))
+- onewman1: Create HibernateUtil and GsonUtil
 - onewman1: Set up basic directory structure
-- onewman1: Create User model, controllers, and service
+- onewman1: Create User model and controller
+- cmarsh1: Create Artist model and controller
+- onewman1: Add TestUtil and UsersControllerTest
+- cmarsh1: Create ArtistFollow class for Users to follow artists
+- amansar1: Create Album model and controller
+- amansar1: Create Album model tests and controller tests
+- cpillsb1: Create Post, Comment, and Rating model
+- cpillsb1: Created model tests for Post, Comment, and Rating
