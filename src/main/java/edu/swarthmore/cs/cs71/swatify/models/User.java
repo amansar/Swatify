@@ -22,6 +22,10 @@ public class User {
     @Column(unique = true)
     @NotBlank
     private String email;
+    private ArrayList<User> following;  // figure out follow implementation
+    private ArrayList<User> followers;
+    private ArrayList<PublicAction> feed;
+    public User(String username, String email) {
 
     @Column(unique = true)
     @NotBlank
@@ -43,9 +47,36 @@ public class User {
         return username;
     }
 
+    public void setUsername(String username) {
+        this.username = username;
+        HibernateUtil.updateObject(this);
+    }
+
     public String getEmail() {
         return email;
     }
+
+    public void setEmail(String email) {
+        this.email = email;
+        HibernateUtil.updateObject(this);
+    }
+
+    public ArrayList<User> getFollowing() { return following;}
+
+    public ArrayList<User> getFollowers() { return followers;}
+
+    public void followUser(User user){
+        following.add(user);
+        HibernateUtil.updateObject(following); //need to update user object instead?
+        HibernateUtil.updateObject(this);
+    }
+
+    public void unfollowUser(User user){
+        if (following.contains(user)) {
+            following.remove(user);
+        }
+        HibernateUtil.updateObject(following); //need to update user object instead?
+        HibernateUtil.updateObject(this);
 
     public void setUsername(String username) {
         this.username = username;
