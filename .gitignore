@@ -67,3 +67,6 @@ fabric.properties
 
 # individual hibernate config file
 *hibernate.cfg.xml
+
+#spotifyAPI Secrets file
+src/main/java/edu/swarthmore/cs/cs71/swatify/util/Secrets.java

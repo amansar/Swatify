@@ -4,6 +4,7 @@ import edu.swarthmore.cs.cs71.swatify.controllers.AlbumsController;
 import edu.swarthmore.cs.cs71.swatify.controllers.ArtistsController;
 import edu.swarthmore.cs.cs71.swatify.controllers.UsersController;
 import edu.swarthmore.cs.cs71.swatify.models.Artist;
+import edu.swarthmore.cs.cs71.swatify.util.SpotifyUtil;
 
 import static spark.Spark.*;
 
