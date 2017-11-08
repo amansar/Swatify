@@ -30,15 +30,15 @@ public class AlbumsController {
         return HibernateUtil.getObjectById(Album.class, id);
     }
 
-    public static Album createAlbum(Album Album) {
+    public static boolean createAlbum(Album Album) {
         return HibernateUtil.saveObject(Album);
     }
 
-    public static Album updateAlbum(Album Album) {
+    public static boolean updateAlbum(Album Album) {
         return HibernateUtil.updateObject(Album);
     }
 
-    public static Album deleteAlbum(int id) {
+    public static boolean deleteAlbum(int id) {
         return HibernateUtil.deleteObject(Album.class, id);
     }
 }

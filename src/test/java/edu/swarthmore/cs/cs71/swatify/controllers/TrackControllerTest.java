@@ -9,6 +9,7 @@ import org.junit.Test;
 import java.sql.Timestamp;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 public class TrackControllerTest {
 
@@ -21,11 +22,7 @@ public class TrackControllerTest {
         kanyeSong.setSpotifyID("fdiubfdhiub");
         kanyeSong.setTitle("St. Pablo");
 
-        Track createdTrack = TracksController.createTrack(kanyeSong);
-
-        assertEquals(kanyeSong.getTitle(), createdTrack.getTitle());
-        assertEquals(kanyeSong.getLengthOfTrack(), createdTrack.getLengthOfTrack());
-        assertEquals(kanyeSong.getSpotifyID(), createdTrack.getSpotifyID());
+        assertTrue(TracksController.createTrack(kanyeSong));
     }
 
     @Test

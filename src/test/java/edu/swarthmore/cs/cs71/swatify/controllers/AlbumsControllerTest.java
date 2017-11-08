@@ -2,6 +2,7 @@ package edu.swarthmore.cs.cs71.swatify.controllers;
 
 import edu.swarthmore.cs.cs71.swatify.models.Album;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 import edu.swarthmore.cs.cs71.swatify.models.Artist;
 import edu.swarthmore.cs.cs71.swatify.util.HibernateUtil;
@@ -20,11 +21,7 @@ public class AlbumsControllerTest {
         collegeDropouts.setSpotifyID("843ghg48");
         collegeDropouts.setTitle("College Dropouts");
 
-        Album createdAlbum = AlbumsController.createAlbum(collegeDropouts);
-
-        assertEquals(collegeDropouts.getTitle(), createdAlbum.getTitle());
-        assertEquals(collegeDropouts.getReleaseDate(), createdAlbum.getReleaseDate());
-        assertEquals(collegeDropouts.getSpotifyID(), createdAlbum.getSpotifyID());
+        assertTrue(AlbumsController.createAlbum(collegeDropouts));
     }
 
     @Test

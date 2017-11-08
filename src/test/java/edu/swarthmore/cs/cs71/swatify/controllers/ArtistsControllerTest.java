@@ -5,6 +5,8 @@ import edu.swarthmore.cs.cs71.swatify.util.HibernateUtil;
 import org.junit.Assert;
 import org.junit.Test;
 
+import static org.junit.Assert.assertTrue;
+
 public class ArtistsControllerTest {
 
     @Test
@@ -13,10 +15,7 @@ public class ArtistsControllerTest {
         cameron.setName("Cameron");
         cameron.setSpotifyId(null);
 
-        Artist createdArtist = ArtistsController.createArtist(cameron);
-
-        Assert.assertEquals(cameron.getName(), createdArtist.getName());
-        Assert.assertEquals(cameron.getSpotifyId(), createdArtist.getSpotifyId());
+        assertTrue(ArtistsController.createArtist(cameron));
     }
 
     @Test

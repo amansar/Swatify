@@ -31,15 +31,15 @@ public class CommentsController {
         return HibernateUtil.getObjectById(Comment.class, id);
     }
 
-    public static Comment createComment(Comment comment) {
+    public static boolean createComment(Comment comment) {
         return HibernateUtil.saveObject(comment);
     }
 
-    public static Comment updateComment(Comment comment) {
+    public static boolean updateComment(Comment comment) {
         return HibernateUtil.updateObject(comment);
     }
 
-    public static Comment deleteComment(int id) {
+    public static boolean deleteComment(int id) {
         return HibernateUtil.deleteObject(Comment.class, id);
     }
 

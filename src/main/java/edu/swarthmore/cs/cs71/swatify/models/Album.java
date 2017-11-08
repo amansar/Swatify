@@ -39,10 +39,6 @@ public class Album {
         return releaseDate;
     }
 
-    public int getId() {
-        return id;
-    }
-
     public String getSpotifyID() {
         return spotifyID;
     }

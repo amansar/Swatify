@@ -31,15 +31,15 @@ public class PostsController {
         return HibernateUtil.getObjectById(Post.class, id);
     }
 
-    public static Post createPost(Post post) {
+    public static boolean createPost(Post post) {
         return HibernateUtil.saveObject(post);
     }
 
-    public static Post updatePost(Post post) {
+    public static boolean updatePost(Post post) {
         return HibernateUtil.updateObject(post);
     }
 
-    public static Post deletePost(int id) {
+    public static boolean deletePost(int id) {
         return HibernateUtil.deleteObject(Post.class, id);
     }
 }

@@ -16,21 +16,23 @@ public class HibernateUtil {
      * @param object The object to persist.
      * @param <T> the class of the object.
      */
-    public static <T> T saveObject(T object) {
+    public static <T> boolean saveObject(T object) {
         Session session = sessionFactory.openSession();
         session.beginTransaction();
+
+        boolean saved = false;
 
         try {
             session.save(object);
             session.getTransaction().commit();
+            saved = true;
         } catch (Exception e) {
             session.getTransaction().rollback();
-            object = null;
         } finally {
             session.close();
         }
 
-        return object;
+        return saved;
     }
 
     /**
@@ -56,13 +58,16 @@ public class HibernateUtil {
      * Update an object in the database.
      * @param object The updated object to save to the database.
      */
-    public static <T> T updateObject(T object) {
+    public static <T> boolean updateObject(T object) {
         Session session = sessionFactory.openSession();
         session.beginTransaction();
+
+        boolean updated = false;
 
         try {
             session.update(object);
             session.getTransaction().commit();
+            updated = true;
         }
         catch (Exception e) {
             session.getTransaction().rollback();
@@ -72,7 +77,7 @@ public class HibernateUtil {
             session.close();
         }
 
-        return object;
+        return updated;
     }
 
     /**
@@ -81,15 +86,18 @@ public class HibernateUtil {
      * @param objectId The ID of the object to delete.
      * @param <T> The class of the object.
      */
-    public static <T> T deleteObject(Class<T> objectClass, int objectId) {
+    public static <T> boolean deleteObject(Class<T> objectClass, int objectId) {
         Session session = sessionFactory.openSession();
         session.beginTransaction();
         T object = null;
+
+        boolean deleted = false;
 
         try {
             object = objectClass.cast(session.get(objectClass, objectId));
             session.delete(object);
             session.getTransaction().commit();
+            deleted = true;
         }
         catch (Exception e) {
             session.getTransaction().rollback();
@@ -98,7 +106,7 @@ public class HibernateUtil {
             session.close();
         }
 
-        return object;
+        return deleted;
     }
 
     /**

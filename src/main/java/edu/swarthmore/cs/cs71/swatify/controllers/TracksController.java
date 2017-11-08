@@ -30,15 +30,15 @@ public class TracksController {
         return HibernateUtil.getObjectById(Track.class, id);
     }
 
-    public static Track createTrack(Track Track) {
+    public static boolean createTrack(Track Track) {
         return HibernateUtil.saveObject(Track);
     }
 
-    public static Track updateTrack(Track Track) {
+    public static boolean updateTrack(Track Track) {
         return HibernateUtil.updateObject(Track);
     }
 
-    public static Track deleteTrack(int id) {
+    public static boolean deleteTrack(int id) {
         return HibernateUtil.deleteObject(Track.class, id);
     }
 }

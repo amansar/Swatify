@@ -29,15 +29,15 @@ public class RatingsController {
         return HibernateUtil.getObjectById(Rating.class, id);
     }
 
-    public static Rating createRating(Rating Rating) {
+    public static boolean createRating(Rating Rating) {
         return HibernateUtil.saveObject(Rating);
     }
 
-    public static Rating updateRating(Rating Rating) {
+    public static boolean updateRating(Rating Rating) {
         return HibernateUtil.updateObject(Rating);
     }
 
-    public static Rating deleteRating(int id) {
+    public static boolean deleteRating(int id) {
         return HibernateUtil.deleteObject(Rating.class, id);
     }
 }
