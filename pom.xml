@@ -58,6 +58,14 @@
             <artifactId>javafaker</artifactId>
             <version>0.14</version>
         </dependency>
+
+        <dependency>
+            <groupId>se.michaelthelin.spotify</groupId>
+            <artifactId>spotify-web-api-java</artifactId>
+            <version>1.5.0</version>
+        </dependency>
+
+>>>>>>> e935e93ea3d54637bfa444f01639004f78db0a86
     </dependencies>
 
     <build>
