@@ -4,6 +4,7 @@ import edu.swarthmore.cs.cs71.swatify.models.User;
 import edu.swarthmore.cs.cs71.swatify.util.HibernateUtil;
 import org.junit.Test;
 
+import static junit.framework.TestCase.assertNotNull;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
@@ -15,7 +16,7 @@ public class UsersControllerTest {
         user.setUsername("imjustatest");
         user.setEmail("imjustatest@example.com");
 
-        assertTrue(UsersController.createUser(user));
+        assertNotNull(UsersController.createUser(user));
 
     }
 
