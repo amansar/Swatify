@@ -12,6 +12,8 @@ public class Rating extends PublicAction {
     private int stars;
     private int musicWorkId;
 
+    public Rating() { }
+
     public Rating(int userId, int stars, int musicWorkId) {
         this.userId = userId;
         this.stars = stars;

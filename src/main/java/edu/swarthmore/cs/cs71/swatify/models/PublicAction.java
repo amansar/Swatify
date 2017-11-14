@@ -1,11 +1,13 @@
 package edu.swarthmore.cs.cs71.swatify.models;
 
+import javax.persistence.MappedSuperclass;
 import java.time.LocalDateTime;
 
 /**
  * Superclass for PublicAction
  * Subclassed by Post, Comment, and Rating classes
  */
+@MappedSuperclass
 public class PublicAction {
     protected int userId;
 
