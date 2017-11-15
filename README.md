@@ -6,5 +6,5 @@ We will develop a web application that allows people to better connect through m
 
 **Note: Requires having npm installed.**
 
-Run `npm install` from `src/main/resource/frontend`  to install dependencies, then `gulp build` to build the JavaScript files or `gulp watch` to automatically re-build them when changes are made.
+Run `npm install` from `src/main/frontend`  to install dependencies, then `npm run build` to build the JavaScript files.
 
