@@ -1,15 +1,16 @@
 import React, { Component } from 'react';
-import Header from './Header'
+import { Switch, Route } from 'react-router';
+import Login from './Login'
 import Main from './Main'
 import './App.css';
 
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        <Header />
-        <Main />
-      </div>
+      <Switch>
+        <Route exact path='/login' component={Login} />
+        <Route path='/' component={Main} />
+      </Switch>
     );
   }
 }
