@@ -5,23 +5,33 @@ import {
   Nav as BSNav,
   NavItem as BSNavItem
 } from 'react-bootstrap';
+import { LinkContainer } from 'react-router-bootstrap';
 import './Navbar.css';
 
 export default class Navbar extends Component {
   render() {
     return (
-      <BSNavbar>
+      <BSNavbar inverse>
         <BSNavbar.Header>
           <BSNavbar.Brand>
-            Swatify
+            <Link to='/feed' className='Navbar-link'>Swatify</Link>
           </BSNavbar.Brand>
+          <BSNavbar.Toggle />
         </BSNavbar.Header>
         <BSNavbar.Collapse>
           <BSNav>
-            <BSNavItem><Link to='/feed' className='Navbar-link'>Feed</Link></BSNavItem>
-            <BSNavItem><Link to='/discover' className='Navbar-link'>Discover</Link></BSNavItem>
-            <BSNavItem><Link to='/discuss' className='Navbar-link'>Discuss</Link></BSNavItem>
-            <BSNavItem><Link to='/connect' className='Navbar-link'>Connect</Link></BSNavItem>
+            <LinkContainer to='/feed'>
+              <BSNavItem className='Navbar-link'>Feed</BSNavItem>
+            </LinkContainer>
+            <LinkContainer to='/discover'>
+              <BSNavItem className='Navbar-link'>Discover</BSNavItem>
+            </LinkContainer>
+            <LinkContainer to='/discuss'>
+              <BSNavItem className='Navbar-link'>Discuss</BSNavItem>
+            </LinkContainer>
+            <LinkContainer to='/connect'>
+              <BSNavItem className='Navbar-link'>Connect</BSNavItem>
+            </LinkContainer>
           </BSNav>
         </BSNavbar.Collapse>
       </BSNavbar>

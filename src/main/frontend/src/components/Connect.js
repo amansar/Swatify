@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 
-export default class Feed extends Component {
+export default class Connect extends Component {
   render() {
     return (
-      <h1>Feed</h1>
+      <h1>Connect</h1>
     );
   }
 }

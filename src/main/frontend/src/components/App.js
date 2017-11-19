@@ -1,18 +1,34 @@
 import React, { Component } from 'react';
 import { Switch, Route } from 'react-router';
+import { Redirect } from 'react-router-dom';
+import { Grid, Row, Col } from 'react-bootstrap';
 import Login from './Login'
 import Main from './Main'
+import Navbar from './Navbar'
 import './App.css';
 
-class App extends Component {
+export default class App extends Component {
+  state = {
+    userId: 1
+  }
+
   render() {
     return (
-      <Switch>
-        <Route exact path='/login' component={Login} />
-        <Route path='/' component={Main} />
-      </Switch>
+      <div className='App'>
+        <Navbar />
+        <Grid>
+          <Switch>
+            <Route exact path='/login' component={Login} />
+            <Route path='/' render={() => (
+              this.state.userId ? (
+                <Main />
+              ) : (
+                <Redirect to='/login' />
+              )
+            )} />
+          </Switch>
+        </Grid>
+      </div>
     );
   }
 }
-
-export default App;
