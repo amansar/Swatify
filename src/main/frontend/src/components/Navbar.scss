@@ -1,0 +1,11 @@
+.Navbar-link {
+    color: inherit;
+
+    &:hover, &:focus {
+        text-decoration: none;
+    }
+
+    .active {
+        background-color: white;
+    }
+}
