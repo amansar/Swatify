@@ -8,7 +8,7 @@ export default class Discover extends Component {
     return (
       <div>
         <h1>Discover</h1>
-        <Link to='/artist'>Check out this artist</Link>
+        <Link to='/artist/17Zu03OgBVxgLxWmRUyNOJ'>Check out this artist</Link>
       </div>
 
     );
