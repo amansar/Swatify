@@ -10,6 +10,7 @@ import com.wrapper.spotify.models.Album;
 import com.wrapper.spotify.models.ClientCredentials;
 import com.wrapper.spotify.models.Page;
 import com.wrapper.spotify.models.SimpleAlbum;
+import edu.swarthmore.cs.cs71.swatify.models.Artist;
 
 
 /*Will need to login application and get Client_ID and Client Secrets to use this application */
@@ -87,6 +88,9 @@ public class SpotifyUtil {
 
         return false;
     }
+
+
+
 }
 
 
