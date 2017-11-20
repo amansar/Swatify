@@ -4,20 +4,11 @@ import com.google.common.util.concurrent.FutureCallback;
 import com.google.common.util.concurrent.Futures;
 import com.google.common.util.concurrent.SettableFuture;
 import com.wrapper.spotify.Api;
-import com.wrapper.spotify.exceptions.WebApiException;
 import com.wrapper.spotify.methods.AlbumSearchRequest;
-import com.wrapper.spotify.methods.AlbumsForArtistRequest;
-import com.wrapper.spotify.methods.ArtistRequest;
-import com.wrapper.spotify.methods.ArtistSearchRequest;
 import com.wrapper.spotify.methods.authentication.ClientCredentialsGrantRequest;
-import com.wrapper.spotify.models.Album;
 import com.wrapper.spotify.models.ClientCredentials;
 import com.wrapper.spotify.models.Page;
 import com.wrapper.spotify.models.SimpleAlbum;
-import com.wrapper.spotify.models.Artist;
-
-import java.io.IOException;
-import java.util.List;
 
 
 /*Will need to login application and get Client_ID and Client Secrets to use this application */
@@ -27,8 +18,8 @@ public class SpotifyUtil {
 
     public SpotifyUtil () {
 
-        final String clientId = templatedSecrets.SPOTIFY_CLIENT_ID;
-        final String clientSecret = templatedSecrets.SPOTIFY_CLIENT_SECRET;
+        final String clientId = Secrets.SPOTIFY_CLIENT_ID;
+        final String clientSecret = Secrets.SPOTIFY_CLIENT_SECRET;
 
          spotifyApi = Api.builder()
                 .clientId(clientId)
@@ -78,7 +69,7 @@ public class SpotifyUtil {
 
 
 
-    public boolean searchAlbum (String query) {
+    public String searchAlbum (String query) {
         final AlbumSearchRequest request = this.spotifyApi.searchAlbums(query).offset(0).limit(3).build();
 
         try {
@@ -87,7 +78,7 @@ public class SpotifyUtil {
             System.out.println("Printing results..");
             for (SimpleAlbum album : albumSearchResult.getItems()) {
                 if(album.getName().toLowerCase().contains(query.toLowerCase())){
-                    return true;
+                    return album.getId();
                 }
             }
 
@@ -95,7 +86,7 @@ public class SpotifyUtil {
             System.out.println("Something went wrong!" + e.getMessage());
         }
 
-        return false;
+        return null;
     }
 
 

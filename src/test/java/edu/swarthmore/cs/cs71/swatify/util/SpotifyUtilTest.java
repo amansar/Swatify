@@ -11,6 +11,9 @@ public class SpotifyUtilTest {
     @Test
     public void shouldPrintAlbumResults(){
         SpotifyUtil spotifyUtil = new SpotifyUtil();
+        String lifeOfPabloId = spotifyUtil.searchAlbum("life of pablo");
+        System.out.println(lifeOfPabloId);
+
     }
 
 
