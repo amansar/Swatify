@@ -11,7 +11,6 @@ class Artist extends Component {
     }
 
     render() {
-        if()
         return (<h1>This is an artist page</h1>);
     }
 }
