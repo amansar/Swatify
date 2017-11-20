@@ -1,6 +1,6 @@
 package edu.swarthmore.cs.cs71.swatify.controllers;
 
-import edu.swarthmore.cs.cs71.swatify.models.Artist;
+import edu.swarthmore.cs.cs71.swatify.models.SwatifyArtist;
 import edu.swarthmore.cs.cs71.swatify.models.ArtistFollow;
 import edu.swarthmore.cs.cs71.swatify.models.User;
 import org.junit.Assert;
@@ -10,7 +10,7 @@ public class ArtistFollowControllerTest {
     @Test
     public void shouldCreateFollow() throws Exception {
         User cameron = new User();
-        Artist zachPalmer = new Artist();
+        SwatifyArtist zachPalmer = new SwatifyArtist();
 
         ArtistFollow cameronFollowZachPalmer = new ArtistFollow(cameron, zachPalmer);
 
@@ -22,7 +22,7 @@ public class ArtistFollowControllerTest {
     @Test
     public void shouldGetFollow() throws Exception {
         User oliver = new User();
-        Artist theStrokes = new Artist();
+        SwatifyArtist theStrokes = new SwatifyArtist();
 
         ArtistFollow oliverFollowsTheStrokes = new ArtistFollow(oliver, theStrokes);
         ArtistFollowController.saveArtistFollow(oliverFollowsTheStrokes);

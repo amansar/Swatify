@@ -9,14 +9,14 @@ public class ArtistFollow {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    private Artist artist;
+    private SwatifyArtist swatifyArtist;
     private User follower;
 
     public ArtistFollow() {
     }
 
-    public ArtistFollow(User follower, Artist artist) {
-        this.artist = artist;
+    public ArtistFollow(User follower, SwatifyArtist swatifyArtist) {
+        this.swatifyArtist = swatifyArtist;
         this.follower = follower;
     }
 
@@ -24,8 +24,8 @@ public class ArtistFollow {
         return id;
     }
 
-    public Artist getArtist() {
-        return artist;
+    public SwatifyArtist getSwatifyArtist() {
+        return swatifyArtist;
     }
 
     public User getFollower() {
@@ -36,8 +36,8 @@ public class ArtistFollow {
         this.id = id;
     }
 
-    public void setArtist(Artist artist) {
-        this.artist = artist;
+    public void setSwatifyArtist(SwatifyArtist swatifyArtist) {
+        this.swatifyArtist = swatifyArtist;
     }
 
     public void setFollower(User follower) {

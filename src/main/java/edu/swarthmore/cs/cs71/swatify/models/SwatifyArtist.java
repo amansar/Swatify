@@ -10,7 +10,7 @@ import java.util.List;
 @Entity
 @Table
 @DynamicUpdate
-public class Artist {
+public class SwatifyArtist {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,9 +21,9 @@ public class Artist {
 
 
 
-    public Artist() { }
+    public SwatifyArtist() { }
 
-    public Artist(String name, String spotifyId) {
+    public SwatifyArtist(String name, String spotifyId) {
         this.name = name;
         this.spotifyId = spotifyId;
     }
