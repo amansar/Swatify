@@ -11,7 +11,7 @@ class Album extends Component {
     }
 
     render() {
-        return (<h1>This is an album page</h1>);
+        return (<h1>this.state.album.getName</h1>);
        // <h1>this.state.album.getName</h1>
     }
 }

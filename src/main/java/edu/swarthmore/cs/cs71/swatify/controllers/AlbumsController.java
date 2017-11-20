@@ -20,7 +20,7 @@ public class AlbumsController {
 
             delete("/:id", (request, response) -> deleteAlbum(Integer.parseInt(request.params("id"))), GsonUtil::toJson);
 
-            //after((req, res) -> res.type("application/json"));
+            after((req, res) -> res.type("application/json"));
 
             exception(IllegalArgumentException.class, (e, req, res) -> {
                 res.status(400);
@@ -29,15 +29,23 @@ public class AlbumsController {
     }
 
     public static com.wrapper.spotify.models.Album getSpotifyAlbum(String spotifyId){
-        final AlbumRequest request = SpotifyUtil.getSpotifyAPI().getAlbum(spotifyId).build();
+        SpotifyUtil su = new SpotifyUtil();
+        final AlbumRequest request = su.getSpotifyAPI().getAlbum(spotifyId).build();
+        System.out.println("ASDASDASDAS");
+        System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
+        com.wrapper.spotify.models.Album testAlbum = null;
 
         try {
             final com.wrapper.spotify.models.Album requestedAlbum = request.get();
+            System.out.println(requestedAlbum);
+            System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
+            testAlbum = requestedAlbum;
+            return requestedAlbum;
         } catch (Exception e) {
             System.out.println("Something went wrong!" + e.getMessage());
         }
 
-        return new com.wrapper.spotify.models.Album();
+        return testAlbum;
     }
     /*may not need this if we decide not to use album model
     public static Album getAlbum(int id) {
