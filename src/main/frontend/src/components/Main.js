@@ -6,6 +6,7 @@ import Discuss from './Discuss';
 import Connect from './Connect';
 import Users from './Users';
 import Artist from './Artist';
+import Album from './Album';
 
 export default class Main extends Component {
   render() {
@@ -18,6 +19,7 @@ export default class Main extends Component {
         <Route path='/connect' component={Connect} />
         <Route path='/users' component={Users} />
         <Route path='/artist' component={Artist} />
+        <Route path='/album' component={Album} />
       </Switch>
     );
   }

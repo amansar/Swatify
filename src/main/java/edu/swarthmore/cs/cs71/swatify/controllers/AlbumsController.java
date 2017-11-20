@@ -20,7 +20,7 @@ public class AlbumsController {
 
             delete("/:id", (request, response) -> deleteAlbum(Integer.parseInt(request.params("id"))), GsonUtil::toJson);
 
-            after((req, res) -> res.type("application/json"));
+            //after((req, res) -> res.type("application/json"));
 
             exception(IllegalArgumentException.class, (e, req, res) -> {
                 res.status(400);
