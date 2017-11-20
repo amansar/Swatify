@@ -8,3 +8,19 @@ We will develop a web application that allows people to better connect through m
 
 Run `npm install` from `src/main/frontend`  to install dependencies, then `npm run build` to build the JavaScript files.
 
+### Production
+
+```sh
+cd src/main/frontend
+npm install
+npm run build # Builds js and css to be served statically by server.
+```
+
+### Development
+
+```sh
+cd src/main/frontend
+npm install
+npm run start # Run a React server, watching for changes in JavaScript.
+npm run watch-css # Watch for changes to *.scss files and auto-build.
+```

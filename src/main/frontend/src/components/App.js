@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Switch, Route } from 'react-router';
 import { Redirect } from 'react-router-dom';
-import { Grid, Row, Col } from 'react-bootstrap';
+import { Grid } from 'react-bootstrap';
 import Login from './Login'
 import Main from './Main'
 import Navbar from './Navbar'
@@ -21,7 +21,7 @@ export default class App extends Component {
             <Route exact path='/login' component={Login} />
             <Route path='/' render={() => (
               this.state.userId ? (
-                <Main />
+                <Main userId={this.state.userId} />
               ) : (
                 <Redirect to='/login' />
               )
