@@ -9,7 +9,7 @@ public class RatingsTest {
         Rating newRating = new Rating(1, 5, 7);
         Assert.assertEquals(5, newRating.getStars());
         Assert.assertEquals(1, newRating.getUserId());
-        Assert.assertEquals(7, newRating.getMusicWorkId());
+        Assert.assertEquals(7, newRating.getspotifyId());
         Assert.assertEquals(0, newRating.getId());
     }
 
