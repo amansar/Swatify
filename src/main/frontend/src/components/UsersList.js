@@ -1,13 +1,11 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import Loader from './Loader';
 
 export default class UserProfile extends Component {
   state = {loading: true, users: null}
 
   componentDidMount() {
-    fetch('/api/v1/users')
-      .then(res => res.json())
-      .then(users => this.setState({ users: users, loading: false }));
   }
 
   render() {

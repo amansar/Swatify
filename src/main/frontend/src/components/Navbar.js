@@ -33,6 +33,11 @@ export default class Navbar extends Component {
               <BSNavItem className='Navbar-link'>Connect</BSNavItem>
             </LinkContainer>
           </BSNav>
+          <BSNav pullRight>
+            <LinkContainer to='/users/1'>
+              <BSNavItem className='Navbar-link'>Me</BSNavItem>
+            </LinkContainer>
+          </BSNav>
         </BSNavbar.Collapse>
       </BSNavbar>
     );
