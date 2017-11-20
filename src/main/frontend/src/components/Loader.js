@@ -5,7 +5,7 @@ import Center from 'react-center';
 export default class Loader extends Component {
   render() {
     return (
-      <Center>
+      <Center className='Loader-container'>
         <BounceLoader className='Loader' color={'#B31E3B'} size={100} loading={this.props.loading} />
       </Center>
     );

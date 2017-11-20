@@ -4,12 +4,20 @@ import com.google.common.util.concurrent.FutureCallback;
 import com.google.common.util.concurrent.Futures;
 import com.google.common.util.concurrent.SettableFuture;
 import com.wrapper.spotify.Api;
+import com.wrapper.spotify.exceptions.WebApiException;
 import com.wrapper.spotify.methods.AlbumSearchRequest;
+import com.wrapper.spotify.methods.AlbumsForArtistRequest;
+import com.wrapper.spotify.methods.ArtistRequest;
+import com.wrapper.spotify.methods.ArtistSearchRequest;
 import com.wrapper.spotify.methods.authentication.ClientCredentialsGrantRequest;
 import com.wrapper.spotify.models.Album;
 import com.wrapper.spotify.models.ClientCredentials;
 import com.wrapper.spotify.models.Page;
 import com.wrapper.spotify.models.SimpleAlbum;
+import com.wrapper.spotify.models.Artist;
+
+import java.io.IOException;
+import java.util.List;
 
 
 /*Will need to login application and get Client_ID and Client Secrets to use this application */
@@ -86,6 +94,37 @@ public class SpotifyUtil {
         }
 
         return false;
+    }
+
+
+    public Artist getArtistInfo(String artistId){
+        final ArtistRequest request = this.spotifyApi.getArtist(artistId).build();
+
+        try{
+            final Artist requestedArtist = request.get();
+
+            return requestedArtist;
+
+        } catch (Exception e){
+            e.printStackTrace();
+            System.out.println("Something went wrong...");
+        }
+
+        return null;
+    }
+
+    public List<Album> getArtistAlbums (String artistId) {
+        final AlbumsForArtistRequest albumsRequest = this.spotifyApi.getAlbumsForArtist(artistId).build();
+
+        try{
+            final List<Album> albums = (List<Album>) albumsRequest.get();
+            return albums;
+        } catch (Exception e){
+            e.printStackTrace();
+            System.out.println("Something went wrong...");
+        }
+
+        return null;
     }
 }
 
