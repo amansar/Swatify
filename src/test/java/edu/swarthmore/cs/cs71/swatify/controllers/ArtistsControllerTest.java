@@ -1,6 +1,8 @@
 package edu.swarthmore.cs.cs71.swatify.controllers;
 
-import edu.swarthmore.cs.cs71.swatify.models.Artist;
+import com.wrapper.spotify.models.Album;
+import com.wrapper.spotify.models.Artist;
+import edu.swarthmore.cs.cs71.swatify.models.SwatifyArtist;
 import edu.swarthmore.cs.cs71.swatify.util.HibernateUtil;
 import org.junit.Assert;
 import org.junit.Test;
@@ -10,8 +12,8 @@ import static org.junit.Assert.assertTrue;
 public class ArtistsControllerTest {
 
     @Test
-    public void shouldCreateNewArtist() throws Exception {
-        Artist cameron = new Artist();
+    public void shouldCreateNewArtistInDatabase() throws Exception {
+        SwatifyArtist cameron = new SwatifyArtist();
         cameron.setName("Cameron");
         cameron.setSpotifyId(null);
 
@@ -19,8 +21,8 @@ public class ArtistsControllerTest {
     }
 
     @Test
-    public void shouldGetExistingArtist() throws Exception {
-        Artist zach = new Artist();
+    public void shouldGetExistingArtistFromDatabase() throws Exception {
+        SwatifyArtist zach = new SwatifyArtist();
         zach.setName("Zachariah");
         zach.setSpotifyId("ljh46kjh436jbnk6j2bk2624");
 
@@ -28,10 +30,28 @@ public class ArtistsControllerTest {
 
         int id = zach.getId();
 
-        Artist existingArtist = HibernateUtil.getObjectById(Artist.class, id);
+        SwatifyArtist existingSwatifyArtist = HibernateUtil.getObjectById(SwatifyArtist.class, id);
 
-        Assert.assertEquals(zach.getName(), existingArtist.getName());
-        Assert.assertEquals(zach.getSpotifyId(), existingArtist.getSpotifyId());
-        Assert.assertEquals(id, existingArtist.getId());
+        Assert.assertEquals(zach.getName(), existingSwatifyArtist.getName());
+        Assert.assertEquals(zach.getSpotifyId(), existingSwatifyArtist.getSpotifyId());
+        Assert.assertEquals(id, existingSwatifyArtist.getId());
+    }
+
+    @Test
+    public void shouldGetArtistInfoFromSpotify() throws Exception {
+        SwatifyArtist knxwledge = new SwatifyArtist("Knxwledge", "17Zu03OgBVxgLxWmRUyNOJ");
+        Artist spotifyArtist = ArtistsController.getArtist(knxwledge.getSpotifyId());
+
+        Assert.assertEquals("Knxwledge", spotifyArtist.getName());
+        Assert.assertEquals("17Zu03OgBVxgLxWmRUyNOJ", spotifyArtist.getId());
+
+        System.out.printf("%s -- %s music\n", spotifyArtist.getName(), spotifyArtist.getGenres());
+        System.out.printf("%d followers\n", spotifyArtist.getFollowers().getTotal());
+        System.out.println("Albums:");
+        for(Album album : ArtistsController.getArtistAlbums(knxwledge.getSpotifyId())){
+            System.out.println("    " + album.getName() + " (" + album.getReleaseDate() + ")");
+        }
+
+
     }
 }

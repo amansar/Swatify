@@ -4,7 +4,6 @@ import edu.swarthmore.cs.cs71.swatify.models.Album;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
-import edu.swarthmore.cs.cs71.swatify.models.Artist;
 import edu.swarthmore.cs.cs71.swatify.util.HibernateUtil;
 import org.junit.Assert;
 import org.junit.Test;
