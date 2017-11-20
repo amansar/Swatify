@@ -2,5 +2,3 @@
   color: inherit; }
   .Navbar-link:hover, .Navbar-link:focus {
     text-decoration: none; }
-  .Navbar-link .active {
-    background-color: white; }
