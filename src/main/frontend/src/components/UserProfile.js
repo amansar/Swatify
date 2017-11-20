@@ -17,7 +17,7 @@ export default class UserProfile extends Component {
     } else if (this.state.user) {
       return <h3>{this.state.user.username}</h3>;
     } else {
-      return <NotFound name='blah' />;
+      return <NotFound />;
     }
   }
 }
