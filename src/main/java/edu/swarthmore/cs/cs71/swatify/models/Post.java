@@ -11,6 +11,10 @@ public class Post extends PublicAction {
 
     private String content;
 
+    @ManyToOne
+    @JoinColumn(name="discussion_id", nullable=true)
+    private Discussion discussion;
+
     public Post() { }
 
     public Post(String content, int userId) {
@@ -27,4 +31,12 @@ public class Post extends PublicAction {
     }
 
     public void setContent(String content) { this.content = content; }
+
+    public void setDiscussion(Discussion discussion) {
+        this.discussion = discussion;
+    }
+
+    public Discussion getDiscussion() {
+        return discussion;
+    }
 }

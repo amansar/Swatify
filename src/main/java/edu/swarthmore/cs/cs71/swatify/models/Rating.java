@@ -10,21 +10,21 @@ public class Rating extends PublicAction {
     private int id;
 
     private int stars;
-    private int musicWorkId;
+    private int spotifyId;
 
     public Rating() { }
 
-    public Rating(int userId, int stars, int musicWorkId) {
+    public Rating(int userId, int stars, int spotifyId) {
         this.userId = userId;
         this.stars = stars;
-        this.musicWorkId = musicWorkId;
+        this.spotifyId = spotifyId;
     }
 
     public int getId() {
         return id;
     }
 
-    public int getMusicWorkId() { return musicWorkId; }
+    public int getspotifyId() { return spotifyId; }
 
     public int getStars() {
         return this.stars;
