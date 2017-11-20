@@ -97,7 +97,7 @@ public class SpotifyUtil {
     }
 
 
-    public Artist getArtistInfo(String artistId){
+    public static Artist getArtistInfo(String artistId){
         final ArtistRequest request = this.spotifyApi.getArtist(artistId).build();
 
         try{
@@ -113,7 +113,7 @@ public class SpotifyUtil {
         return null;
     }
 
-    public List<Album> getArtistAlbums (String artistId) {
+    public static List<Album> getArtistAlbums (String artistId) {
         final AlbumsForArtistRequest albumsRequest = this.spotifyApi.getAlbumsForArtist(artistId).build();
 
         try{

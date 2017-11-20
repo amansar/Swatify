@@ -5,6 +5,7 @@ import Discover from './Discover';
 import Discuss from './Discuss';
 import Connect from './Connect';
 import Users from './Users';
+import Artist from './Artist';
 
 export default class Main extends Component {
   render() {
@@ -18,6 +19,7 @@ export default class Main extends Component {
         <Route path='/users' render={() =>
           <Users userId={this.props.userId} />
         } />
+        <Route path='/artist' component={Artist} />
       </Switch>
     );
   }
