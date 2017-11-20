@@ -3,7 +3,7 @@ package edu.swarthmore.cs.cs71.swatify.models;
 import org.junit.Assert;
 import org.junit.Test;
 
-public class ArtistsTest {
+public class SwatifyArtistsTest {
 
     @Test
     public void createArtist() throws Exception {

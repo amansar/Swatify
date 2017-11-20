@@ -10,6 +10,7 @@ import edu.swarthmore.cs.cs71.swatify.util.HibernateUtil;
 import edu.swarthmore.cs.cs71.swatify.util.SpotifyUtil;
 
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static spark.Spark.*;
@@ -39,7 +40,7 @@ public class ArtistsController {
             System.out.println("Something went wrong...");
         }
 
-        return null;
+        return new Artist();
     }
 
     public static boolean createArtist(SwatifyArtist swatifyArtist) {
@@ -61,6 +62,6 @@ public class ArtistsController {
             System.out.println("Something went wrong...");
         }
 
-        return null;
+        return new ArrayList<>();
     }
 }
