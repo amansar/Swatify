@@ -2,6 +2,7 @@ package edu.swarthmore.cs.cs71.swatify.controllers;
 
 import com.wrapper.spotify.models.Album;
 import com.wrapper.spotify.models.Artist;
+import com.wrapper.spotify.models.SimpleAlbum;
 import edu.swarthmore.cs.cs71.swatify.models.SwatifyArtist;
 import edu.swarthmore.cs.cs71.swatify.util.HibernateUtil;
 import org.junit.Assert;
@@ -48,10 +49,9 @@ public class ArtistsControllerTest {
         System.out.printf("%s -- %s music\n", spotifyArtist.getName(), spotifyArtist.getGenres());
         System.out.printf("%d followers\n", spotifyArtist.getFollowers().getTotal());
         System.out.println("Albums:");
-        for(Album album : ArtistsController.getArtistAlbums(knxwledge.getSpotifyId())){
-            System.out.println("    " + album.getName() + " (" + album.getReleaseDate() + ")");
+        for(SimpleAlbum album : ArtistsController.getArtistAlbums(knxwledge.getSpotifyId())){
+            System.out.println("    " + album.getName());
         }
-
 
     }
 }

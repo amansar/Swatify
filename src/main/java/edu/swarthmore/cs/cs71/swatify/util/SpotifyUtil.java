@@ -25,8 +25,7 @@ public class SpotifyUtil {
 
     private Api spotifyApi;
 
-    public SpotifyUtil () {
-    }
+    public SpotifyUtil() { }
 
 
     public static Api getSpotifyAPI() {
@@ -48,9 +47,6 @@ public class SpotifyUtil {
         Futures.addCallback(responseFuture, new FutureCallback<ClientCredentials>() {
             @Override
             public void onSuccess(ClientCredentials clientCredentials) {
-                /* The tokens were retrieved successfully! */
-                System.out.println("Successfully retrieved an access token! " + clientCredentials.getAccessToken());
-                System.out.println("The access token expires in " + clientCredentials.getExpiresIn() + " seconds");
 
                 /* Set access token on the Api object so that it's used going forward */
                 api.setAccessToken(clientCredentials.getAccessToken());

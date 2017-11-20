@@ -2,8 +2,9 @@ package edu.swarthmore.cs.cs71.swatify.controllers;
 
 import com.wrapper.spotify.methods.AlbumsForArtistRequest;
 import com.wrapper.spotify.methods.ArtistRequest;
-import com.wrapper.spotify.models.Album;
 import com.wrapper.spotify.models.Artist;
+import com.wrapper.spotify.models.Page;
+import com.wrapper.spotify.models.SimpleAlbum;
 import edu.swarthmore.cs.cs71.swatify.models.SwatifyArtist;
 import edu.swarthmore.cs.cs71.swatify.util.GsonUtil;
 import edu.swarthmore.cs.cs71.swatify.util.HibernateUtil;
@@ -52,12 +53,12 @@ public class ArtistsController {
         return HibernateUtil.updateObject(swatifyArtist);
     }
 
-    public static List<Album> getArtistAlbums (String spotifyId) {
+    public static List<SimpleAlbum> getArtistAlbums (String spotifyId) {
         final AlbumsForArtistRequest albumsRequest = SpotifyUtil.getSpotifyAPI().getAlbumsForArtist(spotifyId).build();
 
         try{
-            final List<Album> albums = (List<Album>) albumsRequest.get();
-            return albums;
+            final Page<SimpleAlbum> albums = albumsRequest.get();
+            return albums.getItems();
         } catch (Exception e){
             e.printStackTrace();
             System.out.println("Something went wrong...");

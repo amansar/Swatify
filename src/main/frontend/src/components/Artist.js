@@ -15,7 +15,12 @@ class Artist extends Component {
         if(this.state.loading){
             return <Loader loading={this.state.loading} />;
         } else if(this.state.artist){
-            return <h3>{this.state.artist.name}</h3>;
+            return (
+                <div>
+                    <h3>{this.state.artist.name}</h3>
+                    <p>{this.state.artist.getFollowers().getTotal()} followers</p>
+                </div>
+            );
         } else {
             return <NotFound />;
         }

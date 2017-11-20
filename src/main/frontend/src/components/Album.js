@@ -7,7 +7,7 @@ class Album extends Component {
     componentDidMount(){
         fetch('/api/v1/albums/' + this.props.match.params.id)
               .then(res => res.json())
-              .then(album => this.setState({ album: album, loading: false }));
+              .then(album => this.setState({ album }));
     }
 
     render() {
