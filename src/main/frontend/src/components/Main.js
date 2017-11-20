@@ -17,7 +17,7 @@ export default class Main extends Component {
         <Route path='/discuss' component={Discuss} />
         <Route path='/connect' component={Connect} />
         <Route path='/users' component={Users} />
-        <Route path='/artist' component={Artist} />
+        <Route path='/artists' component={Artist} />
       </Switch>
     );
   }
