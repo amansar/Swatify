@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import { BounceLoader } from 'react-spinners';
-import Center from 'react-center';
+import { Row } from 'react-flexbox-grid';
 
 export default class Loader extends Component {
   render() {
     return (
-      <Center className='Loader-container'>
-        <BounceLoader className='Loader' color={'#B31E3B'} size={100} loading={this.props.loading} />
-      </Center>
+      <Row center='xs' middle='xs'>
+        <BounceLoader color={'#B31E3B'} size={100} loading={this.props.loading} />
+      </Row>
     );
   }
 }
