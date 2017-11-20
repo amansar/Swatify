@@ -38,6 +38,7 @@ public class ArtistsController {
         } catch (Exception e){
             e.printStackTrace();
             System.out.println("Something went wrong...");
+            System.out.println(e);
         }
 
         return new Artist();
