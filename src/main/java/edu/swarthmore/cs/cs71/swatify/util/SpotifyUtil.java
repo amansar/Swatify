@@ -27,8 +27,8 @@ public class SpotifyUtil {
 
     public SpotifyUtil () {
 
-        final String clientId = Secrets.SPOTIFY_CLIENT_ID;
-        final String clientSecret = Secrets.SPOTIFY_CLIENT_SECRET;
+        final String clientId = templatedSecrets.SPOTIFY_CLIENT_ID;
+        final String clientSecret = templatedSecrets.SPOTIFY_CLIENT_SECRET;
 
          spotifyApi = Api.builder()
                 .clientId(clientId)
@@ -65,8 +65,8 @@ public class SpotifyUtil {
     }
 
     private static Api getSpotifyAPI() {
-        final String clientId = Secrets.SPOTIFY_CLIENT_ID;
-        final String clientSecret = Secrets.SPOTIFY_CLIENT_SECRET;
+        final String clientId = templatedSecrets.SPOTIFY_CLIENT_ID;
+        final String clientSecret = templatedSecrets.SPOTIFY_CLIENT_SECRET;
         //final String redirectURI = "http://127.0.0.1:4567/api/token"; Don't need redirectURI unless we're doing User authentication
         return Api.builder()
                 .clientId(clientId)
@@ -97,7 +97,7 @@ public class SpotifyUtil {
     }
 
 
-    public static Artist getArtistInfo(String artistId){
+    public  Artist getArtistInfo(String artistId){
         final ArtistRequest request = this.spotifyApi.getArtist(artistId).build();
 
         try{
@@ -113,7 +113,7 @@ public class SpotifyUtil {
         return null;
     }
 
-    public static List<Album> getArtistAlbums (String artistId) {
+    public  List<Album> getArtistAlbums (String artistId) {
         final AlbumsForArtistRequest albumsRequest = this.spotifyApi.getAlbumsForArtist(artistId).build();
 
         try{
