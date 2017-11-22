@@ -20,3 +20,4 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - cpillsb1: Created model tests for Post, Comment, and Rating
 - onewman1: Set up React app in src/main/frontend
 - onewman1: Configure React routes
+- cmarsh1: Create Spotify Authorization
