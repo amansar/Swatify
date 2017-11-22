@@ -43,7 +43,7 @@ public class SearchController {
         return new ArrayList<>();
     }
 
-    public List<Artist> searchArtists(String query){
+    public static List<Artist> searchArtists(String query){
         final ArtistSearchRequest request = SpotifyUtil.getSpotifyAPI().searchArtists(query).build();
 
         try{
