@@ -6,17 +6,21 @@ We will develop a web application that allows people to better connect through m
 
 **Note: Requires having npm installed.**
 
-Run `npm install` from `src/main/frontend`  to install dependencies, then `npm run build` to build the JavaScript files.
+The frontend (in `src/main/frontend`) uses a standard React.js project structure with a separate file for each component for maintainability purposes, [ES6 features](https://github.com/lukehoban/es6features) because they're nice, and [Sass](http://sass-lang.com/guide) instead of standard CSS for the added features. However, this means that none of our front-end code can run in the browser without compilation (to ES5 for the JavaScript, and to CSS for the Sass files).
 
-### Production
+### Production Build
+
+Build the frontend JavaScript and CSS files (into `src/main/resources/build`) so they can be statically served by the Spark server.
 
 ```sh
 cd src/main/frontend
 npm install
-npm run build # Builds js and css to be served statically by server.
+npm run build
 ```
 
-### Development
+### Development server
+
+Run the uncompiled code on a Node.js server for development purposes. You can then access the application at localhost:3000. npm automatically forwards requests by the frontend to localhost:4567, so if the Spark development server is running at the same time then the frontend will be able to interact with the API.
 
 ```sh
 cd src/main/frontend
