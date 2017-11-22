@@ -10,7 +10,7 @@ The frontend (in `src/main/frontend`) uses a standard React.js project structure
 
 ### Production Build
 
-Build the frontend JavaScript and CSS files (into `src/main/resources/build`) so they can be statically served by the Spark server.
+Build the frontend JavaScript and CSS files (into `src/main/resources/build`) so they can be statically served by the Spark server (at http://localhost:4567).
 
 ```sh
 cd src/main/frontend
@@ -20,7 +20,7 @@ npm run build
 
 ### Development server
 
-Run the uncompiled code on a Node.js server for development purposes. You can then access the application at localhost:3000. npm automatically forwards requests by the frontend to localhost:4567, so if the Spark development server is running at the same time then the frontend will be able to interact with the API.
+Run the uncompiled code on a Node.js server for development purposes. You can then access the application at http://localhost:3000. npm automatically forwards requests by the frontend to http://localhost:4567, so if the Spark development server is running at the same time then the frontend will be able to interact with the API.
 
 ```sh
 cd src/main/frontend
