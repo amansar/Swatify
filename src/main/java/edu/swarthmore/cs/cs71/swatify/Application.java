@@ -8,7 +8,7 @@ import static spark.Spark.*;
 
 public class Application {
     public static void main(String[] args) {
-//        externalStaticFileLocation("src/main/resources/build");
+        externalStaticFileLocation("src/main/resources/build");
 
         setRoutes();
     }
