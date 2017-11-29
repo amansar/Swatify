@@ -5,7 +5,7 @@ import Discover from './Discover';
 import Discuss from './Discuss';
 import Connect from './Connect';
 import Users from './Users';
-import Artist from './Artist';
+import Artists from './Artists';
 import Album from './Album';
 
 export default class Main extends Component {
