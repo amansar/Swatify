@@ -6,7 +6,7 @@ class Artist extends Component {
     state = {loading: true, artist: null}
 
     componentDidMount() {
-        fetch('/api/v1/artists/' + this.props.artistId)
+        fetch('/api/v1/artists/' + this.props.match.artistId)
             .then(res => res.json())
             .then(artist => this.setState({artist}));
     }
@@ -18,7 +18,6 @@ class Artist extends Component {
             return (
                 <div>
                     <h3>{this.state.artist.name}</h3>
-                    <p>{this.state.artist.getFollowers().getTotal()} followers</p>
                 </div>
             );
         } else {
