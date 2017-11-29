@@ -6,7 +6,7 @@ class ArtistPage extends Component {
     state = {loading: true, artist: null}
 
     componentDidMount() {
-        fetch('/api/v1/artists/' + this.props.match.artistId)
+        fetch('/api/v1/artists/' + this.props.match.params.id)
             .then(res => res.json())
             .then(artist => this.setState({artist: artist, loading: false}));
     }
