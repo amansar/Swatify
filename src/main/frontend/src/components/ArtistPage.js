@@ -2,13 +2,13 @@ import React, { Component } from 'react';
 import Loader from './Loader';
 import NotFound from './NotFound';
 
-class Artist extends Component {
+class ArtistPage extends Component {
     state = {loading: true, artist: null}
 
     componentDidMount() {
         fetch('/api/v1/artists/' + this.props.artistId)
             .then(res => res.json())
-            .then(artist => this.setState({artist}));
+            .then(artist => this.setState({artist: artist, loading: false}));
     }
 
     render() {
@@ -18,7 +18,6 @@ class Artist extends Component {
             return (
                 <div>
                     <h3>{this.state.artist.name}</h3>
-                    <p>{this.state.artist.getFollowers().getTotal()} followers</p>
                 </div>
             );
         } else {
@@ -27,4 +26,4 @@ class Artist extends Component {
     }
 }
 
-export default Artist;
+export default ArtistPage;
