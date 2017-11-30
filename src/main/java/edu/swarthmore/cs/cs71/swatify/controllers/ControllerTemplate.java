@@ -75,7 +75,7 @@ public abstract class ControllerTemplate {
         }
         catch (Exception e) {
             session.getTransaction().rollback();
-            jsonObject = GsonUtil.toJson(new NotFoundError("Not found"))
+            jsonObject = GsonUtil.toJson(new NotFoundError("Not found"));
         }
         finally {
             session.close();

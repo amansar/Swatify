@@ -30,8 +30,8 @@ public class SpotifyUtil {
 
 
     public static Api getSpotifyAPI() {
-        final String clientId = Secrets.SPOTIFY_CLIENT_ID;
-        final String clientSecret = Secrets.SPOTIFY_CLIENT_SECRET;
+        final String clientId = SecretsUtil.getSpotifyClientId();
+        final String clientSecret = SecretsUtil.getSpotifyClientSecret();
 
         final Api api = Api.builder()
                 .clientId(clientId)
