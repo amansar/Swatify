@@ -30,8 +30,8 @@ public class PlaylistTest {
     playlist.setSpotifyID("ooooooooooo");
     assertEquals("ooooooooooo", playlist.getSpotifyID());
 
-    playlist.setID(0);
-    assertEquals(0, playlist.getID());
+    playlist.setID(true);
+    assertEquals(true, playlist.getID());
 
     playlist.setPrivacy(0);
     assertEquals(true, playlist.isPublic());
