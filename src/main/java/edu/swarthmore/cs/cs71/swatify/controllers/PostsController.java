@@ -35,6 +35,7 @@ public class PostsController extends ControllerTemplate {
     @Override
     <T> T doGetObject(Request request, Response response) {
         int id = Integer.parseInt(request.params("id"));
+        return null;
     }
 
     @Override
