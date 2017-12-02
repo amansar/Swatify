@@ -47,7 +47,7 @@ public void removeTrack(Track track){
 }
 
 public ArrayList<Track> getPlaylist(){
-  return this.tracklist;
+  return tracklist;
 }
 
 public String getTitle(){
@@ -78,8 +78,12 @@ public void setID(int id){
   this.id = id;
 }
 
-public void setPrivacy(int privacy){
+public void setPrivacy(boolean privacy){
   this.privacy = privacy;
+}
+
+public boolean contains(Track track){
+  return tracklist.contains(track);
 }
 
 public void exportToSpotify(){
