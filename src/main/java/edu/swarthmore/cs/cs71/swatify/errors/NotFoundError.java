@@ -1,9 +1,14 @@
 package edu.swarthmore.cs.cs71.swatify.errors;
 
-public class NotFoundError extends Error {
-    private String message;
+import spark.Response;
 
-    public NotFoundError(String message) {
-        super(404, message);
+public class NotFoundError extends Error {
+    public NotFoundError(Response response, String message) {
+        super(response, message);
+    }
+
+    @Override
+    protected int getStatus() {
+        return 404;
     }
 }

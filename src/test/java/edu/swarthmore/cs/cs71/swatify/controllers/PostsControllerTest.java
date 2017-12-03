@@ -1,21 +1,26 @@
 package edu.swarthmore.cs.cs71.swatify.controllers;
 
 import edu.swarthmore.cs.cs71.swatify.models.Post;
+import edu.swarthmore.cs.cs71.swatify.test.BaseControllerTest;
+import edu.swarthmore.cs.cs71.swatify.test.TestUtil;
+import edu.swarthmore.cs.cs71.swatify.util.GsonUtil;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
 
-public class PostsControllerTest {
+public class PostsControllerTest extends BaseControllerTest {
     @Test
     public void createNewPost() {
         Post post = new Post("Test content", 1);
-
-        assertTrue(PostsController.createPost(post));
+        TestUtil.TestResponse res = TestUtil.request("POST", "/api/v1/posts", GsonUtil.toJson(post));
+        System.out.println(GsonUtil.toJson(post));
+        assertEquals(200, res.getStatus());
     }
 
+    /*
     @Test
     public void getPost() {
-        Post post = new Post("Test content 8", 8);
+        Post post = new Post("Test content", 1);
 
         assertTrue(PostsController.createPost(post));
         int id = post.getId();
@@ -47,4 +52,5 @@ public class PostsControllerTest {
         assertTrue(PostsController.deletePost(id));
         assertNull(PostsController.getPost(id));
     }
+    */
 }

@@ -1,54 +1,54 @@
 package edu.swarthmore.cs.cs71.swatify.controllers;
 
+import edu.swarthmore.cs.cs71.swatify.controllers.hibernateRoutes.*;
 import edu.swarthmore.cs.cs71.swatify.models.Post;
 import edu.swarthmore.cs.cs71.swatify.util.GsonUtil;
-import edu.swarthmore.cs.cs71.swatify.util.HibernateUtil;
 import spark.Request;
 import spark.Response;
 
-import java.util.List;
-
 import static spark.Spark.*;
 
-public class PostsController extends ControllerTemplate {
+public class PostsController {
     public PostsController() {
         path("/posts", () -> {
-            get("/:id", this::getObject);
+            get("/:id", new GetObjectRoute() {
+                @Override
+                protected Class getObjectClass() {
+                    return Post.class;
+                }
+            });
 
-            post("", this::createObject);
+            post("", new CreateObjectRoute() {
+                @Override
+                protected Object createObject(Request request, Response response) {
+                    return GsonUtil.fromJson(Post.class, request.body());
+                }
+            });
 
-            patch("/:id", this::updateObject);
+            patch("/:id", new UpdateObjectRoute() {
+                @Override
+                protected Object createUpdatedObject(Request request, Response response) {
+                    return GsonUtil.fromJson(Post.class, request.body());
+                }
+            });
 
-            delete("/:id", this::deleteObject);
+            delete("/:id", new DeleteObjectRoute() {
+                @Override
+                protected Class<?> getObjectClass() {
+                    return Post.class;
+                }
+            });
+
+            get("", new ListObjectsRoute() {
+                @Override
+                protected Class<?> getObjectClass() {
+                    return Post.class;
+                }
+            });
 
             after((req, res) -> res.type("application/json"));
 
             exception(IllegalArgumentException.class, (e, req, res) -> res.status(400));
         });
-    }
-
-    @Override
-    <T> T doCreateObject(Request request, Response response) {
-        return null;
-    }
-
-    @Override
-    <T> T doGetObject(Request request, Response response) {
-        int id = Integer.parseInt(request.params("id"));
-    }
-
-    @Override
-    <T> T doUpdateObject(Request request, Response response) {
-        return null;
-    }
-
-    @Override
-    void doDeleteObject(Request request, Response response) {
-
-    }
-
-    @Override
-    <T> List<T> doListObjects(Request request, Response response) {
-        return null;
     }
 }

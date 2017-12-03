@@ -1,11 +1,12 @@
 package edu.swarthmore.cs.cs71.swatify.errors;
 
-public class Error {
-    private int status;
-    private String message;
+import spark.Response;
 
-    public Error(int status, String message) {
-        this.status = status;
-        this.message = message;
+public abstract class Error {
+    public Error(Response response, String message) {
+        response.status(getStatus());
+        response.body(message);
     }
+
+    protected abstract int getStatus();
 }

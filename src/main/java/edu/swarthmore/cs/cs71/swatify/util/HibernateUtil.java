@@ -1,15 +1,18 @@
 package edu.swarthmore.cs.cs71.swatify.util;
 
-import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
-import javax.persistence.criteria.CriteriaQuery;
-import java.util.List;
-
 public class HibernateUtil {
-    private static final SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
+    private static SessionFactory sessionFactory;
+
+    public static SessionFactory getSessionFactory() {
+        if (sessionFactory == null) {
+            sessionFactory = new Configuration().configure().buildSessionFactory();
+        }
+        return sessionFactory;
+    }
 
     /**
      * Save an object to the database.
@@ -107,23 +110,5 @@ public class HibernateUtil {
         }
 
         return deleted;
-    }
-
-    /**
-     * Retrieve all the objects of a specified class from the database.
-     * @param objectClass The class of the objects to retrieve.
-     * @param <T> The class of the objects.
-     * @return A list of all objects of the specified class.
-     */
-    public static <T> List<T> listObjects(Class<T> objectClass) {
-        Session session = sessionFactory.openSession();
-
-        CriteriaQuery<T> cq = session.getCriteriaBuilder().createQuery(objectClass);
-        cq.from(objectClass);
-        List<T> objectList = session.createQuery(cq).getResultList();
-
-        session.close();
-
-        return objectList;
     }
 }

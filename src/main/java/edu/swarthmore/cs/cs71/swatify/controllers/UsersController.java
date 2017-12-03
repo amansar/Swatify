@@ -18,12 +18,6 @@ public class UsersController {
             patch("/:id", (request, response) -> updateUser(GsonUtil.fromJson(User.class, request.body())), GsonUtil::toJson);
 
             delete("/:id", (request, response) -> deleteUser(Integer.parseInt(request.params("id"))), GsonUtil::toJson);
-
-            after((req, res) -> res.type("application/json"));
-
-            exception(IllegalArgumentException.class, (e, req, res) -> {
-                res.status(400);
-            });
         });
     }
 
