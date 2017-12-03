@@ -6,40 +6,50 @@ import edu.swarthmore.cs.cs71.swatify.util.HibernateUtil;
 import spark.Request;
 import spark.Response;
 
+import java.util.List;
+
 import static spark.Spark.*;
 
-public class PostsController {
+public class PostsController extends ControllerTemplate {
     public PostsController() {
         path("/posts", () -> {
-            get("/:id", (request, response) -> getPost(Integer.parseInt(request.params("id"))), GsonUtil::toJson);
+            get("/:id", this::getObject);
 
-            post("", (request, response) -> createPost(GsonUtil.fromJson(Post.class, request.body())),  GsonUtil::toJson);
+            post("", this::createObject);
 
-            patch("/:id", (request, response) -> updatePost(GsonUtil.fromJson(Post.class, request.body())), GsonUtil::toJson);
+            patch("/:id", this::updateObject);
 
-            delete("/:id", (request, response) -> deletePost(Integer.parseInt(request.params("id"))), GsonUtil::toJson);
+            delete("/:id", this::deleteObject);
 
             after((req, res) -> res.type("application/json"));
 
-            exception(IllegalArgumentException.class, (e, req, res) -> {
-                res.status(400);
-            });
+            exception(IllegalArgumentException.class, (e, req, res) -> res.status(400));
         });
     }
 
-    public static Post getPost(int id) {
-        return HibernateUtil.getObjectById(Post.class, id);
+    @Override
+    <T> T doCreateObject(Request request, Response response) {
+        return null;
     }
 
-    public static boolean createPost(Post post) {
-        return HibernateUtil.saveObject(post);
+    @Override
+    <T> T doGetObject(Request request, Response response) {
+        int id = Integer.parseInt(request.params("id"));
+        return null;
     }
 
-    public static boolean updatePost(Post post) {
-        return HibernateUtil.updateObject(post);
+    @Override
+    <T> T doUpdateObject(Request request, Response response) {
+        return null;
     }
 
-    public static boolean deletePost(int id) {
-        return HibernateUtil.deleteObject(Post.class, id);
+    @Override
+    void doDeleteObject(Request request, Response response) {
+
+    }
+
+    @Override
+    <T> List<T> doListObjects(Request request, Response response) {
+        return null;
     }
 }

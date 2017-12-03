@@ -11,7 +11,7 @@ import java.util.List;
 
 public class SearchController {
 
-    public List<Track> searchTracks(String query){
+    public static List<Track> searchTracks(String query){
         final TrackSearchRequest request = SpotifyUtil.getSpotifyAPI().searchTracks(query).build();
 
         try{
@@ -27,7 +27,7 @@ public class SearchController {
         return new ArrayList<>();
     }
 
-    public List<SimpleAlbum> searchAlbums(String query){
+    public static List<SimpleAlbum> searchAlbums(String query){
         final AlbumSearchRequest request = SpotifyUtil.getSpotifyAPI().searchAlbums(query).build();
 
         try{
@@ -59,5 +59,6 @@ public class SearchController {
         return new ArrayList<>();
     }
 
+    // search users in our database
 
 }

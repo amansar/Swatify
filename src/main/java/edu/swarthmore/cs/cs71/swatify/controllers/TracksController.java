@@ -9,7 +9,7 @@ import static spark.Spark.*;
 public class TracksController {
 
     public TracksController() {
-        path("/Tracks", () -> {
+        path("/tracks", () -> {
             get("/:id", (request, response) -> getTrack(Integer.parseInt(request.params("id"))), GsonUtil::toJson);
 
             post("", (request, response) -> createTrack(GsonUtil.fromJson(Track.class, request.body())),  GsonUtil::toJson);

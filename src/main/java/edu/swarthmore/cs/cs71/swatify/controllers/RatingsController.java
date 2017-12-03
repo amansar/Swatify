@@ -8,7 +8,7 @@ import static spark.Spark.*;
 
 public class RatingsController {
     public RatingsController() {
-        path("/Ratings", () -> {
+        path("/ratings", () -> {
             get("/:id", (request, response) -> getRating(Integer.parseInt(request.params("id"))), GsonUtil::toJson);
 
             post("", (request, response) -> createRating(GsonUtil.fromJson(Rating.class, request.body())),  GsonUtil::toJson);

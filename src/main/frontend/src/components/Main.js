@@ -5,7 +5,7 @@ import Discover from './Discover';
 import Discuss from './Discuss';
 import Connect from './Connect';
 import Users from './Users';
-import Artist from './Artist';
+import Artists from './Artists';
 import Album from './Album';
 
 export default class Main extends Component {
@@ -18,7 +18,7 @@ export default class Main extends Component {
         <Route path='/discuss' component={Discuss} />
         <Route path='/connect' component={Connect} />
         <Route path='/users' component={Users} />
-        <Route path='/artists' component={Artist} />
+        <Route path='/artists' component={Artists} />
         <Route path='/album' component={Album} />
       </Switch>
     );
