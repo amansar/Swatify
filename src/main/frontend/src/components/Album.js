@@ -3,7 +3,7 @@ import AlbumArtist from "./AlbumArtist";
 import Loader from './Loader';
 import ReactDOM from 'react-dom';
 import { Table } from "react-bootstrap";
-
+import "./Album.css";
 class Album extends Component {
     state = {loading: true}
     componentWillMount(){
@@ -46,9 +46,9 @@ class Album extends Component {
                        var numberToUse = (index + 1).toString();
                        var trackDuration = (track.duration/1000/60).toFixed(2);
                        return <tr key={index}>
-                                   <td> {numberToUse} </td>
-                                   <td> {track.name} </td>
-                                   <td> {trackDuration} </td>
+                                   <td class="col-md-2"> {numberToUse} </td>
+                                   <td class="col-md-8"> {track.name} </td>
+                                   <td class="col-md-2"> {trackDuration} </td>
                               </tr>;
                                         })}
 
@@ -72,13 +72,8 @@ class Album extends Component {
                 <h5> {this.state.artistName} </h5>
                 <div id="tracksList" className="TrackInfo">
                      <Table striped={true} hover={true}>
-                          <thead>
-                            <tr>
-                              <th>
-                              <h1>TRACKLIST</h1>
-                              </th>
-                            </tr>
-                          </thead>
+                          <h1>TRACKLIST</h1>
+                          <thead> </thead>
                             {this.renderTracksList()}
                     </Table>
                 </div>
