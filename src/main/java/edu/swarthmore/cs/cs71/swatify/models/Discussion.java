@@ -19,11 +19,11 @@ public class Discussion {
     private String title;
     private int userId;
 
-    @OneToMany(
-            mappedBy = "discussion",
-            cascade = CascadeType.ALL
-    )
-    private List<Post> posts;
+//    @OneToMany(
+//            mappedBy = "discussion",
+//            cascade = CascadeType.ALL
+//    )
+//    private List<Post> posts;
 
 
     public Discussion() { }
