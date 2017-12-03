@@ -22,19 +22,19 @@ public class DiscussionsTest {
         Assert.assertEquals("updated", newDiscussion.getTitle());
     }
 
-    @Test
-    public void addingPosts() throws Exception {
-        Discussion newDiscussion = new Discussion("Test Discussion 3", 4);
-        Post newPost = new Post("new post", 1);
-        Post newPost2 = new Post("new post 2", 2);
-
-        newDiscussion.addPost(newPost);
-        newDiscussion.addPost(newPost2);
-
-        List<Post> testPostList = newDiscussion.getPosts();
-
-        Assert.assertEquals(newPost, testPostList.get(0));
-        Assert.assertEquals(newPost2, testPostList.get(1));
-
-    }
+//    @Test
+//    public void addingPosts() throws Exception {
+//        Discussion newDiscussion = new Discussion("Test Discussion 3", 4);
+//        Post newPost = new Post("new post", 1);
+//        Post newPost2 = new Post("new post 2", 2);
+//
+//        newDiscussion.addPost(newPost);
+//        newDiscussion.addPost(newPost2);
+//
+//        List<Post> testPostList = newDiscussion.getPosts();
+//
+//        Assert.assertEquals(newPost, testPostList.get(0));
+//        Assert.assertEquals(newPost2, testPostList.get(1));
+//
+//    }
 }

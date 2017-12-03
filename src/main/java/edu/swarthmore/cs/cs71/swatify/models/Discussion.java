@@ -31,8 +31,8 @@ public class Discussion {
     public Discussion(String title, int userId) {
         this.userId = userId;
         this.title = title;
-        this.posts = new ArrayList<Post>() {
-        };
+//        this.posts = new ArrayList<Post>() {
+//        };
     }
 
     public int getId() {
@@ -47,10 +47,10 @@ public class Discussion {
 
     public void setTitle(String title) { this.title = title; }
 
-    public List<Post> getPosts() {return posts;}
+//    public List<Post> getPosts() {return posts;}
 
-    public void addPost(Post post) {
-        posts.add(post);
-        post.setDiscussion(this);
-    }
+//    public void addPost(Post post) {
+//        posts.add(post);
+//        post.setDiscussion(this);
+//    }
 }
