@@ -1,24 +1,48 @@
 package edu.swarthmore.cs.cs71.swatify.util;
 
+import org.json.*;
+
+import java.io.IOException;
+
+import static java.nio.file.Files.readAllBytes;
+import static java.nio.file.Paths.get;
+
 public class Secrets {
-    private String spotifyClientId;
-    private String spotifyClientSecret;
+    private static String spotifyClientId;
+    private static String spotifyClientSecret;
 
     public Secrets() {
+    }
+
+    public static void readJsonFromFile() {
+
+
+        try {
+            JSONObject jsonObj = new JSONObject(new String(readAllBytes(get("src/main/resources/secrets.json"))));
+
+            spotifyClientId = jsonObj.getString("spotifyClientId");
+            spotifyClientSecret = jsonObj.getString("spotifyClientSecret");
+
+        } catch (IOException e) {
+            System.out.println("Could not find the secrets file");
+            e.printStackTrace();
+        }
 
     }
 
-    public Secrets(String clientId, String clientSecret){
-        this.spotifyClientId = clientId;
-        this.spotifyClientSecret = clientSecret;
-    }
+    public static String getSpotifyClientId() {
+        if(spotifyClientId == null){
+            readJsonFromFile();
+        }
 
-
-    public String getSpotifyClientId() {
         return spotifyClientId;
     }
 
-    public String getSpotifyClientSecret() {
+    public static String getSpotifyClientSecret() {
+        if(spotifyClientSecret == null){
+            readJsonFromFile();
+        }
+
         return spotifyClientSecret;
     }
 }
