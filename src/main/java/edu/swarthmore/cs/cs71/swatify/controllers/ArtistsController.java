@@ -20,6 +20,7 @@ public class ArtistsController {
     public ArtistsController() {
         path("/artists", () -> {
             get("/:id", (request, response) -> getArtist(request.params("id")), GsonUtil::toJson);
+            get("/:id/albums", (request, response) -> getArtistAlbums(request.params("id")));
             patch("/:id", (request, response) -> updateArtist(GsonUtil.fromJson(SwatifyArtist.class, request.body())), GsonUtil::toJson);
             exception(IllegalArgumentException.class, (e, request, response) -> {
                 response.status(400);
