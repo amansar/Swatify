@@ -26,7 +26,7 @@ public class Secrets {
 
 
         try {
-            JSONObject jsonObj = new JSONObject(new String(readAllBytes(get("src/main/resources/secrets.json"))));
+            JSONObject jsonObj = new JSONObject(new String(readAllBytes(get("src/main/resources/secrets-template.json"))));
 
             spotifyClientId = jsonObj.getString("spotifyClientId");
             spotifyClientSecret = jsonObj.getString("spotifyClientSecret");

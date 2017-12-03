@@ -25,11 +25,12 @@ public class AlbumsController {
                 res.status(400);
             });
         });
-
-        path("albums/artists", () -> {
+        /*
+        path("/albums/artists", () -> {
             get("albums/artists/:id", (request, response) -> getArtist(request.params("id")), GsonUtil::toJson);
 
         });
+        */
     }
 
     public static com.wrapper.spotify.models.Album getSpotifyAlbum(String spotifyId){

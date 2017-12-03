@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import AlbumArtist from "./AlbumArtist";
 import Loader from './Loader';
-import ReactDOM from 'react-dom';
 import { Table } from "react-bootstrap";
 import "./Album.css";
 class Album extends Component {
