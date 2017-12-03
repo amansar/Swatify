@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import AlbumArtist from "./AlbumArtist";
 import Loader from './Loader';
 import ReactDOM from 'react-dom';
+import { Table } from "react-bootstrap";
 
 class Album extends Component {
     state = {loading: true}
@@ -40,11 +41,18 @@ class Album extends Component {
 
                 var tracks = this.state.tracks;
                 return(
-                   <u1>
-                     {tracks.map(function(track, index){
-                     return <li key={index}>{track.name}</li>;
-                                    })}
-                            </u1>
+                   <tbody>
+                       {tracks.map(function(track, index){
+                       var numberToUse = (index + 1).toString();
+                       var trackDuration = (track.duration/1000/60).toFixed(2);
+                       return <tr key={index}>
+                                   <td> {numberToUse} </td>
+                                   <td> {track.name} </td>
+                                   <td> {trackDuration} </td>
+                              </tr>;
+                                        })}
+
+                    </tbody>
                         );
 
     }
@@ -59,11 +67,20 @@ class Album extends Component {
 
             <div id="AlbumInfo" className="AlbumInfoAndLinkedAccounts" >
                 <img src={this.state.image} alt="" height="200" width="200"></img>
-                <h2> {this.state.albumName} </h2>
+                <h3> {this.state.albumName} </h3>
                 {this.renderAlbumArtist()}
-                <h1> {this.state.artistName} </h1>
+                <h5> {this.state.artistName} </h5>
                 <div id="tracksList" className="TrackInfo">
-                    {this.renderTracksList()}
+                     <Table striped={true} hover={true}>
+                          <thead>
+                            <tr>
+                              <th>
+                              <h1>TRACKLIST</h1>
+                              </th>
+                            </tr>
+                          </thead>
+                            {this.renderTracksList()}
+                    </Table>
                 </div>
             </div>
         </div>

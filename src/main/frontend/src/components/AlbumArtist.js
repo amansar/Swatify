@@ -21,7 +21,7 @@ export default class AlbumArtist extends Component {
 
                 return(
                 <div id="albumArtistInfo" className="albumArtistInfo">
-                    <img src={this.state.artistImage} alt="" height="150" width="150"></img>
+                    <img src={this.state.artistImage} alt="" height="100" width="100"></img>
                 </div>
                     );
             }
