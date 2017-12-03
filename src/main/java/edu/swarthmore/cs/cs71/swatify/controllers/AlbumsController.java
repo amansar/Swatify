@@ -18,7 +18,7 @@ public class AlbumsController {
             get("/:id", (request, response) -> getSpotifyAlbum((request.params("id"))), GsonUtil::toJson);
 
             post("", (request, response) -> createAlbum(GsonUtil.fromJson(Album.class, request.body())),  GsonUtil::toJson);
-
+            get("/artists/:id", (request, response) -> getArtist(request.params("id")), GsonUtil::toJson);
             after((req, res) -> res.type("application/json"));
 
             exception(IllegalArgumentException.class, (e, req, res) -> {
@@ -27,7 +27,7 @@ public class AlbumsController {
         });
 
         path("albums/artists", () -> {
-            get("/:id", (request, response) -> getArtist(request.params("id")), GsonUtil::toJson);
+            get("albums/artists/:id", (request, response) -> getArtist(request.params("id")), GsonUtil::toJson);
 
         });
     }
