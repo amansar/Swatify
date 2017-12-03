@@ -10,16 +10,16 @@ public class SearchControllerTest {
 
     @Test
     public void shouldReturnTrackSearchResults() throws Exception {
-        List<SimpleAlbum> albumResults = SearchController.searchAlbums("Aquemini");
 
-        for(SimpleAlbum album : albumResults){
-            System.out.println("Name: %s\nSpotify ID: %s\n\n");
-        }
     }
 
     @Test
     public void shouldReturnAlbumSearchResults() throws Exception {
+        List<SimpleAlbum> albumResults = SearchController.searchAlbums("Aquemini");
 
+        for(SimpleAlbum album : albumResults){
+            System.out.printf("Name: %s\nSpotify ID: %s\n\n", album.getName(), album.getId());
+        }
     }
 
     @Test

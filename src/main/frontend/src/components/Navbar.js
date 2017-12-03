@@ -34,6 +34,15 @@ export default class Navbar extends Component {
             </LinkContainer>
           </BSNav>
           <BSNav pullRight>
+            <BSNavItem id="search">
+                <form id="newSearch" method="get">
+                    <input type="text" id="textInput" style={{color: 'black'}}></input>
+                    <button style={{background: 'black'}}>Search</button>
+                </form>
+            </BSNavItem>
+            <script>
+
+            </script>
             <LinkContainer to='/users/1'>
               <BSNavItem className='Navbar-link'>Me</BSNavItem>
             </LinkContainer>
