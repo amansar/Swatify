@@ -69,7 +69,7 @@ fabric.properties
 *hibernate.cfg.xml
 
 # spotify API secrets file
-src/main/resources/secrets.json
+*secrets.json
 
 # Compiled JavaScript.
 *build/
