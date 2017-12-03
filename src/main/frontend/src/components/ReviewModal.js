@@ -8,7 +8,7 @@ import {
   FormControl
 } from 'react-bootstrap';
 import StarHoverable from "./StarHoverable";
-import "./ReviewModal.css";
+//import "./ReviewModal.css";
 //TODO finding musicWorkId
 export default class ReviewModal extends Component {
     constructor(props) {
