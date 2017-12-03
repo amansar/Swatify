@@ -34,6 +34,22 @@ export default class Navbar extends Component {
             </LinkContainer>
           </BSNav>
           <BSNav pullRight>
+//            <div>
+//                <div>
+//                    <form id='tfnewsearch' method='get'>
+//                        <input type='text' class='tftextinput' id='tftextinput' name='q' size='21'></input>
+//                        <input type='submit' value='Search' class='tfbutton'></input>
+//                    </form>
+//                </div>
+//                <script>
+//                    var a = document.getElementById('tfnewsearch');
+//                    a.addEventListener('submit', function(e){
+//
+//                        var b = document.getElementById('tftextinput').value;
+//                        window.location.href = "/feed"
+//                    });
+//                </script>
+//            </div>
             <LinkContainer to='/users/1'>
               <BSNavItem className='Navbar-link'>Me</BSNavItem>
             </LinkContainer>

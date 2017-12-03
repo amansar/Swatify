@@ -6,6 +6,8 @@ import java.util.List;
 import java.persistence.*;
 import Track;
 
+import javax.persistence.Entity;
+
 @Entity
 @Table
 @DynamicUpdate

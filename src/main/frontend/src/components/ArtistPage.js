@@ -4,14 +4,16 @@ import NotFound from './NotFound';
 import './ArtistPage.css';
 
 class ArtistPage extends Component {
-    state = {loading: true, artist: null, albums: null}
+    state = {loading: true, artist: null, albums: []}
 
     componentDidMount() {
         fetch('/api/v1/artists/' + this.props.match.params.id)
             .then(res => res.json())
             .then(artist => this.setState({artist: artist, loading: false}));
 
-
+//        fetch('/api/v1/artists/' + this.props.match.params.id + '/albums')
+//                .then(response => response.json())
+//                .then(albums => this.setState({albums: albums, loading: false}));
     }
 
     render() {
@@ -29,8 +31,9 @@ class ArtistPage extends Component {
                         {this.state.albums.map(function(album) {
                             return <li>
                                         <div className="AlbumListing">
+                                            <h3>I am an album!</h3>
                                             <img src={album.images[0].url} height={album.images[0].height}
-                                                width={album.images[0].width}></img>
+                                                width={album.images[0].width} alt={album.name} cover></img>
                                             <h3>{album.name}</h3>
                                         </div>
                                     </li>
