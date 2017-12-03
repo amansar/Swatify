@@ -1,9 +1,16 @@
 import React, { Component } from 'react';
+import DiscussionModal from "./DiscussionModal";
+import ReviewModal from "./ReviewModal";
 
 export default class Discuss extends Component {
   render() {
     return (
-      <h1>Discuss</h1>
+      <div>
+        <p>Test</p>
+        <DiscussionModal />
+        <br/>
+        <ReviewModal />
+      </div>
     );
   }
 }
