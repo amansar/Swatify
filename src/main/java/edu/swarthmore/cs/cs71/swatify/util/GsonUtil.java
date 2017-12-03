@@ -17,15 +17,4 @@ public class GsonUtil {
         return gson.fromJson(json, objectClass);
     }
 
-    public static Secrets readSecretsFromJsonFile(String filename){
-        BufferedReader reader = null;
-        try {
-            reader = new BufferedReader(new FileReader("src/main/resources/secrets.json"));
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-
-        Secrets secrets = gson.fromJson(reader, Secrets.class);
-        return secrets;
-    }
 }

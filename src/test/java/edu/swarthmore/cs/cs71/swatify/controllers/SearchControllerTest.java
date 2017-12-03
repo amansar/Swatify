@@ -1,6 +1,7 @@
 package edu.swarthmore.cs.cs71.swatify.controllers;
 
 import com.wrapper.spotify.models.Artist;
+import com.wrapper.spotify.models.SimpleAlbum;
 import org.junit.Test;
 
 import java.util.List;
@@ -9,7 +10,11 @@ public class SearchControllerTest {
 
     @Test
     public void shouldReturnTrackSearchResults() throws Exception {
+        List<SimpleAlbum> albumResults = SearchController.searchAlbums("Aquemini");
 
+        for(SimpleAlbum album : albumResults){
+            System.out.println("Name: %s\nSpotify ID: %s\n\n");
+        }
     }
 
     @Test
