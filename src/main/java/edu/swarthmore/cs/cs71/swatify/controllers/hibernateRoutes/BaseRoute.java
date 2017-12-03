@@ -1,6 +1,6 @@
 package edu.swarthmore.cs.cs71.swatify.controllers.hibernateRoutes;
 
-import edu.swarthmore.cs.cs71.swatify.errors.ForbiddenError;
+import edu.swarthmore.cs.cs71.swatify.errors.InternalServerError;
 import edu.swarthmore.cs.cs71.swatify.util.GsonUtil;
 import edu.swarthmore.cs.cs71.swatify.util.HibernateUtil;
 import org.hibernate.Session;
@@ -22,7 +22,7 @@ public abstract class BaseRoute implements Route {
         }
         catch (Exception e) {
             session.getTransaction().rollback();
-            jsonObject = new ForbiddenError(response,"Operation failed");
+            jsonObject = new InternalServerError(response, e.getMessage());
         }
         finally {
             session.close();

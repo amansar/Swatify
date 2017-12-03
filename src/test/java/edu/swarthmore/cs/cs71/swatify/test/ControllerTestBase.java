@@ -7,7 +7,7 @@ import org.junit.Before;
 import static spark.Spark.awaitInitialization;
 import static spark.Spark.stop;
 
-public class BaseControllerTest {
+public class ControllerTestBase {
     @Before
     public void setUp() throws Exception {
         Application.setRoutes();

@@ -20,7 +20,7 @@ public class HibernateUtil {
      * @param <T> the class of the object.
      */
     public static <T> boolean saveObject(T object) {
-        Session session = sessionFactory.openSession();
+        Session session = getSessionFactory().openSession();
         session.beginTransaction();
 
         boolean saved = false;
@@ -48,7 +48,7 @@ public class HibernateUtil {
     public static <T> T getObjectById(Class<T> objectClass, int objectId) {
         T object;
 
-        try (Session session = sessionFactory.openSession()) {
+        try (Session session = getSessionFactory().openSession()) {
             object = session.get(objectClass, objectId);
         } catch (Exception e) {
             object = null;
@@ -62,7 +62,7 @@ public class HibernateUtil {
      * @param object The updated object to save to the database.
      */
     public static <T> boolean updateObject(T object) {
-        Session session = sessionFactory.openSession();
+        Session session = getSessionFactory().openSession();
         session.beginTransaction();
 
         boolean updated = false;
@@ -90,7 +90,7 @@ public class HibernateUtil {
      * @param <T> The class of the object.
      */
     public static <T> boolean deleteObject(Class<T> objectClass, int objectId) {
-        Session session = sessionFactory.openSession();
+        Session session = getSessionFactory().openSession();
         session.beginTransaction();
         T object = null;
 

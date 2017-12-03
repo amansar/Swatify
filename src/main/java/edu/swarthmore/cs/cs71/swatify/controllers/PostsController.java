@@ -45,10 +45,6 @@ public class PostsController {
                     return Post.class;
                 }
             });
-
-            after((req, res) -> res.type("application/json"));
-
-            exception(IllegalArgumentException.class, (e, req, res) -> res.status(400));
         });
     }
 }

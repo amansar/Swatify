@@ -48,9 +48,4 @@ public class Discussion {
     public void setTitle(String title) { this.title = title; }
 
     public List<Post> getPosts() {return posts;}
-
-    public void addPost(Post post) {
-        posts.add(post);
-        post.setDiscussion(this);
-    }
 }
