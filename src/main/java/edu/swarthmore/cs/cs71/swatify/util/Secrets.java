@@ -11,12 +11,7 @@ public class Secrets {
     private static String spotifyClientId;
     private static String spotifyClientSecret;
 
-    public Secrets() {
-    }
-
-    public static void readJsonFromFile() {
-
-
+    private static void readJsonFromFile() {
         try {
             JSONObject jsonObj = new JSONObject(new String(readAllBytes(get("src/main/resources/secrets.json"))));
 
