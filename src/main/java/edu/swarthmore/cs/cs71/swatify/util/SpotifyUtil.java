@@ -20,9 +20,8 @@ public class SpotifyUtil {
 
 
     public static Api getSpotifyAPI() {
-        Secrets secrets = GsonUtil.readSecretsFromJsonFile("resources/secrets.json");
-        final String clientId = secrets.getSpotifyClientId();
-        final String clientSecret = secrets.getSpotifyClientSecret();
+        final String clientId = Secrets.getSpotifyClientId();
+        final String clientSecret = Secrets.getSpotifyClientSecret();
 
         final Api api = Api.builder()
                 .clientId(clientId)
