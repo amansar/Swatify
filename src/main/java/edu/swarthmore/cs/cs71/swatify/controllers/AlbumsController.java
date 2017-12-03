@@ -1,12 +1,15 @@
 package edu.swarthmore.cs.cs71.swatify.controllers;
 
 import com.wrapper.spotify.methods.AlbumRequest;
+import com.wrapper.spotify.methods.ArtistRequest;
+import com.wrapper.spotify.models.Artist;
 import edu.swarthmore.cs.cs71.swatify.models.Album;
 import edu.swarthmore.cs.cs71.swatify.util.GsonUtil;
 import edu.swarthmore.cs.cs71.swatify.util.HibernateUtil;
 import edu.swarthmore.cs.cs71.swatify.util.SpotifyUtil;
 
 
+import static edu.swarthmore.cs.cs71.swatify.controllers.ArtistsController.getArtist;
 import static spark.Spark.*;
 
 public class AlbumsController {
@@ -16,15 +19,16 @@ public class AlbumsController {
 
             post("", (request, response) -> createAlbum(GsonUtil.fromJson(Album.class, request.body())),  GsonUtil::toJson);
 
-            patch("/:id", (request, response) -> updateAlbum(GsonUtil.fromJson(Album.class, request.body())), GsonUtil::toJson);
-
-            delete("/:id", (request, response) -> deleteAlbum(Integer.parseInt(request.params("id"))), GsonUtil::toJson);
-
             after((req, res) -> res.type("application/json"));
 
             exception(IllegalArgumentException.class, (e, req, res) -> {
                 res.status(400);
             });
+        });
+
+        path("albums/artists", () -> {
+            get("/:id", (request, response) -> getArtist(request.params("id")), GsonUtil::toJson);
+
         });
     }
 
@@ -41,11 +45,24 @@ public class AlbumsController {
 
         return new com.wrapper.spotify.models.Album();
     }
-    /*may not need this if we decide not to use album model
-    public static Album getAlbum(int id) {
-        return HibernateUtil.getObjectById(Album.class, id);
+
+    public static Artist getArtist(String spotifyId){
+
+        final ArtistRequest request = SpotifyUtil.getSpotifyAPI().getArtist(spotifyId).build();
+
+        try{
+            final Artist requestedArtist = request.get();
+
+            return requestedArtist;
+
+        } catch (Exception e){
+            e.printStackTrace();
+            System.out.println("Something went wrong...");
+            System.out.println(e.getMessage());
+        }
+
+        return new Artist();
     }
-    */
 
     public static boolean createAlbum(Album Album) {
         return HibernateUtil.saveObject(Album);
