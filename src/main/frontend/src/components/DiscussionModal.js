@@ -13,7 +13,7 @@ export default class DiscussionModal extends Component {
     constructor(props) {
         super(props);
 
-        this.state =  { showModal: false, email: '' };
+        this.state =  { showModal: false, title: '' };
         this.open = this.open.bind(this);
         this.close = this.close.bind(this);
     }
@@ -23,9 +23,7 @@ export default class DiscussionModal extends Component {
 //    }
 
     handleChange(e) {
-        console.log(e.target.value);
-        console.log(this);
-        this.setState({email: e.target.value});
+        this.setState({title: e.target.value});
     }
 
     handleSubmit(e) {
@@ -43,6 +41,7 @@ export default class DiscussionModal extends Component {
 
     close() {
       this.setState({ showModal: false });
+      this.setState({ title: '' });
     }
 
     open() {
@@ -54,18 +53,6 @@ export default class DiscussionModal extends Component {
     }
 
     render() {
-
-    //    const popover = (
-    //          <Popover id="modal-popover" title="popover">
-    //            very popover. such engagement
-    //          </Popover>
-    //        );
-    //        const tooltip = (
-    //          <Tooltip id="modal-tooltip">
-    //            wow.
-    //          </Tooltip>
-    //    );
-
         return (
             <div>
                 <Button bsStyle="primary" bsSize="large" onClick={this.open}>
@@ -84,7 +71,7 @@ export default class DiscussionModal extends Component {
 
                          <Modal.Footer>
                            <Button onClick={this.close}>Close</Button>
-                           <Button onClick={this.handleSubmit.bind(this)} bsStyle="primary" disabled={!this.state.email}>
+                           <Button onClick={this.handleSubmit.bind(this)} bsStyle="primary" disabled={!this.state.title}>
                            Save changes
                            </Button>
                          </Modal.Footer>

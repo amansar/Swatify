@@ -14,7 +14,7 @@ export default class ReviewModal extends Component {
     constructor(props) {
         super(props);
 
-        this.state =  { showModal: false, email: '', stars:5 };
+        this.state =  { showModal: false, content: '', stars:5 };
         this.open = this.open.bind(this);
         this.close = this.close.bind(this);
         this.handleStarClick = this.handleStarClick.bind(this);
@@ -22,7 +22,7 @@ export default class ReviewModal extends Component {
     }
 
     handleChange(e) {
-        this.setState({email: e.target.value});
+        this.setState({content: e.target.value});
     }
 
     handleSubmit(e) {
@@ -40,6 +40,7 @@ export default class ReviewModal extends Component {
 
     close() {
       this.setState({ showModal: false });
+      this.setState({ content: "" })
     }
 
     open() {
@@ -76,7 +77,7 @@ export default class ReviewModal extends Component {
 
                          <Modal.Footer>
                            <Button onClick={this.close}>Close</Button>
-                           <Button onClick={this.handleSubmit.bind(this)} bsStyle="primary" disabled={!this.state.email}>
+                           <Button onClick={this.handleSubmit.bind(this)} bsStyle="primary" disabled={!this.state.content}>
                              Create
                            </Button>
                          </Modal.Footer>
