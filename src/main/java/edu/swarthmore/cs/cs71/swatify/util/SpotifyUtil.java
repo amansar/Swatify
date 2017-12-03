@@ -4,21 +4,11 @@ import com.google.common.util.concurrent.FutureCallback;
 import com.google.common.util.concurrent.Futures;
 import com.google.common.util.concurrent.SettableFuture;
 import com.wrapper.spotify.Api;
-import com.wrapper.spotify.exceptions.WebApiException;
 import com.wrapper.spotify.methods.AlbumSearchRequest;
-import com.wrapper.spotify.methods.AlbumsForArtistRequest;
-import com.wrapper.spotify.methods.ArtistRequest;
-import com.wrapper.spotify.methods.ArtistSearchRequest;
 import com.wrapper.spotify.methods.authentication.ClientCredentialsGrantRequest;
-import com.wrapper.spotify.models.Album;
 import com.wrapper.spotify.models.ClientCredentials;
 import com.wrapper.spotify.models.Page;
 import com.wrapper.spotify.models.SimpleAlbum;
-import com.wrapper.spotify.models.Artist;
-
-
-import java.io.IOException;
-import java.util.List;
 
 
 /*Will need to login application and get Client_ID and Client Secrets to use this application */
@@ -30,8 +20,9 @@ public class SpotifyUtil {
 
 
     public static Api getSpotifyAPI() {
-        final String clientId = Secrets.SPOTIFY_CLIENT_ID;
-        final String clientSecret = Secrets.SPOTIFY_CLIENT_SECRET;
+        Secrets secrets = GsonUtil.readSecretsFromJsonFile("resources/secrets.json");
+        final String clientId = secrets.getSpotifyClientId();
+        final String clientSecret = secrets.getSpotifyClientSecret();
 
         final Api api = Api.builder()
                 .clientId(clientId)

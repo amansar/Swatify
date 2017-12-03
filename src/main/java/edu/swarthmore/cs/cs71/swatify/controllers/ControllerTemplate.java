@@ -75,7 +75,7 @@ public abstract class ControllerTemplate {
         }
         catch (Exception e) {
             session.getTransaction().rollback();
-            jsonObject = GsonUtil.toJson(new NotFoundError("Not found"))
+            jsonObject = GsonUtil.toJson(new NotFoundError("Not found"));
         }
         finally {
             session.close();
@@ -112,6 +112,7 @@ public abstract class ControllerTemplate {
      * Retrieve all the objects of a specified class from the database.
      */
     public String listObjects(Request request, Response response) {
+        return "";
     }
 
     abstract <T> List<T> doListObjects(Request request, Response response);
