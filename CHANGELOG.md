@@ -22,3 +22,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - onewman1: Configure React routes
 - cmarsh1: Create Spotify Authorization
 - cmarsh1: Moved application credentials to resources and created util object
+- amansar1:Started building Album Page
+-amansar1: have core content on album page
+-amansar1: have rating stars appearing
+-amansar1: have successful request to rating controller, but no posts to database
