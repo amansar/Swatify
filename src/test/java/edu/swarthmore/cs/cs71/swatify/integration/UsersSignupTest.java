@@ -8,14 +8,4 @@ import static spark.Spark.awaitInitialization;
 import static spark.Spark.stop;
 
 public class UsersSignupTest {
-    @Before
-    public void setUp() throws Exception {
-        Application.setRoutes();
-        awaitInitialization();
-    }
-
-    @After
-    public void tearDown() throws Exception {
-        stop();
-    }
 }

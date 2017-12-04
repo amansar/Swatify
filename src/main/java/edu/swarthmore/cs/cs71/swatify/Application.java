@@ -1,25 +1,23 @@
 package edu.swarthmore.cs.cs71.swatify;
 
-import edu.swarthmore.cs.cs71.swatify.controllers.AlbumsController;
-import edu.swarthmore.cs.cs71.swatify.controllers.ArtistsController;
-import edu.swarthmore.cs.cs71.swatify.controllers.DiscussionsController;
-import edu.swarthmore.cs.cs71.swatify.controllers.UsersController;
+import edu.swarthmore.cs.cs71.swatify.controllers.*;
 
 import static spark.Spark.*;
 
 public class Application {
     public static void main(String[] args) {
-        externalStaticFileLocation("src/main/resources/build");
+//        externalStaticFileLocation("src/main/resources/build");
 
-        setRoutes();
+        establishRoutes();
     }
 
-    public static void setRoutes() {
+    public static void establishRoutes() {
         path("/api/v1", () -> {
             new UsersController();
             new ArtistsController();
             new AlbumsController();
             new DiscussionsController();
+            new PostsController();
 
             after((req, res) -> res.type("application/json"));
 

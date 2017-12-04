@@ -10,7 +10,7 @@ import static spark.Spark.stop;
 public class ControllerTestBase {
     @Before
     public void setUp() throws Exception {
-        Application.setRoutes();
+        Application.establishRoutes();
 
         awaitInitialization();
     }

@@ -1,8 +1,6 @@
 package edu.swarthmore.cs.cs71.swatify.test;
 
-import com.google.gson.Gson;
 import com.google.gson.JsonObject;
-import com.google.gson.JsonParseException;
 import com.google.gson.JsonParser;
 import spark.utils.IOUtils;
 
@@ -10,7 +8,6 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.util.HashMap;
 
 import static org.junit.Assert.fail;
 
@@ -31,11 +28,12 @@ public class TestUtil {
             URL url = new URL("http://localhost:4567" + path);
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
             connection.setRequestMethod(method);
-            connection.setRequestProperty("Content-Type", "application/json; charset=UTF-8");
             connection.setDoOutput(true);
 
             OutputStream os = connection.getOutputStream();
-            os.write(requestBody.getBytes("UTF-8"));
+            if (!requestBody.isEmpty()) {
+                os.write(requestBody.getBytes("UTF-8"));
+            }
             os.close();
 
             connection.connect();

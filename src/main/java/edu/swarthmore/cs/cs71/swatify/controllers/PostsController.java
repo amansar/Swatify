@@ -13,7 +13,10 @@ public class PostsController {
         path("/posts", () -> {
             get("/:id", new GetObjectRoute() {
                 @Override
-                protected Class getObjectClass() {
+                protected Class<?> getObjectClass() {
+                    System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n");
+                    System.out.println("doing action");
+                    System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n");
                     return Post.class;
                 }
             });

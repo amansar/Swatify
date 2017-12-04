@@ -1,12 +1,15 @@
 package edu.swarthmore.cs.cs71.swatify.controllers.hibernateRoutes;
 
+import edu.swarthmore.cs.cs71.swatify.errors.ForbiddenError;
 import edu.swarthmore.cs.cs71.swatify.errors.InternalServerError;
+import edu.swarthmore.cs.cs71.swatify.errors.NotFoundError;
 import edu.swarthmore.cs.cs71.swatify.util.GsonUtil;
 import edu.swarthmore.cs.cs71.swatify.util.HibernateUtil;
 import org.hibernate.Session;
 import spark.Request;
 import spark.Response;
 import spark.Route;
+import sun.jvm.hotspot.utilities.Interval;
 
 public abstract class BaseRoute implements Route {
 
@@ -17,10 +20,11 @@ public abstract class BaseRoute implements Route {
 
         Object jsonObject;
         try {
-            jsonObject = doAction(request, response);
+            jsonObject = doAction(session, request, response);
             session.getTransaction().commit();
         }
         catch (Exception e) {
+            e.printStackTrace();
             session.getTransaction().rollback();
             jsonObject = new InternalServerError(response, e.getMessage());
         }
@@ -30,5 +34,5 @@ public abstract class BaseRoute implements Route {
         return GsonUtil.toJson(jsonObject);
     }
 
-    protected abstract Object doAction(Request request, Response response);
+    protected abstract Object doAction(Session session, Request request, Response response);
 }

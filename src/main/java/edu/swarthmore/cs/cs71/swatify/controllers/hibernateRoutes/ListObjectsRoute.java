@@ -9,8 +9,7 @@ import java.util.List;
 
 public abstract class ListObjectsRoute extends BaseRoute {
     @Override
-    protected Object doAction(Request request, Response response) {
-        Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+    public Object doAction(Session session, Request request, Response response) {
         Class<?> cls = getObjectClass();
         String queryString = String.format("SELECT * FROM %s", cls.getName());
         List<?> objectList = session.createQuery(queryString, cls).getResultList();

@@ -7,8 +7,7 @@ import spark.Response;
 
 public abstract class UpdateObjectRoute extends BaseRoute {
     @Override
-    protected Object doAction(Request request, Response response) {
-        Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+    protected Object doAction(Session session, Request request, Response response) {
         Object obj = createUpdatedObject(request, response);
         session.update(obj);
         return obj;

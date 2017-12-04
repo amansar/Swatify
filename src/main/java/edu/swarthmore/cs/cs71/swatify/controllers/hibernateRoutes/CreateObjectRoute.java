@@ -8,8 +8,7 @@ import spark.Response;
 
 public abstract class CreateObjectRoute extends BaseRoute  {
     @Override
-    public Object doAction(Request request, Response response) {
-        Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+    public Object doAction(Session session, Request request, Response response) {
         Object obj = createObject(request, response);
         session.save(obj);
         return obj;
