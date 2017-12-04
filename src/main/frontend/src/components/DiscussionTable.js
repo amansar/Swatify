@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { Table } from "react-bootstrap";
 import { LinkContainer } from 'react-router-bootstrap';
+import "./DiscussionTable.css"
 
 export default class DiscussionTable extends Component {
     constructor(props) {
