@@ -3,12 +3,23 @@ import { Link } from 'react-router-dom';
 import {
   Navbar as BSNavbar,
   Nav as BSNav,
-  NavItem as BSNavItem
+  NavItem as BSNavItem,
+  Form,
+  FormControl,
+  FormGroup
 } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
 import './Navbar.css';
 
 export default class Navbar extends Component {
+
+
+
+  search(query) {
+    alert(query);
+  }
+
+
   render() {
     return (
       <BSNavbar inverse>
@@ -35,14 +46,20 @@ export default class Navbar extends Component {
           </BSNav>
           <BSNav pullRight>
             <BSNavItem id="search">
-                <form id="newSearch" method="get">
-                    <input type="text" id="textInput" style={{color: 'black'}}></input>
-                    <button style={{background: 'black'}}>Search</button>
-                </form>
+                <Form inline>
+                    <FormGroup >
+                        <FormControl
+                            type="text"
+                            id="searchButton"
+                            ref="input"
+                            className="searchButton"
+                            placeholder="Search"
+                            inputref={(input) => {this.setState({state: input})}}
+                            keypress={this.search(this.state)} />
+                    </FormGroup>
+                </Form>
             </BSNavItem>
-            <script>
 
-            </script>
             <LinkContainer to='/users/1'>
               <BSNavItem className='Navbar-link'>Me</BSNavItem>
             </LinkContainer>
