@@ -9,7 +9,15 @@ import edu.swarthmore.cs.cs71.swatify.util.SpotifyUtil;
 import java.util.ArrayList;
 import java.util.List;
 
+import static spark.Spark.path;
+
 public class SearchController {
+
+    public SearchController() {
+        path("/search", () -> {
+           get("")
+        });
+    }
 
     public static List<Track> searchTracks(String query){
         final TrackSearchRequest request = SpotifyUtil.getSpotifyAPI().searchTracks(query).build();

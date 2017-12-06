@@ -8,16 +8,30 @@ import {
   FormControl,
   FormGroup
 } from 'react-bootstrap';
+import ReactDOM from 'react-dom';
 import { LinkContainer } from 'react-router-bootstrap';
 import './Navbar.css';
 
 export default class Navbar extends Component {
+  state = {searchInput: "nothing"}
 
 
-
-  search(query) {
-    alert(query);
+  search(e) {
+    if(e != null)
+        alert(e.target.value);
   }
+
+  handleChange(e) {
+      console.log(e.target.value);
+      this.setState({searchInput: e.target.value});
+  }
+
+   handleSubmit(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        console.log('submit');
+        alert(this.state.searchInput);
+    }
 
 
   render() {
@@ -46,7 +60,7 @@ export default class Navbar extends Component {
           </BSNav>
           <BSNav pullRight>
             <BSNavItem id="search">
-                <Form inline>
+                <Form onSubmit={this.handleSubmit.bind(this)} >
                     <FormGroup >
                         <FormControl
                             type="text"
@@ -54,9 +68,9 @@ export default class Navbar extends Component {
                             ref="input"
                             className="searchButton"
                             placeholder="Search"
-                            inputref={(input) => {this.setState({state: input})}}
-                            keypress={this.search(this.state)} />
-                    </FormGroup>
+                            onChange={this.handleChange.bind(this)}
+                             />
+                    </FormGroup >
                 </Form>
             </BSNavItem>
 
