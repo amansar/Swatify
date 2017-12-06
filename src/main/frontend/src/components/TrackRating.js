@@ -26,9 +26,9 @@ export default class StarHoverable extends Component {
     fetch("/api/v1/ratings", {
                 method: 'POST',
                 body: JSON.stringify({
-                userid: 526,
-                trackid: this.props.trackId,
-                ratingid: realRating,
+                userId: 526,
+                trackId: this.props.trackId,
+                stars: realRating,
                })
              })
          .then(function (data) {
