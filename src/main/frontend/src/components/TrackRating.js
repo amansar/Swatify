@@ -4,7 +4,7 @@ import "./StarHoverable.css"
 export default class StarHoverable extends Component {
   constructor(props) {
           super(props);
-          this.state =  { rating: props.curr_stars, temp_rating: 0};
+          this.state =  { rating: props.curr_stars, temp_rating: 0, trackId: this.props.trackId};
   }
 
   propTypes: {
@@ -22,13 +22,14 @@ export default class StarHoverable extends Component {
       temp_rating: rating
     });
     var realRating = rating + 1;
+    var realId = this.props.trackId;
     this.props.onClickStars(realRating);
     fetch("/api/v1/ratings", {
                 method: 'POST',
                 body: JSON.stringify({
                 userId: 526,
-                trackId: this.props.trackId,
                 stars: realRating,
+                spotifyId: realId
                })
              })
          .then(function (data) {

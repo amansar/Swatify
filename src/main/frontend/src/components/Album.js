@@ -8,6 +8,8 @@ import "./Album.css";
 class Album extends Component {
     state = {loading: true}
 
+    //need timeout for fetch so we wait for all content to be received
+
     componentWillMount(){
         fetch('/api/v1/albums/7gsWAHLeT0w7es6FofOXk1')
               .then(res => res.json())
@@ -61,8 +63,7 @@ class Album extends Component {
             <div id="AlbumInfo" className="AlbumInfoAndLinkedAccounts" >
                 <img src={this.state.image} alt="" height="200" width="200"></img>
                 <h3> {this.state.albumName} </h3>
-                //{this.renderAlbumArtist()}
-                <AlbumArtist artistId={this.state.artistId} />
+                {this.renderAlbumArtist()}
                 <h5> {this.state.artistName} </h5>
                 <div id="tracksList" className="TrackInfo">
                      <Table striped={true} hover={true}>
