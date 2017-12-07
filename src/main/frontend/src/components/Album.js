@@ -19,6 +19,7 @@ class Album extends Component {
                                 image: album.images[0].url,
                                 artistId: album.artists[0].id,
                                 tracks: album.tracks.items,
+                                albumId: album.id,
                                 loading: false} ));
         /*
         fetch('/api/v1/albums/artists/5K4W6rqBFWDnAN6FQUkS6x')

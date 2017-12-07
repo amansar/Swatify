@@ -4,6 +4,7 @@ import com.wrapper.spotify.methods.AlbumRequest;
 import com.wrapper.spotify.methods.ArtistRequest;
 import com.wrapper.spotify.models.Artist;
 import edu.swarthmore.cs.cs71.swatify.models.Album;
+import edu.swarthmore.cs.cs71.swatify.models.Review;
 import edu.swarthmore.cs.cs71.swatify.util.GsonUtil;
 import edu.swarthmore.cs.cs71.swatify.util.HibernateUtil;
 import edu.swarthmore.cs.cs71.swatify.util.SpotifyUtil;
@@ -19,6 +20,9 @@ public class AlbumsController {
 
             post("", (request, response) -> createAlbum(GsonUtil.fromJson(Album.class, request.body())),  GsonUtil::toJson);
             get("/artists/:id", (request, response) -> getArtist(request.params("id")), GsonUtil::toJson);
+
+            post("/reviews", (request, response) -> createReview(GsonUtil.fromJson(Review.class, request.body())), GsonUtil::toJson);
+
             after((req, res) -> res.type("application/json"));
 
             exception(IllegalArgumentException.class, (e, req, res) -> {
@@ -69,6 +73,9 @@ public class AlbumsController {
         return HibernateUtil.saveObject(Album);
     }
 
+    public static boolean createReview(Review review) {
+        return HibernateUtil.saveObject(review);
+    }
     public static boolean updateAlbum(Album Album) {
         return HibernateUtil.updateObject(Album);
     }
