@@ -14,9 +14,6 @@ public class PostsController {
             get("/:id", new GetObjectRoute() {
                 @Override
                 protected Class<?> getObjectClass() {
-                    System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n");
-                    System.out.println("doing action");
-                    System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n");
                     return Post.class;
                 }
             });
@@ -28,7 +25,7 @@ public class PostsController {
                 }
             });
 
-            patch("/:id", new UpdateObjectRoute() {
+            put("/:id", new UpdateObjectRoute() {
                 @Override
                 protected Object createUpdatedObject(Request request, Response response) {
                     return GsonUtil.fromJson(Post.class, request.body());

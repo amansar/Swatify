@@ -12,9 +12,9 @@ public class Post extends PublicAction {
     private String content;
     private int discussionId;
 
-//    @ManyToOne
-//    @JoinColumn(name="discussion_id", nullable=true)
-//    private Discussion discussion;
+    @ManyToOne
+    @JoinColumn(name="discussion_id", nullable=true)
+    private Discussion discussion;
 
     public Post() { }
 

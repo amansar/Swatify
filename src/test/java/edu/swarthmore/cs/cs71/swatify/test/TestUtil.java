@@ -30,11 +30,11 @@ public class TestUtil {
             connection.setRequestMethod(method);
             connection.setDoOutput(true);
 
-            OutputStream os = connection.getOutputStream();
             if (!requestBody.isEmpty()) {
+                OutputStream os = connection.getOutputStream(); // Warning: auto-changes connection method to POST.
                 os.write(requestBody.getBytes("UTF-8"));
+                os.close();
             }
-            os.close();
 
             connection.connect();
             String body = IOUtils.toString(connection.getInputStream());

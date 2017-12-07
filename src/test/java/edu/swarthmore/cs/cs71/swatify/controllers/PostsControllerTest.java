@@ -7,6 +7,7 @@ import edu.swarthmore.cs.cs71.swatify.test.ControllerTestBase;
 import edu.swarthmore.cs.cs71.swatify.util.GsonUtil;
 import edu.swarthmore.cs.cs71.swatify.util.HibernateUtil;
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 import static edu.swarthmore.cs.cs71.swatify.test.TestUtil.request;
@@ -14,15 +15,18 @@ import static edu.swarthmore.cs.cs71.swatify.test.TestUtil.TestResponse;
 import static org.junit.Assert.*;
 
 public class PostsControllerTest extends ControllerTestBase {
-    private Post post;
+    private static Post postFixture;
+    private static Discussion discussionFixture;
+    private static User userFixture;
 
-    @Before
-    public void createFixtures() {
-        User user = new User("oliver", "onewman1@swarthmore.edu", "spotifyId");
-        Discussion discussion = new Discussion();
-        HibernateUtil.saveObject(discussion);
-        this.post = new Post("Test post", user.getId(), discussion.getId());
-        HibernateUtil.saveObject(this.post);
+    @BeforeClass
+    public static void createFixtures() {
+        userFixture = new User("oliver", "onewman1@swarthmore.edu", "spotifyId");
+        discussionFixture = new Discussion();
+        HibernateUtil.saveObject(userFixture);
+        HibernateUtil.saveObject(discussionFixture);
+        postFixture = new Post("Test post", userFixture.getId(), discussionFixture.getId());
+        HibernateUtil.saveObject(postFixture);
     }
 
     @Test
@@ -39,38 +43,41 @@ public class PostsControllerTest extends ControllerTestBase {
 
     @Test
     public void getAPost() {
-        String url = String.format("/api/v1/posts/%d", this.post.getId());
+        String url = String.format("/api/v1/posts/%d", postFixture.getId());
 
         TestResponse res = request("GET", url);
         assertEquals(200, res.getStatus());
-//
-//        Post gottenPost = GsonUtil.fromJson(Post.class, res.json().toString());
-//        assertEquals(gottenPost.getId(), this.post.getId());
-    }
 
-    /*
-    @Test
-    public void updatePost() {
-        Post post = new Post("Test content not updated", 10, 6);
-
-//        assertTrue(PostsController.createPost(post));
-        int id = post.getId();
-        post.setContent("Test content updated");
-
-//        assertTrue(PostsController.updatePost(post));
-//        Post updatedPost = PostsController.getPost(id);
-//        assertEquals("Test content updated", updatedPost.getContent());
+        Post gottenPost = GsonUtil.fromJson(Post.class, res.json().toString());
+        assertEquals(gottenPost.getId(), postFixture.getId());
     }
 
     @Test
-    public void deletePost() {
-        Post post = new Post("Test delete", 11, 12);
+    public void updateAPost() {
+        String url = String.format("/api/v1/posts/%d", postFixture.getId());
 
-//        assertTrue(PostsController.createPost(post));
-        int id = post.getId();
+        postFixture.setContent("Updated content");
 
-//        assertTrue(PostsController.deletePost(id));
-//        assertNull(PostsController.getPost(id));
+        TestResponse res = request("PUT", url, GsonUtil.toJson(postFixture));
+        assertEquals(200, res.getStatus());
+
+        Post updatedPost = GsonUtil.fromJson(Post.class, res.json().toString());
+
+        assertEquals(postFixture.getContent(), updatedPost.getContent());
     }
-    */
+
+    @Test
+    public void deleteAPost() {
+        Post postToDelete = new Post("Test post", userFixture.getId(), discussionFixture.getId());
+        HibernateUtil.saveObject(postToDelete);
+
+        String url = String.format("/api/v1/posts/%d", postToDelete.getId());
+
+        TestResponse res = request("DELETE", url);
+        assertEquals(200, res.getStatus());
+
+        Post deletedPost = GsonUtil.fromJson(Post.class, res.json().toString());
+
+        assertEquals(postToDelete.getContent(), deletedPost.getContent());
+    }
 }
