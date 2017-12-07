@@ -3,6 +3,7 @@ import AlbumArtist from "./AlbumArtist";
 import Loader from './Loader';
 import { Table } from "react-bootstrap";
 import Rating from "./Rating";
+import ReviewModal from "./ReviewModal";
 import "./Album.css";
 
 class Album extends Component {
@@ -61,6 +62,9 @@ class Album extends Component {
         <div id="AlbumPage" className="Overlay">
 
             <div id="AlbumInfo" className="AlbumInfoAndLinkedAccounts" >
+                <div id="ReviewModalForAlbum" className="ReviewModalForAlbum">
+                    <ReviewModal />
+                </div>
                 <img src={this.state.image} alt="" height="200" width="200"></img>
                 <h3> {this.state.albumName} </h3>
                 {this.renderAlbumArtist()}

@@ -38,13 +38,6 @@ export default class StarHoverable extends Component {
          .catch(function (error) {
            console.log('Request failure: ', error);
          });
-         /*
-        .then(function(res) {
-            return res.json();
-        }).then(function(json) {
-            console.log(json);
-        });
-        */
 
   }
 
