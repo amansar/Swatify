@@ -26,7 +26,7 @@ public abstract class BaseRoute implements Route {
         catch (Exception e) {
             e.printStackTrace();
             session.getTransaction().rollback();
-            jsonObject = new InternalServerError(response, e.getMessage());
+            jsonObject = new InternalServerError(e.getMessage());
         }
         finally {
             session.close();

@@ -12,7 +12,7 @@ public abstract class GetObjectRoute extends BaseRoute {
     public Object doAction(Session session, Request request, Response response) {
         int id = Integer.parseInt(request.params("id"));
         Object obj = session.get(getObjectClass(), id);
-        return obj == null ? new NotFoundError(response,"Could not find the requested resource") : obj;
+        return obj == null ? new NotFoundError("Could not find the requested resource") : obj;
     }
 
     protected abstract Class<?> getObjectClass();
