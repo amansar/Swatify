@@ -5,7 +5,8 @@ import {
   Button,
   Form,
   FormGroup,
-  FormControl
+  FormControl,
+  Glyphicon
 } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
 
@@ -56,7 +57,10 @@ export default class DiscussionModal extends Component {
         return (
             <div>
                 <Button bsStyle="primary" bsSize="large" onClick={this.open}>
-                    Create Discussion
+                    <div>
+                        <Glyphicon class="pull-left" glyph="plus"></Glyphicon>
+                        Add a Discussion
+                    </div>
                 </Button>
 
                  <Modal show={this.state.showModal} onHide={this.close}>
