@@ -22,3 +22,4 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - onewman1: Configure React routes
 - cmarsh1: Create Spotify Authorization
 - cmarsh1: Moved application credentials to resources and created util object
+- onewman1: Refactor PostsController and tests to use new controller format

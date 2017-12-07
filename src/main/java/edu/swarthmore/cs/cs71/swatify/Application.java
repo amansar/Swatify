@@ -6,7 +6,7 @@ import static spark.Spark.*;
 
 public class Application {
     public static void main(String[] args) {
-//        externalStaticFileLocation("src/main/resources/build");
+        externalStaticFileLocation("src/main/resources/build");
 
         establishRoutes();
     }
@@ -14,6 +14,7 @@ public class Application {
     public static void establishRoutes() {
         path("/api/v1", () -> {
             new UsersController();
+            new SessionsController();
             new ArtistsController();
             new AlbumsController();
             new DiscussionsController();

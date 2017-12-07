@@ -26,6 +26,7 @@ public class SpotifyUtil {
         final Api api = Api.builder()
                 .clientId(clientId)
                 .clientSecret(clientSecret)
+                .redirectURI("/api/v1")
                 .build();
 
         /* Create a request object. */
@@ -55,8 +56,6 @@ public class SpotifyUtil {
         return api;
     }
 
-
-
     public boolean searchAlbum (String query) {
         final AlbumSearchRequest request = this.spotifyApi.searchAlbums(query).offset(0).limit(3).build();
 
@@ -76,8 +75,6 @@ public class SpotifyUtil {
 
         return false;
     }
-
-
 }
 
 
