@@ -1,10 +1,12 @@
 package edu.swarthmore.cs.cs71.swatify.controllers;
 
 import edu.swarthmore.cs.cs71.swatify.controllers.hibernateRoutes.*;
+import edu.swarthmore.cs.cs71.swatify.errors.NotFoundError;
 import edu.swarthmore.cs.cs71.swatify.models.Discussion;
 import edu.swarthmore.cs.cs71.swatify.models.Post;
 import edu.swarthmore.cs.cs71.swatify.util.GsonUtil;
 import edu.swarthmore.cs.cs71.swatify.util.HibernateUtil;
+import org.hibernate.Session;
 import spark.Request;
 import spark.Response;
 
@@ -44,6 +46,11 @@ public class DiscussionsController {
                         protected Class<?> getObjectClass() {
                             return Post.class;
                         }
+                        @Override
+                        protected String getIdParamName() {
+                            return "postId";
+                        }
+
                     });
 
                     post("", new CreateObjectRoute() {
