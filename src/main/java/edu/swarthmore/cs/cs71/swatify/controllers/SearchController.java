@@ -9,13 +9,14 @@ import edu.swarthmore.cs.cs71.swatify.util.SpotifyUtil;
 import java.util.ArrayList;
 import java.util.List;
 
+import static spark.Spark.get;
 import static spark.Spark.path;
 
 public class SearchController {
 
     public SearchController() {
         path("/search", () -> {
-           get("")
+           get("/:query", (request, response) -> searchArtists(request.params("query")));
         });
     }
 
