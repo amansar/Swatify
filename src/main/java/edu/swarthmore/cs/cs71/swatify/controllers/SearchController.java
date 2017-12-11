@@ -15,7 +15,16 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
+import static spark.Spark.get;
+import static spark.Spark.path;
+
 public class SearchController {
+
+    public SearchController() {
+        path("/search", () -> {
+           get("/:query", (request, response) -> searchArtists(request.params("query")));
+        });
+    }
 
     public static TrackSearchResults searchTracks(String query){
         final TrackSearchRequest request = SpotifyUtil.getSpotifyAPI().searchTracks(query).build();
