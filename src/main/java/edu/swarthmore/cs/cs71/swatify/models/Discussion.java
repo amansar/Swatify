@@ -18,12 +18,20 @@ public class Discussion {
 
     private String title;
     private int userId;
+    private String albumSpotifyId;
 
     public Discussion() { }
 
     public Discussion(String title, int userId) {
         this.userId = userId;
         this.title = title;
+
+    }
+
+    public Discussion(String title, int userId, String albumSpotifyId) {
+        this.userId = userId;
+        this.title = title;
+        this.albumSpotifyId = albumSpotifyId;
     }
 
     public int getId() {
@@ -37,4 +45,8 @@ public class Discussion {
     }
 
     public void setTitle(String title) { this.title = title; }
+
+    public String getAlbumSpotifyId() {
+        return albumSpotifyId;
+    }
 }

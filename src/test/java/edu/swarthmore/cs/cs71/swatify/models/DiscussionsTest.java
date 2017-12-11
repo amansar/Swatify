@@ -12,6 +12,11 @@ public class DiscussionsTest {
         Discussion newDiscussion = new Discussion("Test Discussion", 1);
         Assert.assertEquals("Test Discussion", newDiscussion.getTitle());
         Assert.assertEquals(1, newDiscussion.getUserId());
+
+        Discussion albumDiscussion = new Discussion("Test album discussion", 2, "47b7v7e");
+        Assert.assertEquals("Test album discussion", albumDiscussion.getTitle());
+        Assert.assertEquals(2, albumDiscussion.getUserId());
+        Assert.assertEquals("47b7v7e", albumDiscussion.getAlbumSpotifyId());
     }
 
     @Test
