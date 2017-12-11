@@ -10,10 +10,18 @@ public abstract class GetObjectRoute extends BaseRoute {
 
     @Override
     public Object doAction(Session session, Request request, Response response) {
-        int id = Integer.parseInt(request.params("id"));
+        int id = Integer.parseInt(request.params(getIdParamName()));
         Object obj = session.get(getObjectClass(), id);
-        return obj == null ? new NotFoundError("Could not find the requested resource") : obj;
+        if (obj == null) {
+            response.status(404);
+            obj = new NotFoundError("Could not find the requested resource");
+        }
+        return obj;
     }
 
     protected abstract Class<?> getObjectClass();
+
+    protected String getIdParamName() {
+        return "id";
+    }
 }
