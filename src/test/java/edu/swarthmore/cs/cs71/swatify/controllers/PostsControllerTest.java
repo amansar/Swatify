@@ -25,13 +25,13 @@ public class PostsControllerTest extends ControllerTestBase {
         discussionFixture = new Discussion();
         HibernateUtil.saveObject(userFixture);
         HibernateUtil.saveObject(discussionFixture);
-        postFixture = new Post("Test post", userFixture.getId(), discussionFixture.getId());
+        postFixture = new Post(userFixture, discussionFixture, "Test post");
         HibernateUtil.saveObject(postFixture);
     }
 
     @Test
     public void createNewPost() {
-        Post post = new Post("Test content", 1, 3);
+        Post post = new Post(userFixture, discussionFixture, "Test content");
 
         TestResponse res = request("POST", "/api/v1/posts", GsonUtil.toJson(post));
         assertEquals(200, res.getStatus());
@@ -68,7 +68,7 @@ public class PostsControllerTest extends ControllerTestBase {
 
     @Test
     public void deleteAPost() {
-        Post postToDelete = new Post("Test post", userFixture.getId(), discussionFixture.getId());
+        Post postToDelete = new Post(userFixture, discussionFixture, "This post will be deleted");
         HibernateUtil.saveObject(postToDelete);
 
         String url = String.format("/api/v1/posts/%d", postToDelete.getId());

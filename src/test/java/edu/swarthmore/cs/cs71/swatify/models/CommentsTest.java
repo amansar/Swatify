@@ -4,20 +4,22 @@ import org.junit.Assert;
 import org.junit.Test;
 
 public class CommentsTest {
+    private Comment comment;
+
     @Test
     public void createComment() throws Exception {
-        Comment newComment = new Comment("Test Comment", 1, 2);
-        Assert.assertEquals("Test Comment", newComment.getContent());
-        Assert.assertEquals(1, newComment.getUserId());
-        Assert.assertEquals(2, newComment.getParentActionId());
-        Assert.assertEquals(0, newComment.getId());
+        User user = new User();
+        Discussion discussion = new Discussion();
+        Post parent = new Post(user, discussion, "test post");
+
+        this.comment = new Comment(user, parent, "Nice!");
+        Assert.assertEquals("Nice!", this.comment.getContent());
+        Assert.assertEquals(user, this.comment.getUser());
     }
 
     @Test
     public void changeContent() throws Exception {
-        Comment newComment = new Comment("Test Comment", 1, 2);
-        Assert.assertEquals("Test Comment", newComment.getContent());
-        newComment.setContent("updated");
-        Assert.assertEquals("updated", newComment.getContent());
+        this.comment.setContent("updated");
+        Assert.assertEquals("updated", this.comment.getContent());
     }
 }

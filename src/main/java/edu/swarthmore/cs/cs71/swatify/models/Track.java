@@ -19,9 +19,6 @@ public class Track {
     private String titleOfWork;
     private String spotifyID;
 
-    //maybe add length field if we plan on adding this in for both tracks and albums
-
-
     public Track() { }
 
     public void setLengthOfTrack(Double lengthOfTrack) {
@@ -33,7 +30,6 @@ public class Track {
         return lengthOfTrack;
     }
 
-
     public String getSpotifyID() {
         return spotifyID;
     }
@@ -42,7 +38,6 @@ public class Track {
 
         return titleOfWork;
     }
-
 
     public void setSpotifyID(String spotifyId){
         this.spotifyID = spotifyId;

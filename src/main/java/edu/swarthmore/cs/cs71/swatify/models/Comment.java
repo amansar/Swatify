@@ -13,25 +13,24 @@ public class Comment extends PublicAction {
     private int id;
 
     private String content;
-    private int parentActionId;
 
-    public Comment() { }
-
-    public Comment(String content, int userId, int parentActionId) {
+    public Comment(User user, PublicAction parent, String content) {
+        super(user);
         this.content = content;
-        this.userId = userId;
-        this.parentActionId = parentActionId;
     }
 
     public int getId() {
         return id;
     }
 
-    public int getParentActionId() { return parentActionId; }
+    public void getParent() {
+    }
 
     public String getContent() {
         return content;
     }
 
-    public void setContent(String content) { this.content = content; }
+    public void setContent(String content) {
+        this.content = content;
+    }
 }

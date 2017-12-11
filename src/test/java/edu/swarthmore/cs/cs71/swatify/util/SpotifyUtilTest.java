@@ -2,10 +2,6 @@ package edu.swarthmore.cs.cs71.swatify.util;
 
 import com.wrapper.spotify.exceptions.WebApiException;
 import com.wrapper.spotify.methods.AlbumRequest;
-import com.wrapper.spotify.models.Artist;
-import edu.swarthmore.cs.cs71.swatify.controllers.ArtistsController;
-import edu.swarthmore.cs.cs71.swatify.models.SwatifyArtist;
-import org.junit.Assert;
 import org.junit.Test;
 
 import java.io.IOException;

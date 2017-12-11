@@ -1,5 +1,7 @@
 package edu.swarthmore.cs.cs71.swatify.models;
 
+import com.wrapper.spotify.models.Artist;
+
 import javax.persistence.*;
 
 @Entity
@@ -9,14 +11,14 @@ public class ArtistFollow {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    private SwatifyArtist swatifyArtist;
+    private String artistSpotifyId;
     private User follower;
 
     public ArtistFollow() {
     }
 
-    public ArtistFollow(User follower, SwatifyArtist swatifyArtist) {
-        this.swatifyArtist = swatifyArtist;
+    public ArtistFollow(User follower, String artistSpotifyId) {
+        this.artistSpotifyId = artistSpotifyId;
         this.follower = follower;
     }
 
@@ -24,23 +26,11 @@ public class ArtistFollow {
         return id;
     }
 
-    public SwatifyArtist getSwatifyArtist() {
-        return swatifyArtist;
+    public String getArtistSpotifyId() {
+        return artistSpotifyId;
     }
 
     public User getFollower() {
         return follower;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public void setSwatifyArtist(SwatifyArtist swatifyArtist) {
-        this.swatifyArtist = swatifyArtist;
-    }
-
-    public void setFollower(User follower) {
-        this.follower = follower;
     }
 }

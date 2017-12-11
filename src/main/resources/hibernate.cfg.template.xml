@@ -15,7 +15,6 @@
 
         <mapping class="edu.swarthmore.cs.cs71.swatify.models.User"/>
         <mapping class="edu.swarthmore.cs.cs71.swatify.models.Album"/>
-        <mapping class="edu.swarthmore.cs.cs71.swatify.models.SwatifyArtist"/>
         <mapping class="edu.swarthmore.cs.cs71.swatify.models.Track"/>
         <mapping class="edu.swarthmore.cs.cs71.swatify.models.Post"/>
         <mapping class="edu.swarthmore.cs.cs71.swatify.models.Comment"/>

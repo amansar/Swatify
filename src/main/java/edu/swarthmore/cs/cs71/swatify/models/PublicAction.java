@@ -1,7 +1,8 @@
 package edu.swarthmore.cs.cs71.swatify.models;
 
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.MappedSuperclass;
-import java.time.LocalDateTime;
 
 /**
  * Superclass for PublicAction
@@ -9,15 +10,21 @@ import java.time.LocalDateTime;
  */
 @MappedSuperclass
 public class PublicAction {
-    protected int userId;
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    protected User user;
 
     public PublicAction() { }
 
+    public PublicAction(User user) {
+        this.user = user;
+    }
 
-    /**
-     * Returns the database Id of the user who created the PublicAction
-     */
-    public int getUserId(){ return this.userId; };
+    public User getUser() {
+        return this.user;
+    }
 
-    public void setUserId(int userId){ this.userId = userId; }
+    public void setUser(User user) {
+        this.user = user;
+    }
 }

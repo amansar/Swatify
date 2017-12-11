@@ -19,20 +19,11 @@ public class Discussion {
     private String title;
     private int userId;
 
-//    @OneToMany(
-//            mappedBy = "discussion",
-//            cascade = CascadeType.ALL
-//    )
-//    private List<Post> posts;
-
-
     public Discussion() { }
 
     public Discussion(String title, int userId) {
         this.userId = userId;
         this.title = title;
-//        this.posts = new ArrayList<Post>() {
-//        };
     }
 
     public int getId() {
@@ -46,11 +37,4 @@ public class Discussion {
     }
 
     public void setTitle(String title) { this.title = title; }
-
-//    public List<Post> getPosts() {return posts;}
-
-//    public void addPost(Post post) {
-//        posts.add(post);
-//        post.setDiscussion(this);
-//    }
 }
