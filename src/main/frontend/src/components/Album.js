@@ -2,7 +2,9 @@ import React, { Component } from 'react';
 import AlbumArtist from "./AlbumArtist";
 import Loader from './Loader';
 import { Table } from "react-bootstrap";
+import Rating from "./Rating";
 import "./Album.css";
+
 class Album extends Component {
     state = {loading: true}
     componentWillMount(){
@@ -21,20 +23,10 @@ class Album extends Component {
         */
     }
 
+
     renderAlbumArtist(){
         return <AlbumArtist artistId={this.state.artistId} />;
     }
-    /*
-    convTracksToString() {
-        const tracksToChange = this.state.tracks.slice();
-        var listOfTrackNames = [];
-        var i;
-        for (i = 0; i < tracksToChange.length; i++) {
-            listOfTrackNames.push(tracksToChange[i].name)
-        }
-        this.setState({trackNames: listOfTrackNames});
-    }
-*/
 
     renderTracksList() {
 
@@ -44,10 +36,12 @@ class Album extends Component {
                        {tracks.map(function(track, index){
                        var numberToUse = (index + 1).toString();
                        var trackDuration = (track.duration/1000/60).toFixed(2);
+                       var givenTrackId = track.id;
                        return <tr key={index}>
-                                   <td class="col-md-2"> {numberToUse} </td>
+                                   <td class="col-md-1"> {numberToUse} </td>
                                    <td class="col-md-8"> {track.name} </td>
-                                   <td class="col-md-2"> {trackDuration} </td>
+                                   <td class="col-md-1"> {trackDuration} </td>
+                                   <td class="col-md-4"> <Rating trackId={givenTrackId} /> </td>
                               </tr>;
                                         })}
 
@@ -58,7 +52,7 @@ class Album extends Component {
     render() {
         //this.convTracksToString();
 
-        if(this.state.loading == false){
+        if(this.state.loading === false){
 
         return (
 

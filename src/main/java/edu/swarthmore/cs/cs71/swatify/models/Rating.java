@@ -9,13 +9,17 @@ public class Rating extends PublicAction {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
+    private int userId;
+
     private int stars;
     private int spotifyId;
 
-    public Rating(User user, int stars, int spotifyId) {
-        super(user);
+    public Rating() { }
+
+    public Rating(int userId, int stars, int trackId) {
+        this.userId = userId;
         this.stars = stars;
-        this.spotifyId = spotifyId;
+        this.spotifyId = trackId;
     }
 
     public int getId() {

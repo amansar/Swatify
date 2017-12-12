@@ -19,6 +19,7 @@ public class Application {
             new AlbumsController();
             new DiscussionsController();
             new PostsController();
+            new RatingsController();
 
             after((req, res) -> res.type("application/json"));
 

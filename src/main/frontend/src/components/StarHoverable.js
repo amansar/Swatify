@@ -1,6 +1,11 @@
 import React, { Component } from 'react';
 import "./StarHoverable.css"
 
+/*
+Borrowing from code found here:
+    https://codepen.io/benjaminreid/pen/vNVwPW
+*/
+
 export default class StarHoverable extends Component {
   constructor(props) {
           super(props);

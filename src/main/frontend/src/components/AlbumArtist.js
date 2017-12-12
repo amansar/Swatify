@@ -1,8 +1,4 @@
 import React, { Component } from 'react';
-import Loader from './Loader';
-import {
-  Button
-} from 'react-bootstrap';
 
 export default class AlbumArtist extends Component {
 
