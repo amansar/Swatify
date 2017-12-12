@@ -6,8 +6,9 @@ We will develop a web application that allows people to better connect through m
 
 ### Backend
 
-A [Spotify API application](https://beta.developer.spotify.com/) is required to
-run the backend API. To run the application:
+A [Spotify API application](https://beta.developer.spotify.com/) is required to run the backend API. That application must also have <http://localhost:3000/callback> added to its redirect URIs at <https://beta.developer.spotify.com/dashboard/applications/>.
+
+To run the application:
 
 ```sh
 cp src/main/resources/secrets-template.json src/main/resources/secrets.json

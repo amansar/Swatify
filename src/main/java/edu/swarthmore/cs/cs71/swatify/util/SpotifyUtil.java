@@ -1,79 +1,44 @@
 package edu.swarthmore.cs.cs71.swatify.util;
 
-import com.google.common.util.concurrent.FutureCallback;
-import com.google.common.util.concurrent.Futures;
-import com.google.common.util.concurrent.SettableFuture;
 import com.wrapper.spotify.Api;
-import com.wrapper.spotify.methods.AlbumSearchRequest;
-import com.wrapper.spotify.methods.authentication.ClientCredentialsGrantRequest;
-import com.wrapper.spotify.models.ClientCredentials;
-import com.wrapper.spotify.models.Page;
-import com.wrapper.spotify.models.SimpleAlbum;
+import edu.swarthmore.cs.cs71.swatify.models.User;
+
+import java.util.Arrays;
+import java.util.List;
 
 
-/*Will need to login application and get Client_ID and Client Secrets to use this application */
 public class SpotifyUtil {
-
-    private Api spotifyApi;
+    private static final String redirectURI = "http://localhost:4567/api/v1/spotify-auth/callback";
+    private static final String state = "IPreventCSRFAttacks";
+    private static final List<String> scopes = Arrays.asList("playlist-modify-public");
 
     public SpotifyUtil() { }
-
 
     public static Api getSpotifyAPI() {
         final String clientId = Secrets.getSpotifyClientId();
         final String clientSecret = Secrets.getSpotifyClientSecret();
 
-        final Api api = Api.builder()
-                .clientId(clientId)
-                .clientSecret(clientSecret)
-                .redirectURI("/api/v1")
-                .build();
-
-        /* Create a request object. */
-        final ClientCredentialsGrantRequest request = api.clientCredentialsGrant().build();
-
-        /* Use the request object to make the request, either asynchronously (getAsync) or synchronously (get) */
-        final SettableFuture<ClientCredentials> responseFuture = request.getAsync();
-
-        /* Add callbacks to handle success and failure */
-        Futures.addCallback(responseFuture, new FutureCallback<ClientCredentials>() {
-            @Override
-            public void onSuccess(ClientCredentials clientCredentials) {
-
-                /* Set access token on the Api object so that it's used going forward */
-                api.setAccessToken(clientCredentials.getAccessToken());
-
-                /* Please note that this flow does not return a refresh token.
-                * That's only for the Authorization code flow */
-            }
-
-            @Override
-            public void onFailure(Throwable throwable) {
-                System.out.println( "An error occurred while getting the access token. This is probably caused by the client id or client secret is invalid.  ");
-            }
-        });
-
-        return api;
+        return Api.builder()
+                  .clientId(clientId)
+                  .clientSecret(clientSecret)
+                  .redirectURI(redirectURI)
+                  .build();
     }
 
-    public boolean searchAlbum (String query) {
-        final AlbumSearchRequest request = this.spotifyApi.searchAlbums(query).offset(0).limit(3).build();
+    public static Api getSpotifyAPI(User user) {
+        final String clientId = Secrets.getSpotifyClientId();
+        final String clientSecret = Secrets.getSpotifyClientSecret();
 
-        try {
-            final Page<SimpleAlbum> albumSearchResult = request.get();
+        return Api.builder()
+                  .clientId(clientId)
+                  .clientSecret(clientSecret)
+                  .accessToken(user.getSpotifyAccessToken())
+                  .redirectURI(redirectURI)
+                  .build();
+    }
 
-            System.out.println("Printing results..");
-            for (SimpleAlbum album : albumSearchResult.getItems()) {
-                if(album.getName().toLowerCase().contains(query.toLowerCase())){
-                    return true;
-                }
-            }
-
-        } catch (Exception e) {
-            System.out.println("Something went wrong!" + e.getMessage());
-        }
-
-        return false;
+    public static String getAuthorizeUrl() {
+        return getSpotifyAPI().createAuthorizeURL(scopes, state);
     }
 }
 
