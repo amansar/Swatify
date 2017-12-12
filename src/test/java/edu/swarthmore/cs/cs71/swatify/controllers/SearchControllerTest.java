@@ -16,26 +16,15 @@ public class SearchControllerTest {
 
     @Test
     public void shouldReturnTrackSearchResults() throws Exception {
-<<<<<<< HEAD
         TrackSearchResults trackResults = SearchController.searchTracks("Before the Beginning");
         trackResults.printResults();
-=======
-
->>>>>>> 33b6b5a360fc84e84dc86a8092ff5bda9c01b322
     }
 
     @Test
     public void shouldReturnAlbumSearchResults() throws Exception {
-<<<<<<< HEAD
+
         AlbumSearchResults albumResults = SearchController.searchAlbums("Aquemini");
         albumResults.printResults();
-=======
-        List<SimpleAlbum> albumResults = SearchController.searchAlbums("Aquemini");
-
-        for(SimpleAlbum album : albumResults){
-            System.out.printf("Name: %s\nSpotify ID: %s\n\n", album.getName(), album.getId());
-        }
->>>>>>> 33b6b5a360fc84e84dc86a8092ff5bda9c01b322
     }
 
     @Test
