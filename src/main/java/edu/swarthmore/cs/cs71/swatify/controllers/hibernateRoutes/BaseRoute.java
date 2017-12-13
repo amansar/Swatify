@@ -18,20 +18,20 @@ public abstract class BaseRoute implements Route {
         Session session = HibernateUtil.getSessionFactory().openSession();
         session.beginTransaction();
 
-        Object jsonObject;
+        Object obj;
         try {
-            jsonObject = doAction(session, request, response);
+            obj = doAction(session, request, response);
             session.getTransaction().commit();
         }
         catch (Exception e) {
             e.printStackTrace();
             session.getTransaction().rollback();
-            jsonObject = new InternalServerError(e.getMessage());
+            obj = new InternalServerError(e.getMessage());
         }
         finally {
             session.close();
         }
-        return GsonUtil.toJson(jsonObject);
+        return GsonUtil.toJson(obj);
     }
 
     protected abstract Object doAction(Session session, Request request, Response response);

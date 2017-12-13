@@ -31,6 +31,9 @@ public class User {
     @NotBlank
     private String spotifyAccessToken;
 
+    @NotBlank
+    private String spotifyRefreshToken;
+
     public User() { }
 
     public User(String username, String email, String spotifyId) {
@@ -57,5 +60,17 @@ public class User {
 
     public String getSpotifyAccessToken() {
         return spotifyAccessToken;
+    };
+
+    public String getSpotifyRefreshToken() {
+        return spotifyAccessToken;
+    };
+
+    public void setSpotifyAccessToken(String spotifyAccessToken) {
+        this.spotifyAccessToken = spotifyAccessToken;
+    };
+
+    public void setSpotifyRefreshToken(String spotifyRefreshToken) {
+        this.spotifyRefreshToken = spotifyRefreshToken;
     };
 }

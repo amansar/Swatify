@@ -14,16 +14,16 @@ import static spark.Spark.*;
 public class UsersController {
     public UsersController() {
         path("/users", () -> {
-            path("/:id", () -> {
-                before(((request, response) -> {
-                    if (request.session().attribute("userId") != request.params("id")) {
-                        halt(401, GsonUtil.toJson(new UnauthorizedError("You must log in to view this page.")));
-                    }
-                }));
+            get("/me", (request, response) -> {
+                User user = request.session().attribute("user");
+                return user == null ? GsonUtil.toJson(user) : "{}";
+            });
 
+            path("/:id", () -> {
                 get("", (request, response) -> new GetObjectRoute() {
                     @Override
                     protected Class<?> getObjectClass() {
+                        System.out.println("asdf");
                         return User.class;
                     }
                 });

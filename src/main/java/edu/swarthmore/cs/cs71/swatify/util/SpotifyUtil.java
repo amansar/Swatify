@@ -1,6 +1,7 @@
 package edu.swarthmore.cs.cs71.swatify.util;
 
 import com.wrapper.spotify.Api;
+import com.wrapper.spotify.models.AuthorizationCodeCredentials;
 import edu.swarthmore.cs.cs71.swatify.models.User;
 
 import java.util.Arrays;
@@ -39,6 +40,16 @@ public class SpotifyUtil {
 
     public static String getAuthorizeUrl() {
         return getSpotifyAPI().createAuthorizeURL(scopes, state);
+    }
+
+    public static AuthorizationCodeCredentials getAcessCredentials(String code) {
+        AuthorizationCodeCredentials credentials = null;
+        try {
+            credentials = getSpotifyAPI().authorizationCodeGrant(code).build().get();
+        }
+        catch (Exception e) { }
+
+        return credentials;
     }
 }
 
