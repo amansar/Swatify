@@ -21,8 +21,8 @@ public class ArtistsController {
     public ArtistsController() {
         path("/artists", () -> {
             get("/:id", (request, response) -> getArtist(request.params("id")), GsonUtil::toJson);
-            get("/:id/albums", (request, response) -> getArtistAlbums(request.params("id")));
-            get("/:id/followers", ((request, response) -> getArtistFollowers(request.params("id"))));
+            get("/:id/albums", (request, response) -> getArtistAlbums(request.params("id")), GsonUtil::toJson);
+            get("/:id/followers", ((request, response) -> getArtistFollowers(request.params("id"))), GsonUtil::toJson);
             patch("/:id", (request, response) -> updateArtist(GsonUtil.fromJson(SwatifyArtist.class, request.body())), GsonUtil::toJson);
             exception(IllegalArgumentException.class, (e, request, response) -> {
                 response.status(400);
@@ -70,7 +70,7 @@ public class ArtistsController {
         return new ArrayList<>();
     }
 
-    public static int getArtistFollowers(String spotifyId){
-        return getArtist(spotifyId).getFollowers().getTotal();
+    public static Followers getArtistFollowers(String spotifyId){
+        return getArtist(spotifyId).getFollowers();
     }
 }

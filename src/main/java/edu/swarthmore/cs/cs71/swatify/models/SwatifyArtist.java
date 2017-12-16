@@ -18,6 +18,7 @@ public class SwatifyArtist {
 
     private String spotifyId;
     private String name;
+    private int numFollowers;
 
 
 
@@ -47,5 +48,6 @@ public class SwatifyArtist {
     public void setName(String name) {
         this.name = name;
     }
+
 
 }
