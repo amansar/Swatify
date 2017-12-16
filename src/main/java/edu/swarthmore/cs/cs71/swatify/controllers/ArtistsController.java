@@ -3,6 +3,7 @@ package edu.swarthmore.cs.cs71.swatify.controllers;
 import com.wrapper.spotify.methods.AlbumsForArtistRequest;
 import com.wrapper.spotify.methods.ArtistRequest;
 import com.wrapper.spotify.models.Artist;
+import com.wrapper.spotify.models.Followers;
 import com.wrapper.spotify.models.Page;
 import com.wrapper.spotify.models.SimpleAlbum;
 import edu.swarthmore.cs.cs71.swatify.models.SwatifyArtist;
@@ -21,6 +22,7 @@ public class ArtistsController {
         path("/artists", () -> {
             get("/:id", (request, response) -> getArtist(request.params("id")), GsonUtil::toJson);
             get("/:id/albums", (request, response) -> getArtistAlbums(request.params("id")));
+            get("/:id/followers", ((request, response) -> getArtistFollowers(request.params("id"))));
             patch("/:id", (request, response) -> updateArtist(GsonUtil.fromJson(SwatifyArtist.class, request.body())), GsonUtil::toJson);
             exception(IllegalArgumentException.class, (e, request, response) -> {
                 response.status(400);
@@ -66,5 +68,9 @@ public class ArtistsController {
         }
 
         return new ArrayList<>();
+    }
+
+    public static int getArtistFollowers(String spotifyId){
+        return getArtist(spotifyId).getFollowers().getTotal();
     }
 }

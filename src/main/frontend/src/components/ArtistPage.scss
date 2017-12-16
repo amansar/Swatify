@@ -1,8 +1,30 @@
-.Title h1 {
-    font-size: 200%;
+h1 {
     text-align: center;
+    float: center;
 }
 
-.Title {
-    display: inline-block;
+.ArtistBio {
+    float:center;
+}
+
+.Sidebar {
+    float:left;
+    margin-right: 5%;
+    margin-bottom: 5%;
+}
+
+
+.Genre {
+    text-transform: capitalize;
+}
+
+.ArtistContent {
+    float: center
+}
+
+#artistName {
+    font-size: 72px;
+    font-weight: bold;
+    margin-bottom: 50px;
+
 }

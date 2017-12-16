@@ -2,12 +2,14 @@ package edu.swarthmore.cs.cs71.swatify.controllers;
 
 import com.wrapper.spotify.models.Album;
 import com.wrapper.spotify.models.Artist;
+import com.wrapper.spotify.models.Followers;
 import com.wrapper.spotify.models.SimpleAlbum;
 import edu.swarthmore.cs.cs71.swatify.models.SwatifyArtist;
 import edu.swarthmore.cs.cs71.swatify.util.HibernateUtil;
 import org.junit.Assert;
 import org.junit.Test;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 public class ArtistsControllerTest {
@@ -53,5 +55,13 @@ public class ArtistsControllerTest {
             System.out.println("    " + album.getName());
         }
 
+    }
+
+    @Test
+    public void shouldGetArtistFollowers() {
+        Artist knxwledge = ArtistsController.getArtist("17Zu03OgBVxgLxWmRUyNOJ");
+        Followers knxwledgeFollowers = ArtistsController.getArtistFollowers("17Zu03OgBVxgLxWmRUyNOJ");
+
+        assertEquals(knxwledge.getFollowers().getTotal(), knxwledgeFollowers.getTotal());
     }
 }
