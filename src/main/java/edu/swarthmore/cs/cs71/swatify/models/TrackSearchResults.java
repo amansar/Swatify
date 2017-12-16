@@ -40,7 +40,9 @@ public class TrackSearchResults implements SearchResults{
             }
         }
 
-        System.out.println("----------------------");
+    }
 
+    public List<Track> getResults() {
+        return results;
     }
 }

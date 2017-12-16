@@ -74,18 +74,14 @@ public class SearchController {
         return new ArtistSearchResults(new ArrayList<>());
     }
 
-    // search users in our database
+    //search for users in our database
 
-    public static void sortResults(List<SearchResults> searchResults){
-        Collections.sort(searchResults, (list1, list2) -> list2.numberOfResults() - list1.numberOfResults());
-    }
-
-    public static List<SearchResults> search(String query){
-        List<SearchResults> results = new ArrayList<>();
-        results.add(searchAlbums(query));
-        results.add(searchArtists(query));
-        results.add(searchTracks(query));
-        sortResults(results);
+    public static List<List> search(String query){
+        List<List> results = new ArrayList<>();
+        results.add(searchAlbums(query).getResults());
+        results.add(searchArtists(query).getResults());
+        results.add(searchTracks(query).getResults());
+        Collections.sort(results, (list1, list2) -> list2.size() - list1.size());
 
         return results;
 

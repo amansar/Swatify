@@ -11,9 +11,9 @@ class ArtistPage extends Component {
             .then(res => res.json())
             .then(artist => this.setState({artist: artist, loading: false}));
 
-//        fetch('/api/v1/artists/' + this.props.match.params.id + '/albums')
-//                .then(response => response.json())
-//                .then(albums => this.setState({albums: albums, loading: false}));
+        fetch('/api/v1/artists/' + this.props.match.params.id + '/albums')
+                .then(response => response.json())
+                .then(albums => this.setState({albums: albums, loading: false}));
     }
 
     render() {

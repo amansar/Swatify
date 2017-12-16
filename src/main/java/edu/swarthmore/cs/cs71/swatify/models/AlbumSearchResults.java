@@ -30,7 +30,9 @@ public class AlbumSearchResults implements SearchResults {
             }
         }
 
-        System.out.println("----------------------");
+    }
 
+    public List<SimpleAlbum> getResults() {
+        return results;
     }
 }

@@ -33,11 +33,11 @@ public class SearchControllerTest {
         artistResults.printResults();
     }
 
-    @Test
-    public void shouldGetAllResults() throws Exception {
-        List<SearchResults> searchResults = SearchController.search("Yes");
-        for(SearchResults resultCategory : searchResults){
-            resultCategory.printResults();
-        }
-    }
+//    @Test
+//    public void shouldGetAllResults() throws Exception {
+//        List<SearchResults> searchResults = SearchController.search("Yes");
+//        for(SearchResults resultCategory : searchResults){
+//            resultCategory.printResults();
+//        }
+//    }
 }

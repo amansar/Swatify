@@ -31,7 +31,9 @@ public class ArtistSearchResults implements SearchResults {
             }
         }
 
-        System.out.println("----------------------");
+    }
 
+    public List<Artist> getResults() {
+        return results;
     }
 }
