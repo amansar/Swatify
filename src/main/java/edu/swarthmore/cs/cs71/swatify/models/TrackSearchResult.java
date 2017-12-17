@@ -27,17 +27,17 @@ public class TrackSearchResult extends SearchResult{
 
     @Override
     public String getName() {
-        return super.getName();
+        return this.name;
     }
 
     @Override
     public String getSpotifyId() {
-        return super.getSpotifyId();
+        return this.spotifyId;
     }
 
     @Override
     public String getUrl() {
-        return super.getUrl();
+        return this.url;
     }
 
     public List<SimpleArtist> getArtists() {

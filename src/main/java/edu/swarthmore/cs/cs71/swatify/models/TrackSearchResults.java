@@ -4,7 +4,7 @@ import com.wrapper.spotify.models.SimpleArtist;
 
 import java.util.List;
 
-public class TrackSearchResults implements SearchResults{
+public class TrackSearchResults extends SearchResults{
     private List<TrackSearchResult> results;
 
     public TrackSearchResults(List<TrackSearchResult> results) {

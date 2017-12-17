@@ -85,14 +85,17 @@ public class SearchController {
 
     //search for users in our database
 
-    public static List<SearchResults> search(String query){
+//    public static List<SearchResults> search(String query){
+    public static int search(String query){
         List<SearchResults> results = new ArrayList<>();
         results.add(searchAlbums(query));
         results.add(searchArtists(query));
         results.add(searchTracks(query));
 //        Collections.sort(results, (list1, list2) -> list2.numberOfResults() - list1.numberOfResults());
 
-        return results;
+//        return results;
+        return 9;
+
 
     }
 

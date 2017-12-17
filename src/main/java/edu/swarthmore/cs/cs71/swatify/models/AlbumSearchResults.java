@@ -5,7 +5,7 @@ import com.wrapper.spotify.models.SimpleAlbum;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AlbumSearchResults implements SearchResults {
+public class AlbumSearchResults extends SearchResults {
     private List<SimpleAlbum> results;
 
     public AlbumSearchResults(List<SimpleAlbum> results) {

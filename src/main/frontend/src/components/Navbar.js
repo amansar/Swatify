@@ -15,12 +15,6 @@ export default class Navbar extends Component {
   state = {searchInput: ""}
 
 
-  search(e) {
-    if(e != null)
-        alert(e.target.value);
-
-  }
-
   handleChange(e) {
       this.setState({searchInput: e.target.value});
   }
@@ -29,8 +23,12 @@ export default class Navbar extends Component {
         e.preventDefault();
         e.stopPropagation();
         console.log('submit');
-        alert(this.state.searchInput);
-        window.location = "/search/" + this.state.searchInput;
+//        window.location = "/search/" + this.state.searchInput;
+
+        fetch('/api/v1/search/' + this.state.searchInput + '/tracks')
+                    .then(response => response.json())
+                    .then(tracks => console.log(tracks.length));
+
     }
 
 

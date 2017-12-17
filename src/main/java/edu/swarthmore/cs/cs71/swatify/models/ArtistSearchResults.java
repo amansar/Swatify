@@ -6,7 +6,7 @@ import com.wrapper.spotify.models.Artist;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ArtistSearchResults implements SearchResults {
+public class ArtistSearchResults extends SearchResults {
     List<Artist> results;
 
     public ArtistSearchResults(List<Artist> results) {

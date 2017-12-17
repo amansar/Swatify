@@ -35,9 +35,11 @@ public class SearchControllerTest {
 
     @Test
     public void shouldGetAllResults() {
-        List<SearchResults> searchResults = SearchController.search("Yes");
-        for(SearchResults resultCategory : searchResults) {
-            resultCategory.printResults();
-        }
+//        List<SearchResults> searchResults = SearchController.search("Yes");
+//        for(SearchResults resultCategory : searchResults) {
+//            resultCategory.printResults();
+//        }
+        int nine = SearchController.search("Yes");
+        System.out.println(nine);
     }
 }
