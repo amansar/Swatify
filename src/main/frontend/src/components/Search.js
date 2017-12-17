@@ -6,7 +6,7 @@ export default class Search extends Component {
   render() {
     return (
       <Switch>
-        <Route exact path='/search/:query' component={SearchPage} />
+        <Route exact path='/search/:id' component={SearchPage} />
       </Switch>
     );
   }

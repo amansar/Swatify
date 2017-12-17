@@ -3,6 +3,7 @@ package edu.swarthmore.cs.cs71.swatify.models;
 import com.wrapper.spotify.models.Artist;
 
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ArtistSearchResults implements SearchResults {
@@ -33,7 +34,10 @@ public class ArtistSearchResults implements SearchResults {
 
     }
 
-    public List<Artist> getResults() {
-        return results;
+
+    @Override
+    public List<TrackSearchResult> getResults() {
+//        return results;
+        return new ArrayList<TrackSearchResult>();
     }
 }

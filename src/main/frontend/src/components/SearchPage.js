@@ -3,12 +3,21 @@ import Loader from './Loader';
 import NotFound from './NotFound';
 
 export default class SearchPage extends Component {
-    state = {loading: true, results: "No results"}
+    state = {loading: true, results:[], tracks: []}
 
     componentDidMount() {
-        fetch('/api/search/' + this.props.match.params.query)
+
+        console.log(this.props.match.params.id);
+        fetch('/api/v1/search/' + this.props.match.params.id)
             .then(res => res.json())
-            .then(items => this.setState({results: items.items, loading: false}));
+            .then(results => this.setState({results: results, loading: false}));
+
+        fetch('/api/v1/search/' + this.props.match.params.id + '/tracks')
+            .then(response => response.json())
+            .then(artists => this.setState({artists: artists, loading: false}));
+
+        console.log("here");
+
     }
 
     render() {
@@ -18,8 +27,10 @@ export default class SearchPage extends Component {
             return (
                 <div>
                     <h1>Search</h1>
-                    <hr/>
-                    <p>{this.state.results[0].name}</p>
+                    <hr></hr>
+                    <p>Got {this.state.results.length} results</p>
+                    <h2>Artists</h2>
+                    <p>Got {this.state.tracks.length} results</p>
                 </div>
             );
         } else {

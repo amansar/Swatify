@@ -1,14 +1,13 @@
 package edu.swarthmore.cs.cs71.swatify.models;
 
 import com.wrapper.spotify.models.SimpleArtist;
-import com.wrapper.spotify.models.Track;
 
 import java.util.List;
 
 public class TrackSearchResults implements SearchResults{
-    private List<Track> results;
+    private List<TrackSearchResult> results;
 
-    public TrackSearchResults(List<Track> results) {
+    public TrackSearchResults(List<TrackSearchResult> results) {
         this.results = results;
     }
 
@@ -27,7 +26,7 @@ public class TrackSearchResults implements SearchResults{
         if(this.results.isEmpty()){
             System.out.println("No results found");
         } else {
-            for(Track track : results){
+            for(TrackSearchResult track : results){
                 System.out.printf("Name: %s\n", track.getName());
                 System.out.printf("Arists: ");
                 for(SimpleArtist trackArtist : track.getArtists()){
@@ -42,7 +41,7 @@ public class TrackSearchResults implements SearchResults{
 
     }
 
-    public List<Track> getResults() {
+    public List<TrackSearchResult> getResults() {
         return results;
     }
 }

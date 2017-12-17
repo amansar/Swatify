@@ -1,8 +1,8 @@
 package edu.swarthmore.cs.cs71.swatify.models;
 
-import com.wrapper.spotify.models.Artist;
 import com.wrapper.spotify.models.SimpleAlbum;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class AlbumSearchResults implements SearchResults {
@@ -32,7 +32,9 @@ public class AlbumSearchResults implements SearchResults {
 
     }
 
-    public List<SimpleAlbum> getResults() {
-        return results;
+    @Override
+    public List<TrackSearchResult> getResults() {
+//        return results;
+        return new ArrayList<TrackSearchResult>();
     }
 }
