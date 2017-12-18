@@ -53,7 +53,7 @@ export default class Navbar extends Component {
             </LinkContainer>
           </BSNav>
           <BSNav pullRight>
-            <BSNavItem id="search">
+            <div id="search">
                 <Form onSubmit={this.handleSubmit.bind(this)} >
                     <FormGroup>
                         <FormControl
@@ -62,7 +62,7 @@ export default class Navbar extends Component {
                             onChange={this.handleChange.bind(this)}/>
                     </FormGroup>
                 </Form>
-            </BSNavItem>
+            </div>
 
             <LinkContainer to='/users/1'>
               <BSNavItem className='Navbar-link'>Me</BSNavItem>

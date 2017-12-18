@@ -32,11 +32,14 @@ class ArtistPage extends Component {
                             width={this.state.artist.images[1].width} alt={this.state.artist.name}></img>
                             <div className="Related">
                                 <hr></hr>
+             
+                                <iframe src={"https://embed.spotify.com/follow/1/?uri=spotify:artist:"+this.state.artist.id+"&size=basic&theme=light&show-count=0"} width="200" height="56" scrolling="no" style={{overflow:"hidden"}} frameborder="0" allowtransparency="true"></iframe>
                                 <p><strong>Followers: </strong>{this.state.artist.followers.total}</p>
                                 <p><strong>Popularity: </strong>{this.state.artist.popularity}</p>
                                 <p className="Genre"><strong>Genre: </strong>{this.state.artist.genres[0]}</p>
                                 <div className="SpotifyLink">
                                     <a href={this.state.artist.uri}>View this artist on Spotify</a>
+
                                 </div>
                                 <hr></hr>
                             </div>

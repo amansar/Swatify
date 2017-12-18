@@ -86,6 +86,7 @@ public class SearchController {
     //search for users in our database
 
     public static List<SearchResults> search(String query){
+        System.out.println(query);
         List<SearchResults> results = new ArrayList<>();
         results.add(searchAlbums(query));
         results.add(searchArtists(query));
