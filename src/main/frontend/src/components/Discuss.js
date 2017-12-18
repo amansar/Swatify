@@ -7,7 +7,7 @@ export default class Discuss extends Component {
   render() {
     return (
       <div>
-        <ReviewModal />
+        //<ReviewModal />
         <br/>
         <DiscussionModal />
         <br/>

@@ -6,7 +6,7 @@ import {
 
 export default class AlbumArtist extends Component {
 
-        state = {artistImage: null, loading: true}
+        state = { loading: true}
 
         componentWillMount(){
             fetch('/api/v1/albums/artists/' + this.props.artistId)
@@ -19,11 +19,19 @@ export default class AlbumArtist extends Component {
 
         render(){
 
-                return(
-                <div id="albumArtistInfo" className="albumArtistInfo">
-                    <img src={this.state.artistImage} alt="" height="100" width="100"></img>
-                </div>
+                if(this.state.loading == false){
+
+                    return(
+                    <div id="albumArtistInfo" className="albumArtistInfo">
+                        <img src={this.state.artistImage} alt="" height="100" width="100"></img>
+                    </div>
                     );
+
+                    }
+
+                else{
+                     return (<div> </div>);
+                      }
             }
 
 
