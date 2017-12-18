@@ -32,7 +32,9 @@ export default class Navbar extends Component {
       <BSNavbar inverse>
         <BSNavbar.Header>
           <BSNavbar.Brand>
-            <Link to='/feed' className='Navbar-link'>Swatify</Link>
+            <Link to='/feed' className='Navbar-link'>
+              <img src="./logo.png" width="70"/>
+            </Link>
           </BSNavbar.Brand>
           <BSNavbar.Toggle />
         </BSNavbar.Header>
