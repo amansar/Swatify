@@ -6,7 +6,7 @@ class SpotifyCallback extends Component {
   componentDidMount() {
     var queryString = this.props.location.search;
     var url = "/api/v1/spotify-auth/callback" + queryString;
-    return swatifyFetch(url).then();
+    return swatifyFetch(url);
   }
 
   render() {

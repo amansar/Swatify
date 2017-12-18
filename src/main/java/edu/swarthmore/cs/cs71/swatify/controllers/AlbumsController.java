@@ -19,7 +19,7 @@ public class AlbumsController {
                 get("", new BaseSpotifyRoute() {
                     @Override
                     protected Object doAction(Api api, Request request, Response response) throws Exception {
-                        return api.getAlbum(request.params("id"));
+                        return api.getAlbum(request.params("id")).build().get();
                     }
                 });
 

@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import AlbumArtist from "./AlbumArtist";
 import Loader from "./Loader";
+import { Link } from "react-router-dom";
 import { Table } from "react-bootstrap";
 import Rating from "./Rating";
 import ReviewModal from "./ReviewModal";
@@ -12,7 +13,7 @@ class Album extends Component {
 
   //need timeout for fetch so we wait for all content to be received
 
-  componentWillMount() {
+  componentDidMount() {
     swatifyFetch("/api/v1/albums/" + this.props.match.params.id)
       .then(res => res.json())
       .then(album =>
@@ -35,7 +36,11 @@ class Album extends Component {
   }
 
   renderAlbumArtist() {
-    return <AlbumArtist artistId={this.state.artistId} />;
+    return (
+      <Link to={"/artists/" + this.state.artistId}>
+        <AlbumArtist artistId={this.state.artistId} />
+      </Link>
+    );
   }
 
   renderTracksList() {
@@ -61,8 +66,11 @@ class Album extends Component {
       </tbody>
     );
   }
+
   render() {
-    if (this.state.loading === false) {
+    if (this.state.loading) {
+      return <Loader loading={this.state.loading} />;
+    } else {
       return (
         <div id="AlbumPage" className="Overlay">
           <div id="AlbumInfo" className="AlbumInfoAndLinkedAccounts">
@@ -91,8 +99,6 @@ class Album extends Component {
           </div>
         </div>
       );
-    } else {
-      return <Loader loading={this.state.loading} />;
     }
   }
 }

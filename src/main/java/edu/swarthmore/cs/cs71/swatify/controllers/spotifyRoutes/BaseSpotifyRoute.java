@@ -3,7 +3,6 @@ package edu.swarthmore.cs.cs71.swatify.controllers.spotifyRoutes;
 import com.wrapper.spotify.Api;
 import edu.swarthmore.cs.cs71.swatify.errors.BaseError;
 import edu.swarthmore.cs.cs71.swatify.errors.InternalServerError;
-import edu.swarthmore.cs.cs71.swatify.errors.UnauthorizedError;
 import edu.swarthmore.cs.cs71.swatify.models.User;
 import edu.swarthmore.cs.cs71.swatify.util.GsonUtil;
 import edu.swarthmore.cs.cs71.swatify.util.SpotifyUtil;
@@ -17,17 +16,18 @@ public abstract class BaseSpotifyRoute implements Route {
         User user = request.session().attribute("user");
 
         Object obj;
+        Api api;
         if (user == null) {
-            obj = new UnauthorizedError("Not logged in");
+            api = SpotifyUtil.getApi();
         } else {
-            Api api = SpotifyUtil.getApi();
+            api = SpotifyUtil.getApi(user);
+        }
 
-            try {
-                obj = this.doAction(api, request, response);
-            } catch (Exception e) {
-                obj = new InternalServerError("Unable to connect to Spotify");
-                response.status(((BaseError) obj).getStatus());
-            }
+        try {
+            obj = this.doAction(api, request, response);
+        } catch (Exception e) {
+            obj = new InternalServerError("Unable to connect to Spotify");
+            response.status(((BaseError) obj).getStatus());
         }
 
         return GsonUtil.toJson(obj);

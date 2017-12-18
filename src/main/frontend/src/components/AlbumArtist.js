@@ -5,8 +5,8 @@ import swatifyFetch from "../swatifyFetch";
 export default class AlbumArtist extends Component {
   state = { loading: true };
 
-  componentWillMount() {
-    swatifyFetch("/api/v1/albums/artists/" + this.props.artistId)
+  componentDidMount() {
+    swatifyFetch("/api/v1/artists/" + this.props.artistId)
       .then(response => response.json())
       .then(artist =>
         this.setState({

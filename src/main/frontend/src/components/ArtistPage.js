@@ -5,33 +5,53 @@ import "./ArtistPage.css";
 import swatifyFetch from "../swatifyFetch";
 
 class ArtistPage extends Component {
-  state = { loading: true, artist: null, albums: [] };
+  state = {
+    loadingCount: 3,
+    artist: null,
+    albums: [],
+    followers: 0
+  };
 
   componentDidMount() {
     swatifyFetch("/api/v1/artists/" + this.props.match.params.id)
       .then(res => res.json())
-      .then(artist => this.setState({ artist: artist, loading: false }));
+      .then(artist =>
+        this.setState({
+          artist: artist,
+          loadingCount: this.state.loadingCount - 1
+        })
+      );
 
     swatifyFetch("/api/v1/artists/" + this.props.match.params.id + "/albums")
       .then(response => response.json())
-      .then(albums => this.setState({ albums: albums, loading: false }));
+      .then(albums =>
+        this.setState({
+          albums: albums,
+          loadingCount: this.state.loadingCount - 1
+        })
+      );
 
     swatifyFetch("/api/v1/artists/" + this.props.match.params.id + "/followers")
       .then(res => res.json())
-      .then(followers => this.setState({ followers: followers }));
+      .then(followers =>
+        this.setState({
+          followers: followers.count,
+          loadingCount: this.state.loadingCount - 1
+        })
+      );
   }
 
   render() {
-    if (this.state.loading) {
-      return <Loader loading={this.state.loading} />;
+    if (this.state.loadingCount > 0) {
+      return <Loader loading={true} />;
     } else if (this.state.artist) {
       return (
         <div className="ArtistPage">
           <div className="Sidebar">
             <img
               src={this.state.artist.images[1].url}
-              height={this.state.artist.images[1].height}
-              width={this.state.artist.images[1].width}
+              height={200}
+              width={200 * this.state.artist.images[1].width / this.state.artist.images[1].height}
               alt={this.state.artist.name}
             />
             <div className="Related">

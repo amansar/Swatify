@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import "./StarHoverable.css";
 import swatifyFetch from "../swatifyFetch";
+import PropTypes from "prop-types";
 
 export default class StarHoverable extends Component {
   constructor(props) {
@@ -11,10 +12,6 @@ export default class StarHoverable extends Component {
       trackId: this.props.trackId
     };
   }
-
-  propTypes = {
-    disabled: React.PropTypes.bool
-  };
 
   getInitialState() {
     return {
@@ -88,4 +85,8 @@ export default class StarHoverable extends Component {
 
     return <div className="star-rating">{stars}</div>;
   }
+}
+
+StarHoverable.PropTypes = {
+  disabled: PropTypes.bool
 }
