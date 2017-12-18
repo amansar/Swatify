@@ -36,6 +36,7 @@ public class Discussion {
     public Discussion(String title, int userId) {
         this.userId = userId;
         this.title = title;
+        this.albumSpotifyId = null;
     }
 
     public Discussion(String title, int userId, String albumSpotifyId) {

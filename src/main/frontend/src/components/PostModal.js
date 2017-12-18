@@ -1,71 +1,79 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import {
   Modal,
   Button,
   Form,
-  Glyphicon
+  FormGroup,
+  FormControl
 } from 'react-bootstrap';
-
-export default class DiscussionModal extends Component {
+//import "./ReviewModal.css";
+//TODO finding musicWorkId
+export default class PostModal extends Component {
     constructor(props) {
         super(props);
 
-        this.state =  { showModal: false, title: '' };
+        this.state =  { showModal: false, content: '', stars:5 };
         this.open = this.open.bind(this);
         this.close = this.close.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
     }
 
     handleChange(e) {
-        this.setState({title: e.target.value});
+        this.setState({content: e.target.value});
     }
 
     handleSubmit(e) {
         //TODO find user id
-        fetch('/api/v1/discussions', {
+        fetch('/api/v1/discussions/posts/', {
            method: 'post',
-           headers: {'Content-Type':'Discussion'},
-           body: JSON.stringify({
-            "userId": 7,
-            "title": this.state.title,
-            "userName": "tempUserName"
-           })
+           headers: {'Content-Type':'Review'},
+           body: {
+            "content": e.target.value,
+            "discussion": this.state.discussion;
+            "user_id": 7
+           }
           });
           this.close();
     }
 
     close() {
       this.setState({ showModal: false });
-      this.setState({ title: '' });
+      this.setState({ content: "" })
     }
 
     open() {
       this.setState({ showModal: true });
     }
 
+    save() {
+
+    }
+
+
     render() {
         return (
             <div>
                 <Button bsStyle="primary" bsSize="large" onClick={this.open}>
-                    <div>
-                        <Glyphicon className="pull-left" glyph="plus"></Glyphicon>
-                        Add a Discussion
-                    </div>
+                    Create Post
                 </Button>
 
                  <Modal show={this.state.showModal} onHide={this.close}>
                      <Form>
                          <Modal.Header>
-                           <Modal.Title>Create New Discussion</Modal.Title>
+                           <Modal.Title>Create New Post</Modal.Title>
                          </Modal.Header>
 
                          <Modal.Body>
-                           <input type="text" placeholder="Title" className="form-control" onChange={this.handleChange.bind(this)}></input>
+                           <FormGroup>
+                             <FormControl key="post" componentClass="textarea" rows={6} placeholder="Your post..." className="form-control" bsSize="large" onChange={this.handleChange.bind(this)}></FormControl>
+                           </FormGroup>
                          </Modal.Body>
 
                          <Modal.Footer>
                            <Button onClick={this.close}>Close</Button>
-                           <Button onClick={this.handleSubmit.bind(this)} bsStyle="primary" disabled={!this.state.title}>
-                           Save changes
+                           <Button onClick={this.handleSubmit.bind(this)} bsStyle="primary" disabled={!this.state.content}>
+                             Create
                            </Button>
                          </Modal.Footer>
                      </Form>
