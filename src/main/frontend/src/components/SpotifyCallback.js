@@ -1,16 +1,16 @@
-import React, { Component } from 'react';
-import { Redirect } from 'react-router-dom';
-import swatifyFetch from '../swatifyFetch';
+import React, { Component } from "react";
+import { Redirect } from "react-router-dom";
+import swatifyFetch from "../swatifyFetch";
 
 class SpotifyCallback extends Component {
   componentDidMount() {
     var queryString = this.props.location.search;
-    var url = '/api/v1/spotify-auth/callback' + queryString;
+    var url = "/api/v1/spotify-auth/callback" + queryString;
     return swatifyFetch(url);
   }
 
   render() {
-      return <Redirect to='/feed'/>;
+    return <Redirect to="/feed" />;
   }
 }
 

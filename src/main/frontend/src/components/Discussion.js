@@ -5,7 +5,7 @@ class Album extends Component {
     state = {loading: true}
 
 //    componentDidMount(){
-//        fetch('/api/v1/discussions/')
+//        swatifyFetch('/api/v1/discussions/')
 //              .then(res => res.json())
 //              .then(album => this.setState({ album: album.name,
 //                                artist: album.artists[0].name,
@@ -13,7 +13,7 @@ class Album extends Component {
 //    }
 
     render() {
-        return (
+        return <div></div>;
 
 //            <div>
 //                <h1>{this.state.album}</h1>

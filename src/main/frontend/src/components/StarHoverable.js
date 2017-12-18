@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import "./StarHoverable.css"
+import React, { Component } from "react";
+import "./StarHoverable.css";
 
 /*
 Borrowing from code found here:
@@ -8,27 +8,28 @@ Borrowing from code found here:
 
 export default class StarHoverable extends Component {
   constructor(props) {
-          super(props);
-          this.state =  { rating: props.curr_stars, temp_rating: 0};
+    super(props);
+    this.state = { rating: props.curr_stars, temp_rating: 0 };
   }
 
-  propTypes: {
+  propTypes = {
     disabled: React.PropTypes.bool
   }
+
   getInitialState() {
     return {
       rating: this.props.rating || null,
       temp_rating: null
     };
   }
+
   rate(rating) {
     this.setState({
       rating: rating,
       temp_rating: rating
     });
-    this.props.onClickStars(rating+1);
+    this.props.onClickStars(rating + 1);
   }
-
 
   star_over(rating) {
     this.state.temp_rating = this.state.rating;
@@ -45,14 +46,15 @@ export default class StarHoverable extends Component {
 
     this.setState({ rating: this.state.rating });
   }
+
   render() {
     var stars = [];
 
-    for(var i = 0; i < 5; i++) {
-      var klass = 'star-rating__star';
+    for (var i = 0; i < 5; i++) {
+      var klass = "star-rating__star";
 
       if (this.state.rating != null && this.state.rating >= i) {
-        klass += ' is-selected';
+        klass += " is-selected";
       }
 
       stars.push(
@@ -61,16 +63,13 @@ export default class StarHoverable extends Component {
           onClick={this.rate.bind(this, i)}
           onMouseOver={this.star_over.bind(this, i)}
           onMouseOut={this.star_out.bind(this, i)}
-          key={i}>
+          key={i}
+        >
           ★
         </label>
       );
     }
 
-    return (
-      <div className="star-rating">
-        {stars}
-      </div>
-    );
+    return <div className="star-rating">{stars}</div>;
   }
 }

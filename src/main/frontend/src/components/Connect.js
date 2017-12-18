@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import UsersList from './UsersList';
+import React, { Component } from "react";
+import UsersList from "./UsersList";
 
 export default class Connect extends Component {
   render() {
