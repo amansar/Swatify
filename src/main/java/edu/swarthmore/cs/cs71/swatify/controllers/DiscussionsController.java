@@ -5,6 +5,8 @@ import edu.swarthmore.cs.cs71.swatify.models.Post;
 import edu.swarthmore.cs.cs71.swatify.util.GsonUtil;
 import edu.swarthmore.cs.cs71.swatify.util.HibernateUtil;
 
+import java.util.List;
+
 import static spark.Spark.*;
 
 public class DiscussionsController {
@@ -12,7 +14,11 @@ public class DiscussionsController {
         path("/discussions", () -> {
             get("/:id", (request, response) -> getDiscussion(Integer.parseInt(request.params("id"))), GsonUtil::toJson);
 
-            post("", (request, response) -> createDiscussion(GsonUtil.fromJson(Discussion.class, request.body())),  GsonUtil::toJson);
+            get("", (request, response) -> getAllDiscussions(), GsonUtil::toJson);
+
+            post("", (request, response) ->
+
+                    createDiscussion(GsonUtil.fromJson(Discussion.class, request.body())),  GsonUtil::toJson);
 
             patch("/:id", (request, response) -> updateDiscussion(GsonUtil.fromJson(Discussion.class, request.body())), GsonUtil::toJson);
 
@@ -24,9 +30,14 @@ public class DiscussionsController {
                 res.status(400);
             });
         });
+
     }
 
     public static Discussion getDiscussion(int id) { return HibernateUtil.getObjectById(Discussion.class, id); }
+
+    public static List<Discussion> getAllDiscussions() {
+        return HibernateUtil.listObjects(Discussion.class);
+    }
 
     public static boolean createDiscussion(Discussion discussion) {
         return HibernateUtil.saveObject(discussion);

@@ -1,14 +1,10 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 import {
   Modal,
   Button,
   Form,
-  FormGroup,
-  FormControl,
   Glyphicon
 } from 'react-bootstrap';
-import { LinkContainer } from 'react-router-bootstrap';
 
 export default class DiscussionModal extends Component {
     constructor(props) {
@@ -19,10 +15,6 @@ export default class DiscussionModal extends Component {
         this.close = this.close.bind(this);
     }
 
-//    getFormInitialState() {
-//        return {title: ''};
-//    }
-
     handleChange(e) {
         this.setState({title: e.target.value});
     }
@@ -32,10 +24,11 @@ export default class DiscussionModal extends Component {
         fetch('/api/v1/discussions', {
            method: 'post',
            headers: {'Content-Type':'Discussion'},
-           body: {
-            "title": e.target.value,
-            "user_id": 7
-           }
+           body: JSON.stringify({
+            "userId": 7,
+            "title": this.state.title,
+            "userName": "tempUserName"
+           })
           });
           this.close();
     }
@@ -47,10 +40,6 @@ export default class DiscussionModal extends Component {
 
     open() {
       this.setState({ showModal: true });
-    }
-
-    save() {
-
     }
 
     render() {

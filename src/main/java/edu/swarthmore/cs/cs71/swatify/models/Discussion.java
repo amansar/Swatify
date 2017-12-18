@@ -1,12 +1,11 @@
 package edu.swarthmore.cs.cs71.swatify.models;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
+import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.DynamicUpdate;
+import org.hibernate.annotations.UpdateTimestamp;
 
 @Entity
 @Table
@@ -17,22 +16,27 @@ public class Discussion {
     private int id;
 
     private String title;
+    private String userName;
     private int userId;
 
-//    @OneToMany(
-//            mappedBy = "discussion",
-//            cascade = CascadeType.ALL
-//    )
-//    private List<Post> posts;
+
+    @CreationTimestamp
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "create_date")
+    private Date createDate;
+
+    @UpdateTimestamp
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "modify_date")
+    private Date modifyDate;
 
 
     public Discussion() { }
 
-    public Discussion(String title, int userId) {
+    public Discussion(String title, int userId, String userName) {
         this.userId = userId;
         this.title = title;
-//        this.posts = new ArrayList<Post>() {
-//        };
+        this.userName = userName;
     }
 
     public int getId() {
@@ -45,12 +49,10 @@ public class Discussion {
         return title;
     }
 
+    public String getUserName() {
+        return userName;
+    }
+
     public void setTitle(String title) { this.title = title; }
 
-//    public List<Post> getPosts() {return posts;}
-
-//    public void addPost(Post post) {
-//        posts.add(post);
-//        post.setDiscussion(this);
-//    }
 }
