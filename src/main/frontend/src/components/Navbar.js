@@ -14,7 +14,6 @@ import './Navbar.css';
 export default class Navbar extends Component {
   state = {searchInput: ""}
 
-
   handleChange(e) {
       this.setState({searchInput: e.target.value});
   }
