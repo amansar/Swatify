@@ -6,5 +6,6 @@ export default function swatifyFetch(url, options = null) {
   } else {
     options = includeCookiesOption;
   }
+
   return fetch(url, options);
 }

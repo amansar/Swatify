@@ -20,13 +20,11 @@ public abstract class BaseHibernateRoute implements Route {
         try {
             obj = doAction(session, request, response);
             session.getTransaction().commit();
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
             session.getTransaction().rollback();
             obj = new InternalServerError(e.getMessage());
-        }
-        finally {
+        } finally {
             session.close();
         }
 

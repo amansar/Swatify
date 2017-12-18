@@ -59,10 +59,6 @@ public class SessionsController {
                     Futures.addCallback(authorizationCodeCredentialsFuture, new FutureCallback<AuthorizationCodeCredentials>() {
                         @Override
                         public void onSuccess(AuthorizationCodeCredentials authorizationCodeCredentials) {
-                            System.out.println("Successfully retrieved an access token! " + authorizationCodeCredentials.getAccessToken());
-                            System.out.println("The access token expires in " + authorizationCodeCredentials.getExpiresIn() + " seconds");
-                            System.out.println("Luckily, I can refresh it using this refresh token! " + authorizationCodeCredentials.getRefreshToken());
-
                             api.setAccessToken(authorizationCodeCredentials.getAccessToken());
                             api.setRefreshToken(authorizationCodeCredentials.getRefreshToken());
 

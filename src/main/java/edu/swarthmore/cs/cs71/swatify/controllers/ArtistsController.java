@@ -18,16 +18,18 @@ public class ArtistsController {
                         return api.getArtist(request.params("id")).build().get();
                     }
                 });
+
                 get("/albums", new BaseSpotifyRoute() {
                     @Override
                     protected Object doAction(Api api, Request request, Response response) throws Exception {
-                        return api.getAlbumsForArtist(request.params("id")).build();
+                        return api.getAlbumsForArtist(request.params("id")).build().get();
                     }
                 });
+
                 get("/followers", new BaseSpotifyRoute() {
                     @Override
                     protected Object doAction(Api api, Request request, Response response) throws Exception {
-                        return api.getArtist(request.params("id")).build().get().getFollowers();
+                        return api.getArtist(request.params("id")).build().get().getFollowers().getTotal();
                     }
                 });
             });

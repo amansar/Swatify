@@ -14,13 +14,6 @@ import static spark.Spark.*;
 public class UsersController {
     public UsersController() {
         path("/users", () -> {
-            before((request, response) -> {
-                User user = request.session().attribute("user");
-                if (user == null) {
-                    throw halt(401, "Log in with Spotify");
-                }
-            });
-
             get("/me", (request, response) -> {
                 User user = request.session().attribute("user");
                 if (user == null) {
