@@ -80,6 +80,7 @@ class Album extends Component {
                             {this.renderTracksList()}
                     </Table>
                 </div>
+                <h3>Discussions</h3>
             </div>
         </div>
 
