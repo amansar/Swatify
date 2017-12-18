@@ -4,6 +4,7 @@ import { Redirect } from "react-router-dom";
 import { Grid } from "react-bootstrap";
 import DocumentTitle from "react-document-title";
 import Login from "./Login";
+import Logout from "./Logout";
 import SpotifyCallback from "./SpotifyCallback";
 import Main from "./Main";
 import Navbar from "./Navbar";
@@ -22,6 +23,7 @@ export default class App extends Component {
           <Grid>
             <Switch>
               <Route exact path="/login" component={Login} />
+              <Route exact path="/logout" component={Logout} />
               <Route path="/callback" component={SpotifyCallback} />
               <Route
                 path="/"

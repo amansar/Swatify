@@ -11,9 +11,15 @@ export default class Navbar extends Component {
 
   componentDidMount() {
     swatifyFetch("/api/v1/users/me")
-      .then(response => response.json())
+      .then(response => {
+        if (response.status == 200) {
+          return response.json();
+        } else {
+          return null;
+        }
+      })
       .then(user => {
-        if (user) {
+        if (!!user) {
           this.setState({ me: user });
         }
       });

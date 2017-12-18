@@ -1,5 +1,7 @@
 package edu.swarthmore.cs.cs71.swatify.models;
 
+import com.wrapper.spotify.Api;
+import edu.swarthmore.cs.cs71.swatify.util.SpotifyUtil;
 import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.*;
@@ -24,6 +26,8 @@ public class User {
     @NotBlank
     private String spotifyRefreshToken;
 
+    private String spotifyId;
+
     public User() {
     }
 
@@ -31,6 +35,14 @@ public class User {
         this.username = username;
         this.spotifyAccessToken = spotifyAccessToken;
         this.spotifyRefreshToken = spotifyRefreshToken;
+        Api api = SpotifyUtil.getApi();
+        api.setAccessToken(spotifyAccessToken);
+        api.setRefreshToken(spotifyRefreshToken);
+        try {
+            this.spotifyId = api.getMe().build().get().getId();
+        } catch (Exception e) {
+            this.spotifyId = null;
+        }
     }
 
     public int getId() {
@@ -45,23 +57,19 @@ public class User {
         return spotifyAccessToken;
     }
 
-    ;
-
     public String getSpotifyRefreshToken() {
         return spotifyRefreshToken;
     }
 
-    ;
+    public String getSpotifyId() {
+        return spotifyId;
+    }
 
     public void setSpotifyAccessToken(String spotifyAccessToken) {
         this.spotifyAccessToken = spotifyAccessToken;
     }
 
-    ;
-
     public void setSpotifyRefreshToken(String spotifyRefreshToken) {
         this.spotifyRefreshToken = spotifyRefreshToken;
     }
-
-    ;
 }

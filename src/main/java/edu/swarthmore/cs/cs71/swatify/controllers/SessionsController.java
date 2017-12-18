@@ -29,8 +29,9 @@ import static spark.Spark.path;
 public class SessionsController {
     public SessionsController() {
         get("/logout", (request, response) -> {
+            User user = request.session().attribute("user");
             request.session().removeAttribute("user");
-            return null;
+            return GsonUtil.toJson(user);
         });
 
         path("/spotify-auth", () -> {
@@ -76,11 +77,18 @@ public class SessionsController {
                         return new InternalServerError(errorMessageArray[0]);
                     }
 
+                    com.wrapper.spotify.models.User spotifyUser;
+                    try {
+                        spotifyUser = api.getMe().build().get();
+                    } catch (Exception e) {
+                        return new UnauthorizedError(e.getMessage());
+                    }
+
                     CriteriaBuilder builder = session.getCriteriaBuilder();
                     CriteriaQuery<User> query = builder.createQuery(User.class);
                     Root<User> root = query.from(User.class);
-                    query.select(root).where(builder.equal(root.get("spotifyRefreshToken"),
-                            credentials.getRefreshToken()));
+                    query.select(root).where(builder.equal(root.get("spotifyId"),
+                            spotifyUser.getId()));
                     Query<User> q = session.createQuery(query);
                     List<User> resultList = q.getResultList();
 
@@ -88,15 +96,8 @@ public class SessionsController {
                     if (resultList.size() > 0) {
                         user = resultList.get(0);
                     } else {
-                        com.wrapper.spotify.models.User spotifyUser;
-                        try {
-                            spotifyUser = api.getMe().build().get();
-                        } catch (Exception e) {
-                            return new UnauthorizedError(e.getMessage());
-                        }
-
                         user = new User(
-                                spotifyUser.getDisplayName(),
+                                spotifyUser.getId(),
                                 credentials.getAccessToken(),
                                 credentials.getRefreshToken()
                         );

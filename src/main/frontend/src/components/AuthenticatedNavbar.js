@@ -69,9 +69,9 @@ export default class AuthenticatedNavbar extends Component {
             <LinkContainer to={"/users/" + this.props.me.id}>
               <BSNavItem className="Navbar-link">Me</BSNavItem>
             </LinkContainer>
-            <BSNavItem onClick={() => swatifyFetch("/api/v1/logout")}>
-              Log out
-            </BSNavItem>
+            <LinkContainer to="/logout">
+              <BSNavItem className="Navbar-link">Log out</BSNavItem>
+            </LinkContainer>
           </BSNav>
         </BSNavbar.Collapse>
       </BSNavbar>

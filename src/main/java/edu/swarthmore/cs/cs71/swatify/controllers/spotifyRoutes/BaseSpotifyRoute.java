@@ -14,12 +14,12 @@ import spark.Route;
 public abstract class BaseSpotifyRoute implements Route {
     @Override
     public String handle(Request request, Response response) throws Exception {
-//        User user = request.session().attribute("user");
-//
+        User user = request.session().attribute("user");
+
         Object obj;
-//        if (user == null) {
-//            obj = new UnauthorizedError("Not logged in");
-//        } else {
+        if (user == null) {
+            obj = new UnauthorizedError("Not logged in");
+        } else {
             Api api = SpotifyUtil.getApi();
 
             try {
@@ -28,7 +28,7 @@ public abstract class BaseSpotifyRoute implements Route {
                 obj = new InternalServerError("Unable to connect to Spotify");
                 response.status(((BaseError) obj).getStatus());
             }
-//        }
+        }
 
         return GsonUtil.toJson(obj);
     }

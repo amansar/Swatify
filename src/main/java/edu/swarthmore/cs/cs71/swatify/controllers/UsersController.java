@@ -17,7 +17,8 @@ public class UsersController {
             get("/me", (request, response) -> {
                 User user = request.session().attribute("user");
                 if (user == null) {
-                    return GsonUtil.toJson(new UnauthorizedError("Log in with Spotify"));
+                    response.status(401);
+                    return GsonUtil.toJson(new UnauthorizedError("Not logged in"));
                 }
                 return GsonUtil.toJson(user);
             });
@@ -26,7 +27,6 @@ public class UsersController {
                 get("", (request, response) -> new GetObjectHibernateRoute() {
                     @Override
                     protected Class<?> getObjectClass() {
-                        System.out.println("asdf");
                         return User.class;
                     }
                 });
@@ -38,7 +38,6 @@ public class UsersController {
                     }
                 });
 
-                // Delete a user.
                 delete("", (request, response) -> new DeleteObjectHibernateRoute() {
                     @Override
                     protected Class<?> getObjectClass() {

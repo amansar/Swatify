@@ -24,10 +24,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - cmarsh1: Moved application credentials to resources and created util object
 - onewman1: Refactor PostsController and tests to use new controller format
 - amansar1:Started building Album Page
-- amansar1: have core content on album page
-- amansar1: have rating stars appearing
-- amansar1: have successful request to rating controller, but no posts to database
-- cpillsb1: added modal for creating discussion
-- cpillsb1: added modal for creating review
-- cpillsb1: added table for discussions (not populating with database yet)
+- amansar1: Have core content on album page
+- amansar1: Have rating stars appearing
+- amansar1: Have successful request to rating controller, but no posts to database
+- cpillsb1: Added modal for creating discussion
+- cpillsb1: Added modal for creating review
+- cpillsb1: Added table for discussions (not populating with database yet)
 - onewman1: Add login page and SessionsController
+- onewman1: Implement logout
