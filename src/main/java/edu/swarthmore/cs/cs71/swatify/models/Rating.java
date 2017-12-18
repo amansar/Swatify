@@ -14,23 +14,21 @@ public class Rating extends PublicAction {
     protected User user;
 
     private int stars;
-    private String trackSpotifyId;
+    private String spotifyId;
 
     public Rating() { }
 
-    public Rating(User user, int stars, String trackSpotifyId) {
+    public Rating(User user, int stars, String spotifyId) {
         this.user = user;
         this.stars = stars;
-        this.trackSpotifyId = trackSpotifyId;
+        this.spotifyId = spotifyId;
     }
 
     public int getId() {
         return this.id;
     }
 
-    public String getTrackSpotifyId() {
-        return this.trackSpotifyId;
-    }
+    public String getSpotifyId() { return spotifyId; }
 
     public int getStars() {
         return this.stars;

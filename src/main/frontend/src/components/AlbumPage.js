@@ -3,18 +3,24 @@ import AlbumArtist from "./AlbumArtist";
 import Loader from './Loader';
 import { Table } from "react-bootstrap";
 import Rating from "./Rating";
-import "./Album.css";
+import ReviewModal from "./ReviewModal";
+import "./AlbumPage.css";
 
 class Album extends Component {
     state = {loading: true}
+
+    //need timeout for fetch so we wait for all content to be received
+
     componentWillMount(){
-        fetch('/api/v1/albums/7gsWAHLeT0w7es6FofOXk1')
+        fetch('/api/v1/albums/' + this.props.match.params.id)
               .then(res => res.json())
               .then(album => this.setState({ albumName: album.name,
                                 artistName: album.artists[0].name,
                                 image: album.images[0].url,
                                 artistId: album.artists[0].id,
                                 tracks: album.tracks.items,
+                                uri: album.uri,
+                                albumId: album.id,
                                 loading: false} ));
         /*
         fetch('/api/v1/albums/artists/5K4W6rqBFWDnAN6FQUkS6x')
@@ -50,7 +56,6 @@ class Album extends Component {
 
     }
     render() {
-        //this.convTracksToString();
 
         if(this.state.loading === false){
 
@@ -59,6 +64,11 @@ class Album extends Component {
         <div id="AlbumPage" className="Overlay">
 
             <div id="AlbumInfo" className="AlbumInfoAndLinkedAccounts" >
+                <div id="ReviewModalForAlbum" className="ReviewModalForAlbum">
+                    <ReviewModal />
+                    <iframe title='widget' src={"https://open.spotify.com/embed?uri=" + this.state.uri} frameborder="0" allowtransparency="true" id="albumWidgets"></iframe>
+
+                </div>
                 <img src={this.state.image} alt="" height="200" width="200"></img>
                 <h3> {this.state.albumName} </h3>
                 {this.renderAlbumArtist()}
@@ -70,6 +80,7 @@ class Album extends Component {
                             {this.renderTracksList()}
                     </Table>
                 </div>
+                <h3>Discussions</h3>
             </div>
         </div>
 

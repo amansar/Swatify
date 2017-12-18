@@ -16,9 +16,7 @@ public class ArtistsControllerTest extends ControllerTestBase {
 
     @BeforeClass
     public static void createFixtures() {
-        user = new User("",
-                        "BQD9Gjz-oHFw-5RkUuozDLHhvglYQrsavLgA-NQp1IuGfl3OmtV1axCxF79nxQ5hoFq2MNyKmTIVR1CUL4NEXJJZzpd78QNBMfM6QyykQ5ckKcRLnQV1j5f8h80t4jpYyufJFLDrJwdtEzV72c2i1nPleXw7vQ0LllJ826TcdPx5h9MZ_w",
-                        "AQAjqminBpv_sc43_kBj03bmQgqv6y0xkfDi9dz2qGvc83Z72RjfVp9luDwJbf-mczzenQAGy76ou74wOq_Pmr42rbW14Dyj9hlVM0bO_wNTco4kvmJM-vcLV_jX44jtyn4");
+        user = new User();
     }
 
     @Test
@@ -32,4 +30,13 @@ public class ArtistsControllerTest extends ControllerTestBase {
         Artist knxwledge = GsonUtil.fromJson(Artist.class, res.json().toString());
         assertEquals(knxwledgeId, knxwledge.getId());
     }
+
+    @Test
+    public void shouldGetArtistFollowers() {
+//        Artist knxwledge = ArtistsController.getArtist("17Zu03OgBVxgLxWmRUyNOJ");
+//        Followers knxwledgeFollowers = ArtistsController.getArtistFollowers("17Zu03OgBVxgLxWmRUyNOJ");
+//
+//        assertEquals(knxwledge.getFollowers().getTotal(), knxwledgeFollowers.getTotal());
+    }
+
 }

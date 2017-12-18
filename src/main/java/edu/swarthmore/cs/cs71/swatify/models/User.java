@@ -20,10 +20,6 @@ public class User {
     @NotBlank
     private String username;
 
-    @Column(unique = true)
-    @NotBlank
-    private String spotifyId;
-
     @NotBlank
     private String spotifyAccessToken;
 

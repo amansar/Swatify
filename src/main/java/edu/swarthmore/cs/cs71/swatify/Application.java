@@ -16,8 +16,8 @@ public class Application {
             new AlbumsController();
             new ArtistsController();
             new DiscussionsController();
-            new PostsController();
             new RatingsController();
+            new SearchController();
             new SessionsController();
             new UsersController();
 
@@ -29,3 +29,4 @@ public class Application {
         });
     }
 }
+

@@ -1,8 +1,36 @@
-.Title h1 {
-    font-size: 200%;
+.Sidebar {
+    float:left;
+    margin-right: 5%;
+    margin-bottom: 200%;
+}
+
+.Genre {
+    text-transform: capitalize;
+}
+
+.ArtistContent {
+    float: center
+}
+
+#artistName {
+    font-size: 72px;
+    font-weight: bold;
+    margin-bottom: 50px;
+    text-align: center;
+
+}
+
+.ArtistContent ul {
+    list-style-type: none;
+    columns: 3;
+}
+
+.AlbumListing {
+    display: inline-block;
+    margin: 10px;
     text-align: center;
 }
 
-.Title {
-    display: inline-block;
+.AlbumListing a {
+    color: black;
 }

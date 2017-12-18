@@ -14,7 +14,7 @@ export default class ReviewModal extends Component {
     constructor(props) {
         super(props);
 
-        this.state =  { showModal: false, content: '', stars:5 };
+        this.state =  { showModal: false, content: '', stars:5, albumId: this.props.albumId };
         this.open = this.open.bind(this);
         this.close = this.close.bind(this);
         this.handleStarClick = this.handleStarClick.bind(this);
@@ -27,13 +27,15 @@ export default class ReviewModal extends Component {
 
     handleSubmit(e) {
         //TODO find user id
-        fetch('/api/v1/reviews', {
+        fetch('/api/v1/albums/reviews', {
            method: 'post',
            headers: {'Content-Type':'Review'},
-           body: {
+           body: JSON.stringify ({
             "content": e.target.value,
-            "user_id": this.state.stars
-           }
+            "stars": this.state.stars,
+            "userId": 526,
+            "albumId": this.state.albumId
+           })
           });
           this.close();
     }

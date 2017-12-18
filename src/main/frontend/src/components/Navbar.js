@@ -5,7 +5,9 @@ import swatifyFetch from '../swatifyFetch';
 import './Navbar.css';
 
 export default class Navbar extends Component {
-  state = {me: null}
+  state = {
+    me: null,
+  }
 
   componentDidMount() {
     swatifyFetch('/api/v1/users/me')

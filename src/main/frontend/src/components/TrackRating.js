@@ -4,10 +4,10 @@ import "./StarHoverable.css"
 export default class StarHoverable extends Component {
   constructor(props) {
           super(props);
-          this.state =  { rating: props.curr_stars, temp_rating: 0};
+          this.state =  { rating: props.curr_stars, temp_rating: 0, trackId: this.props.trackId};
   }
 
-  propTypes: {
+  propTypes = {
     disabled: React.PropTypes.bool
   }
   getInitialState() {
@@ -22,13 +22,14 @@ export default class StarHoverable extends Component {
       temp_rating: rating
     });
     var realRating = rating + 1;
+    var realId = this.props.trackId;
     this.props.onClickStars(realRating);
     fetch("/api/v1/ratings", {
                 method: 'POST',
                 body: JSON.stringify({
-                userid: 526,
-                trackid: this.props.trackId,
-                ratingid: realRating,
+                userId: 526,
+                stars: realRating,
+                spotifyId: realId
                })
              })
          .then(function (data) {
@@ -37,13 +38,6 @@ export default class StarHoverable extends Component {
          .catch(function (error) {
            console.log('Request failure: ', error);
          });
-         /*
-        .then(function(res) {
-            return res.json();
-        }).then(function(json) {
-            console.log(json);
-        });
-        */
 
   }
 

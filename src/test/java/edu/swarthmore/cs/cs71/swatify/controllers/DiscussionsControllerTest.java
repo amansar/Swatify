@@ -58,17 +58,6 @@ public class DiscussionsControllerTest extends ControllerTestBase {
         assertEquals(gottenDiscussion.getId(), albumDiscussionFixture.getId());
     }
 
-//    @Test
-//    public void getDiscussions() {
-//        String url = "/api/v1/discussions";
-//
-//        TestUtil.TestResponse res = request("GET", url);
-//        assertEquals(200, res.getStatus());
-//
-//        List<Discussion> gottenDiscussions = GsonUtil.fromJson(Discussion.class, res.json().toString());
-//        assertEquals(gottenDiscussion.getId(), albumDiscussionFixture.getId());
-//    }
-
     @Test
     public void updateDiscussion() {
         String url = String.format("/api/v1/discussions/%d", albumDiscussionFixture.getId());
