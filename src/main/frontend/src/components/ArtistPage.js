@@ -11,9 +11,14 @@ class ArtistPage extends Component {
             .then(res => res.json())
             .then(artist => this.setState({artist: artist, loading: false}));
 
-//        fetch('/api/v1/artists/' + this.props.match.params.id + '/albums')
-//                .then(response => response.json())
-//                .then(albums => this.setState({albums: albums, loading: false}));
+        fetch('/api/v1/artists/' + this.props.match.params.id + '/albums')
+                .then(response => response.json())
+                .then(albums => this.setState({albums: albums, loading: false}));
+
+        fetch('api/v1/artists/' + this.props.match.params.id + '/followers')
+            .then(res => res.json())
+            .then(followers => this.setState({followers: followers}))
+
     }
 
     render() {
@@ -21,26 +26,44 @@ class ArtistPage extends Component {
             return <Loader loading={this.state.loading} />;
         } else if(this.state.artist){
             return (
-                <div >
-                    <div className="Title">
+                <div className="ArtistPage">
+                    <div className="Sidebar">
                         <img src={this.state.artist.images[1].url} height={this.state.artist.images[1].height}
                             width={this.state.artist.images[1].width} alt={this.state.artist.name}></img>
-                        <h1>{this.state.artist.name}</h1>
+                            <div className="Related">
+                                <hr></hr>
+                                <p><strong>Followers: </strong>{this.state.artist.followers.total}</p>
+                                <p><strong>Popularity: </strong>{this.state.artist.popularity}</p>
+                                <p className="Genre"><strong>Genre: </strong>{this.state.artist.genres[0]}</p>
+                                <div className="SpotifyLink">
+                                    <a href={this.state.artist.uri}>View this artist on Spotify</a>
+                                </div>
+                                <hr></hr>
+                            </div>
                     </div>
-                    <ul>
-                        {this.state.albums.map(function(album) {
-                            return <li>
-                                        <div className="AlbumListing">
-                                            <h3>I am an album!</h3>
-                                            <img src={album.images[0].url} height={album.images[0].height}
-                                                width={album.images[0].width} alt={album.name} cover></img>
-                                            <h3>{album.name}</h3>
-                                        </div>
-                                    </li>
-
-                            })
-                        }
-                    </ul>
+                    <div className="ArtistContent">
+                        <h1 id="artistName">{this.state.artist.name}</h1>
+                        <h3>Albums</h3>
+                        <hr></hr>
+                        <ul>
+                            {this.state.albums.map(function(album) {
+                                console.log("album");
+                                var albumLink = "/albums/" + album.id
+                                return (<li>
+                                            <div className="AlbumListing">
+                                                <img src={album.images[1].url} height={album.images[1].height*0.5}
+                                                width={album.images[1].width*0.5}></img>
+                                                <br></br>
+                                                <a href={albumLink}>{album.name}</a>
+                                            </div>
+                                        </li>);
+                                })
+                            }
+                        </ul>
+                        <br></br>
+                        <h3>Discussions</h3>
+                        <hr></hr>
+                    </div>
                 </div>
             );
         } else {

@@ -18,6 +18,7 @@ public class Application {
             new AlbumsController();
             new DiscussionsController();
             new RatingsController();
+            new SearchController();
         });
     }
 }
