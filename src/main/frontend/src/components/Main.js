@@ -8,12 +8,13 @@ import Users from './Users';
 import Artists from './Artists';
 import Albums from './Albums';
 import Search from './Search';
+import Home from "./Home";
 
 export default class Main extends Component {
   render() {
     return (
       <Switch>
-        <Route exact from='/' to='/feed' />
+        <Route exact path='/' component={Home} />
         <Route path='/feed' component={Feed} />
         <Route path='/discover' component={Discover} />
         <Route path='/discuss' component={Discuss} />
