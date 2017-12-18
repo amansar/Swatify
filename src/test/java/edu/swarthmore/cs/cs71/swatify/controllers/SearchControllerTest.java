@@ -8,9 +8,13 @@ import edu.swarthmore.cs.cs71.swatify.models.AlbumSearchResults;
 import edu.swarthmore.cs.cs71.swatify.models.ArtistSearchResults;
 import edu.swarthmore.cs.cs71.swatify.models.SearchResults;
 import edu.swarthmore.cs.cs71.swatify.models.TrackSearchResults;
+import edu.swarthmore.cs.cs71.swatify.test.TestUtil;
+import org.junit.Assert;
 import org.junit.Test;
 
 import java.util.List;
+
+import static edu.swarthmore.cs.cs71.swatify.test.TestUtil.request;
 
 public class SearchControllerTest {
 
@@ -35,11 +39,15 @@ public class SearchControllerTest {
 
     @Test
     public void shouldGetAllResults() {
-//        List<SearchResults> searchResults = SearchController.search("Yes");
-//        for(SearchResults resultCategory : searchResults) {
-//            resultCategory.printResults();
-//        }
-        int nine = SearchController.search("Yes");
-        System.out.println(nine);
+        List<SearchResults> searchResults = SearchController.search("Yes");
+        for(SearchResults resultCategory : searchResults) {
+            resultCategory.printResults();
+        }
+
+        Assert.assertTrue(!searchResults.isEmpty());
+        Assert.assertEquals(searchResults.size(), 3);
+
+        TestUtil.TestResponse res = request("GET", "/api/v1/search/hello");
+        Assert.assertEquals(200, res.getStatus());
     }
 }

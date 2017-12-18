@@ -3,19 +3,28 @@ import Loader from './Loader';
 import NotFound from './NotFound';
 
 export default class SearchPage extends Component {
-    state = {loading: true, results:[], tracks: [], intTest: null}
+    state = {loading: true, results:[], tracks: []}
 
     componentDidMount() {
 
         fetch('/api/v1/search/' + this.props.match.params.id)
-            .then(res => res.json())
-            .then(results => this.setState({intTest: results, loading: false}));
+            .then(function(res) {
+              // res instanceof Response == true.
+              if (res.ok) {
+                res.json().then(function(data) {
+                  console.log(data.entries);
+                });
+              } else {
+                console.log("Looks like the response wasn't perfect, got status", res.status);
+              }
+            }, function(e) {
+              console.log("Fetch failed!", e);
+            })
+            .then(results => this.setState({results: results, loading: false}));
 
 //        fetch('/api/v1/search/' + this.props.match.params.id + '/tracks')
 //            .then(response => response.json())
 //            .then(tracks => this.setState({tracks: tracks, loading: false}));
-
-        console.log("here");
 
     }
 
@@ -28,11 +37,11 @@ export default class SearchPage extends Component {
                     <h1>Search</h1>
                     <hr></hr>
                     <p>Got {this.state.results.length} results</p>
-                    <h2>Artists</h2>
-                    <p>Got {this.state.intTest} results</p>
+
                 </div>
             );
         } else {
+            console.log(this.state.results);
             return (
                 <NotFound />
             );

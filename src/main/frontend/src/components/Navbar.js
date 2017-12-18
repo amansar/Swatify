@@ -23,11 +23,7 @@ export default class Navbar extends Component {
         e.preventDefault();
         e.stopPropagation();
         console.log('submit');
-//        window.location = "/search/" + this.state.searchInput;
-
-        fetch('/api/v1/search/' + this.state.searchInput + '/tracks')
-                    .then(response => response.json())
-                    .then(tracks => console.log(tracks.length));
+        window.location = "/search/" + this.state.searchInput;
 
     }
 
@@ -62,7 +58,6 @@ export default class Navbar extends Component {
                     <FormGroup>
                         <FormControl
                             type="text"
-                            value={this.state.searchInput}
                             placeholder="Search"
                             onChange={this.handleChange.bind(this)}/>
                     </FormGroup>
