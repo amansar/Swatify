@@ -15,7 +15,7 @@ export default class UnauthenticatedNavbar extends Component {
         <BSNavbar.Header>
           <BSNavbar.Brand>
             <Link to="/" className="Navbar-link">
-              Swatify
+              <img alt="Swatify" src="/logo.png" width="70"/>
             </Link>
           </BSNavbar.Brand>
           <BSNavbar.Toggle />

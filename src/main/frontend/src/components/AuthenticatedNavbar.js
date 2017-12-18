@@ -34,7 +34,7 @@ export default class AuthenticatedNavbar extends Component {
         <BSNavbar.Header>
           <BSNavbar.Brand>
             <Link to="/feed" className="Navbar-link">
-              Swatify
+              <img alt="Swatify" src="/logo.png" width="70"/>
             </Link>
           </BSNavbar.Brand>
           <BSNavbar.Toggle />
