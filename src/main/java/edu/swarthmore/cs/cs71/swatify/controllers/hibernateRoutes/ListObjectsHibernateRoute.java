@@ -6,7 +6,7 @@ import spark.Response;
 
 import javax.persistence.criteria.CriteriaBuilder;
 
-public abstract class ListObjectsRoute extends BaseRoute {
+public abstract class ListObjectsHibernateRoute extends BaseHibernateRoute {
     @Override
     public Object doAction(Session session, Request request, Response response) {
         CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();

@@ -11,35 +11,35 @@ import static spark.Spark.*;
 public class PostsController {
     public PostsController() {
         path("/posts", () -> {
-            get("/:id", new GetObjectRoute() {
+            get("/:id", new GetObjectHibernateRoute() {
                 @Override
                 protected Class<?> getObjectClass() {
                     return Post.class;
                 }
             });
 
-            post("", new CreateObjectRoute() {
+            post("", new CreateObjectHibernateRoute() {
                 @Override
                 protected Object createObject(Request request, Response response) {
                     return GsonUtil.fromJson(Post.class, request.body());
                 }
             });
 
-            put("/:id", new UpdateObjectRoute() {
+            put("/:id", new UpdateObjectHibernateRoute() {
                 @Override
                 protected Object createUpdatedObject(Request request, Response response) {
                     return GsonUtil.fromJson(Post.class, request.body());
                 }
             });
 
-            delete("/:id", new DeleteObjectRoute() {
+            delete("/:id", new DeleteObjectHibernateRoute() {
                 @Override
                 protected Class<?> getObjectClass() {
                     return Post.class;
                 }
             });
 
-            get("", new ListObjectsRoute() {
+            get("", new ListObjectsHibernateRoute() {
                 @Override
                 protected Class<?> getObjectClass() {
                     return Post.class;

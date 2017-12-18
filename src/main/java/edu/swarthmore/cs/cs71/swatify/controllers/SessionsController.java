@@ -1,12 +1,17 @@
 package edu.swarthmore.cs.cs71.swatify.controllers;
 
+import com.google.common.util.concurrent.FutureCallback;
+import com.google.common.util.concurrent.Futures;
+import com.google.common.util.concurrent.SettableFuture;
+import com.wrapper.spotify.Api;
 import com.wrapper.spotify.models.AuthorizationCodeCredentials;
-import edu.swarthmore.cs.cs71.swatify.controllers.hibernateRoutes.BaseRoute;
+import edu.swarthmore.cs.cs71.swatify.controllers.hibernateRoutes.BaseHibernateRoute;
+import edu.swarthmore.cs.cs71.swatify.errors.ForbiddenError;
+import edu.swarthmore.cs.cs71.swatify.errors.InternalServerError;
 import edu.swarthmore.cs.cs71.swatify.errors.UnauthorizedError;
 import edu.swarthmore.cs.cs71.swatify.models.User;
+import edu.swarthmore.cs.cs71.swatify.util.GsonUtil;
 import edu.swarthmore.cs.cs71.swatify.util.SpotifyUtil;
-import javafx.scene.effect.Light;
-import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
 import org.json.JSONObject;
@@ -17,24 +22,62 @@ import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 
+import java.util.List;
+
 import static spark.Spark.*;
 
 public class SessionsController {
     public SessionsController() {
+        get("/logout", (request, response) -> {
+            request.session().removeAttribute("user");
+            return null;
+        });
+
         path("/spotify-auth", () -> {
             get("/authorize-url", ((request, response) -> {
+                if (request.session().attribute("user") != null) {
+                    return GsonUtil.toJson(new ForbiddenError("Already logged in"));
+                }
                 JSONObject jsonResponseBody = new JSONObject();
                 jsonResponseBody.put("authorizeUrl", SpotifyUtil.getAuthorizeUrl());
                 return jsonResponseBody.toString();
             }));
 
-            get("/callback", new BaseRoute() {
+            get("/callback", new BaseHibernateRoute() {
                 @Override
                 protected Object doAction(Session session, Request request, Response response) {
-                    String code = request.params("code");
-                    AuthorizationCodeCredentials credentials = SpotifyUtil.getAcessCredentials(code);
-                    if (credentials == null) {
-                        return new UnauthorizedError("Unable to connect to Spotify");
+                    String code = request.queryParams("code");
+
+                    final AuthorizationCodeCredentials credentials = new AuthorizationCodeCredentials();
+                    Api api = SpotifyUtil.getApi();
+                    final SettableFuture<AuthorizationCodeCredentials> authorizationCodeCredentialsFuture = api.authorizationCodeGrant(code).build().getAsync();
+
+                    final String[] errorMessageArray = new String[1];
+                    errorMessageArray[0] = null;
+
+                    // Add callbacks to handle success and failure.
+                    Futures.addCallback(authorizationCodeCredentialsFuture, new FutureCallback<AuthorizationCodeCredentials>() {
+                        @Override
+                        public void onSuccess(AuthorizationCodeCredentials authorizationCodeCredentials) {
+                            System.out.println("Successfully retrieved an access token! " + authorizationCodeCredentials.getAccessToken());
+                            System.out.println("The access token expires in " + authorizationCodeCredentials.getExpiresIn() + " seconds");
+                            System.out.println("Luckily, I can refresh it using this refresh token! " +     authorizationCodeCredentials.getRefreshToken());
+
+                            api.setAccessToken(authorizationCodeCredentials.getAccessToken());
+                            api.setRefreshToken(authorizationCodeCredentials.getRefreshToken());
+
+                            credentials.setAccessToken(authorizationCodeCredentials.getAccessToken());
+                            credentials.setRefreshToken(authorizationCodeCredentials.getRefreshToken());
+                        }
+
+                        @Override
+                        public void onFailure(Throwable throwable) {
+                              errorMessageArray[0] = throwable.getMessage();
+                        }
+                    });
+
+                    if (errorMessageArray[0] != null) {
+                        return new InternalServerError(errorMessageArray[0]);
                     }
 
                     CriteriaBuilder builder = session.getCriteriaBuilder();
@@ -43,22 +86,33 @@ public class SessionsController {
                     query.select(root).where(builder.equal(root.get("spotifyRefreshToken"),
                                                            credentials.getRefreshToken()));
                     Query<User> q = session.createQuery(query);
-                    User user = q.getSingleResult();
+                    List<User> resultList = q.getResultList();
 
-                    if (user == null) {
+                    User user;
+                    if (resultList.size() > 0) {
+                        user = resultList.get(0);
                     }
                     else {
-                        request.session(true).attribute("user", user);
-                    }
+                        com.wrapper.spotify.models.User spotifyUser;
+                        try {
+                            spotifyUser = api.getMe().build().get();
+                        }
+                        catch (Exception e) {
+                            return new UnauthorizedError(e.getMessage());
+                        }
 
-                    return null;
+                        user = new User(
+                                spotifyUser.getDisplayName(),
+                                credentials.getAccessToken(),
+                                credentials.getRefreshToken()
+                        );
+                        session.save(user);
+                    }
+                    request.session(true).attribute("user", user);
+
+                    return user;
                 }
             });
-        });
-
-        post("/logout", (request, response) -> {
-            request.session().removeAttribute("user");
-            return null;
         });
     }
 }

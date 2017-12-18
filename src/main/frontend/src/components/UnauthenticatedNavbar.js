@@ -14,27 +14,18 @@ export default class UnauthenticatedNavbar extends Component {
       <BSNavbar inverse>
         <BSNavbar.Header>
           <BSNavbar.Brand>
-            <Link to='/feed' className='Navbar-link'>Swatify</Link>
+            <Link to='/' className='Navbar-link'>Swatify</Link>
           </BSNavbar.Brand>
           <BSNavbar.Toggle />
         </BSNavbar.Header>
         <BSNavbar.Collapse>
-          <BSNav>
-            <LinkContainer to='/feed'>
-              <BSNavItem className='Navbar-link'>Feed</BSNavItem>
-            </LinkContainer>
+          {/* <BSNav>
             <LinkContainer to='/discover'>
               <BSNavItem className='Navbar-link'>Discover</BSNavItem>
             </LinkContainer>
-            <LinkContainer to='/discuss'>
-              <BSNavItem className='Navbar-link'>Discuss</BSNavItem>
-            </LinkContainer>
-            <LinkContainer to='/connect'>
-              <BSNavItem className='Navbar-link'>Connect</BSNavItem>
-            </LinkContainer>
-          </BSNav>
+          </BSNav> */}
           <BSNav pullRight>
-            <LinkContainer to='/login' >
+            <LinkContainer to='/login'>
               <BSNavItem className='Navbar-link'>Log in</BSNavItem>
             </LinkContainer>
           </BSNav>

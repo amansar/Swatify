@@ -7,6 +7,7 @@ import {
 } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
 import './Navbar.css';
+import swatifyFetch from '../swatifyFetch';
 
 export default class AuthenticatedNavbar extends Component {
   render() {
@@ -37,7 +38,9 @@ export default class AuthenticatedNavbar extends Component {
             <LinkContainer to={'/users/' + this.props.me.id} >
               <BSNavItem className='Navbar-link'>Me</BSNavItem>
             </LinkContainer>
-          </BSNav>
+            <BSNavItem onClick={() => swatifyFetch('/api/v1/logout')}
+              className='Navbar-link'>Log out</BSNavItem>
+        </BSNav>
         </BSNavbar.Collapse>
       </BSNavbar>
     );

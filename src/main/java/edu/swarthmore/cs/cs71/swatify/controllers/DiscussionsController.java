@@ -12,22 +12,36 @@ import static spark.Spark.*;
 public class DiscussionsController {
     public DiscussionsController() {
         path("/discussions", () -> {
+            post("", new CreateObjectHibernateRoute() {
+                @Override
+                protected Object createObject(Request request, Response response) {
+                    return GsonUtil.fromJson(Discussion.class, request.body());
+                }
+            });
+
+            get("", new ListObjectsHibernateRoute() {
+                @Override
+                protected Class<?> getObjectClass() {
+                    return Discussion.class;
+                }
+            });
+
             path("/:id", () -> {
-                get("", new GetObjectRoute() {
+                get("", new GetObjectHibernateRoute() {
                     @Override
                     protected Class<?> getObjectClass() {
                         return Discussion.class;
                     }
                 });
 
-                put("", new UpdateObjectRoute() {
+                put("", new UpdateObjectHibernateRoute() {
                     @Override
                     protected Object createUpdatedObject(Request request, Response response) {
                         return GsonUtil.fromJson(Discussion.class, request.body());
                     }
                 });
 
-                delete("", new DeleteObjectRoute() {
+                delete("", new DeleteObjectHibernateRoute() {
                     @Override
                     protected Class<?> getObjectClass() {
                         return Discussion.class;
@@ -38,7 +52,7 @@ public class DiscussionsController {
                 // "" getAll
                 //
                 path("/posts", () -> {
-                    get("/:postId", new GetObjectRoute() {
+                    get("/:postId", new GetObjectHibernateRoute() {
                         @Override
                         protected Class<?> getObjectClass() {
                             return Post.class;
@@ -50,28 +64,28 @@ public class DiscussionsController {
 
                     });
 
-                    post("", new CreateObjectRoute() {
+                    post("", new CreateObjectHibernateRoute() {
                         @Override
                         protected Object createObject(Request request, Response response) {
                             return GsonUtil.fromJson(Post.class, request.body());
                         }
                     });
 
-                    put("/:postId", new UpdateObjectRoute() {
+                    put("/:postId", new UpdateObjectHibernateRoute() {
                         @Override
                         protected Object createUpdatedObject(Request request, Response response) {
                             return GsonUtil.fromJson(Post.class, request.body());
                         }
                     });
 
-                    delete("/:postId", new DeleteObjectRoute() {
+                    delete("/:postId", new DeleteObjectHibernateRoute() {
                         @Override
                         protected Class<?> getObjectClass() {
                             return Post.class;
                         }
                     });
 
-                    get("", new ListObjectsRoute() {
+                    get("", new ListObjectsHibernateRoute() {
                         @Override
                         protected Class<?> getObjectClass() {
                             return Post.class;
@@ -81,24 +95,5 @@ public class DiscussionsController {
 
             });
         });
-
-        post("", new CreateObjectRoute() {
-            @Override
-            protected Object createObject(Request request, Response response) {
-                return GsonUtil.fromJson(Discussion.class, request.body());
-            }
-        });
-
-        get("", new ListObjectsRoute() {
-            @Override
-            protected Class<?> getObjectClass() {
-                return Discussion.class;
-            }
-        });
-
-        exception(IllegalArgumentException.class, (e, req, res) -> {
-            res.status(400);
-        });
     }
-
 }

@@ -21,7 +21,7 @@ public class PostsControllerTest extends ControllerTestBase {
 
     @BeforeClass
     public static void createFixtures() {
-        userFixture = new User("oliver", "onewman1@swarthmore.edu", "spotifyId");
+        userFixture = new User("oliver", "accessToken", "refreshToken");
         discussionFixture = new Discussion();
         HibernateUtil.saveObject(userFixture);
         HibernateUtil.saveObject(discussionFixture);

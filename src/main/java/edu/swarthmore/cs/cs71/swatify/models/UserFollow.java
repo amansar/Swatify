@@ -5,44 +5,36 @@ import javax.persistence.*;
 @Entity
 @Table
 public class UserFollow {
-  @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private int id;
+      @Id
+      @GeneratedValue(strategy = GenerationType.IDENTITY)
+      private int id;
 
-  private User follower;
-  private User following;
+      @ManyToOne
+      @JoinColumn(name = "user_id")
+      private User follower;
 
-  public UserFollow() {
-  }
+      @ManyToOne
+      @JoinColumn(name = "user_id")
+      private User following;
 
-  public UserFollow(User follower, User following) {
-    this.following = following;
-    this.follower = follower;
-  }
+      public UserFollow() { }
 
-  public int getId() {
-    return id;
-  }
+      public UserFollow(User follower, User following) {
+          this.following = following;
+          this.follower = follower;
+      }
 
-  public User getFollowing() {
-    return following;
-  }
+      public int getId() {
+          return id;
+      }
 
-  public User getFollower() {
-    return follower;
-  }
+      public User getFollowing() {
+          return following;
+      }
 
-  public void setId(int id) {
-    this.id = id;
-  }
-
-  public void setFollowing(User following){
-    this.following = following;
-  }
-
-  public void setFollower(User follower){
-    this.follower = follower;
-  }
+      public User getFollower() {
+          return follower;
+      }
 }
 
 

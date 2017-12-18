@@ -33,10 +33,6 @@ public class Post extends PublicAction {
 
     public void setContent(String content) { this.content = content; }
 
-    public void setDiscussion(Discussion discussion) {
-        this.discussion = discussion;
-    }
-
     public Discussion getDiscussion() {
         return this.discussion;
     }

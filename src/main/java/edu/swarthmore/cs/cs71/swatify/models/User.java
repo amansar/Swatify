@@ -22,10 +22,6 @@ public class User {
 
     @Column(unique = true)
     @NotBlank
-    private String email;
-
-    @Column(unique = true)
-    @NotBlank
     private String spotifyId;
 
     @NotBlank
@@ -36,10 +32,10 @@ public class User {
 
     public User() { }
 
-    public User(String username, String email, String spotifyId) {
+    public User(String username, String spotifyAccessToken, String spotifyRefreshToken) {
         this.username = username;
-        this.email = email;
-        this.spotifyId = spotifyId;
+        this.spotifyAccessToken = spotifyAccessToken;
+        this.spotifyRefreshToken = spotifyRefreshToken;
     }
 
     public int getId() {
@@ -50,20 +46,12 @@ public class User {
         return username;
     }
 
-    public String getEmail() {
-        return email;
-    }
-
-    public String getSpotifyId() {
-        return spotifyId;
-    }
-
     public String getSpotifyAccessToken() {
         return spotifyAccessToken;
     };
 
     public String getSpotifyRefreshToken() {
-        return spotifyAccessToken;
+        return spotifyRefreshToken;
     };
 
     public void setSpotifyAccessToken(String spotifyAccessToken) {

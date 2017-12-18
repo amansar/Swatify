@@ -15,7 +15,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 
-public class DiscussionControllerTest extends ControllerTestBase {
+public class DiscussionsControllerTest extends ControllerTestBase {
     private static Post postFixture;
     private static Discussion discussionFixture;
     private static Discussion albumDiscussionFixture;

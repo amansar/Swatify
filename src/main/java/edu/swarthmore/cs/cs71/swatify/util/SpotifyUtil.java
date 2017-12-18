@@ -1,6 +1,7 @@
 package edu.swarthmore.cs.cs71.swatify.util;
 
 import com.wrapper.spotify.Api;
+import com.wrapper.spotify.methods.authentication.AuthorizationCodeGrantRequest;
 import com.wrapper.spotify.models.AuthorizationCodeCredentials;
 import edu.swarthmore.cs.cs71.swatify.models.User;
 
@@ -9,13 +10,13 @@ import java.util.List;
 
 
 public class SpotifyUtil {
-    private static final String redirectURI = "http://localhost:4567/api/v1/spotify-auth/callback";
-    private static final String state = "IPreventCSRFAttacks";
+    private static final String redirectURI = "http://localhost:3000/callback";
+    private static final String state = "iPreventCSRFAttacks";
     private static final List<String> scopes = Arrays.asList("playlist-modify-public");
 
     public SpotifyUtil() { }
 
-    public static Api getSpotifyAPI() {
+    public static Api getApi() {
         final String clientId = Secrets.getSpotifyClientId();
         final String clientSecret = Secrets.getSpotifyClientSecret();
 
@@ -26,30 +27,15 @@ public class SpotifyUtil {
                   .build();
     }
 
-    public static Api getSpotifyAPI(User user) {
-        final String clientId = Secrets.getSpotifyClientId();
-        final String clientSecret = Secrets.getSpotifyClientSecret();
-
+    public static Api getApi(User user) {
         return Api.builder()
-                  .clientId(clientId)
-                  .clientSecret(clientSecret)
-                  .accessToken(user.getSpotifyAccessToken())
-                  .redirectURI(redirectURI)
+                  .accessToken("BQD9Gjz-oHFw-5RkUuozDLHhvglYQrsavLgA-NQp1IuGfl3OmtV1axCxF79nxQ5hoFq2MNyKmTIVR1CUL4NEXJJZzpd78QNBMfM6QyykQ5ckKcRLnQV1j5f8h80t4jpYyufJFLDrJwdtEzV72c2i1nPleXw7vQ0LllJ826TcdPx5h9MZ_w")
+                  .refreshToken("AQAjqminBpv_sc43_kBj03bmQgqv6y0xkfDi9dz2qGvc83Z72RjfVp9luDwJbf-mczzenQAGy76ou74wOq_Pmr42rbW14Dyj9hlVM0bO_wNTco4kvmJM-vcLV_jX44jtyn4")
                   .build();
     }
 
     public static String getAuthorizeUrl() {
-        return getSpotifyAPI().createAuthorizeURL(scopes, state);
-    }
-
-    public static AuthorizationCodeCredentials getAcessCredentials(String code) {
-        AuthorizationCodeCredentials credentials = null;
-        try {
-            credentials = getSpotifyAPI().authorizationCodeGrant(code).build().get();
-        }
-        catch (Exception e) { }
-
-        return credentials;
+        return getApi().createAuthorizeURL(scopes, state);
     }
 }
 

@@ -9,25 +9,27 @@ public class Rating extends PublicAction {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    private int userId;
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    protected User user;
 
     private int stars;
-    private int spotifyId;
+    private String trackSpotifyId;
 
     public Rating() { }
 
-    public Rating(int userId, int stars, int trackId) {
-        this.userId = userId;
+    public Rating(User user, int stars, String trackSpotifyId) {
+        this.user = user;
         this.stars = stars;
-        this.spotifyId = trackId;
+        this.trackSpotifyId = trackSpotifyId;
     }
 
     public int getId() {
         return this.id;
     }
 
-    public int getSpotifyId() {
-        return this.spotifyId;
+    public String getTrackSpotifyId() {
+        return this.trackSpotifyId;
     }
 
     public int getStars() {

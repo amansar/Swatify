@@ -17,12 +17,11 @@ public class Secrets {
 
             spotifyClientId = jsonObj.getString("spotifyClientId");
             spotifyClientSecret = jsonObj.getString("spotifyClientSecret");
-
-        } catch (IOException e) {
+        }
+        catch (IOException e) {
             System.out.println("Could not find the secrets file");
             e.printStackTrace();
         }
-
     }
 
     public static String getSpotifyClientId() {

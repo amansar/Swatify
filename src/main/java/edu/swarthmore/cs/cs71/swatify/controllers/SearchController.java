@@ -12,7 +12,7 @@ import java.util.List;
 public class SearchController {
 
     public static List<Track> searchTracks(String query){
-        final TrackSearchRequest request = SpotifyUtil.getSpotifyAPI().searchTracks(query).build();
+        final TrackSearchRequest request = SpotifyUtil.getApi().searchTracks(query).build();
 
         try{
             final Page<Track> tracks = request.get();
@@ -28,7 +28,7 @@ public class SearchController {
     }
 
     public static List<SimpleAlbum> searchAlbums(String query){
-        final AlbumSearchRequest request = SpotifyUtil.getSpotifyAPI().searchAlbums(query).build();
+        final AlbumSearchRequest request = SpotifyUtil.getApi().searchAlbums(query).build();
 
         try{
             final Page<SimpleAlbum> albums = request.get();
@@ -44,7 +44,7 @@ public class SearchController {
     }
 
     public static List<Artist> searchArtists(String query){
-        final ArtistSearchRequest request = SpotifyUtil.getSpotifyAPI().searchArtists(query).build();
+        final ArtistSearchRequest request = SpotifyUtil.getApi().searchArtists(query).build();
 
         try{
             final Page<Artist> artists = request.get();

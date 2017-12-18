@@ -4,7 +4,7 @@ import org.hibernate.Session;
 import spark.Request;
 import spark.Response;
 
-public abstract class CreateObjectRoute extends BaseRoute  {
+public abstract class CreateObjectHibernateRoute extends BaseHibernateRoute {
     @Override
     public Object doAction(Session session, Request request, Response response) {
         Object obj = createObject(request, response);
