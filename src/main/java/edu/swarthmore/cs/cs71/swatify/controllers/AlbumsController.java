@@ -13,7 +13,6 @@ import spark.Request;
 import spark.Response;
 
 
-//import static edu.swarthmore.cs.cs71.swatify.controllers.ArtistsController.getArtist;
 import static spark.Spark.*;
 
 public class AlbumsController {

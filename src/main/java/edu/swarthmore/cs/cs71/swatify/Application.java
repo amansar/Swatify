@@ -13,12 +13,19 @@ public class Application {
 
     public static void establishRoutes() {
         path("/api/v1", () -> {
+            before((request, response) -> {
+                if (request.session().attribute("user") == null) {
+                    halt(401, "Log in with Spotify");
+                }
+            });
+
             new UsersController();
             new SessionsController();
             new ArtistsController();
             new AlbumsController();
             new DiscussionsController();
             new PostsController();
+            new RatingsController();
 
             after((req, res) -> res.type("application/json"));
 

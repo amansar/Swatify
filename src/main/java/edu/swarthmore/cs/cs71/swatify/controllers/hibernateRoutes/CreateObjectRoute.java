@@ -1,7 +1,5 @@
 package edu.swarthmore.cs.cs71.swatify.controllers.hibernateRoutes;
 
-import edu.swarthmore.cs.cs71.swatify.util.GsonUtil;
-import edu.swarthmore.cs.cs71.swatify.util.HibernateUtil;
 import org.hibernate.Session;
 import spark.Request;
 import spark.Response;

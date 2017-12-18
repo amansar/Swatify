@@ -13,7 +13,7 @@ public class Secrets {
 
     private static void readJsonFromFile() {
         try {
-            JSONObject jsonObj = new JSONObject(new String(readAllBytes(get("src/main/resources/secrets-template.json"))));
+            JSONObject jsonObj = new JSONObject(new String(readAllBytes(get("src/main/resources/secrets.json"))));
 
             spotifyClientId = jsonObj.getString("spotifyClientId");
             spotifyClientSecret = jsonObj.getString("spotifyClientSecret");

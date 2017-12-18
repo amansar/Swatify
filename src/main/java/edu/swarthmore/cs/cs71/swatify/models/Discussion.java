@@ -1,12 +1,11 @@
 package edu.swarthmore.cs.cs71.swatify.models;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
+import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.DynamicUpdate;
+import org.hibernate.annotations.UpdateTimestamp;
 
 @Entity
 @Table
@@ -17,8 +16,20 @@ public class Discussion {
     private int id;
 
     private String title;
+    private String userName;
     private int userId;
     private String albumSpotifyId;
+
+
+    @CreationTimestamp
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "create_date")
+    private Date createDate;
+
+    @UpdateTimestamp
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "modify_date")
+    private Date modifyDate;
 
     public Discussion() { }
 
@@ -44,9 +55,15 @@ public class Discussion {
         return title;
     }
 
-    public void setTitle(String title) { this.title = title; }
+    public String getUserName() {
+        return userName;
+    }
 
     public String getAlbumSpotifyId() {
         return albumSpotifyId;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
     }
 }

@@ -48,8 +48,6 @@ public class Album {
         return titleOfWork;
     }
 
-
-
     public void setSpotifyID(String spotifyId){
         this.spotifyID = spotifyId;
     }
@@ -57,5 +55,4 @@ public class Album {
     public void setTitle(String title){
         this.titleOfWork = title;
     }
-
 }

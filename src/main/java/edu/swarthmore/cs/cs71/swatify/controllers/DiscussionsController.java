@@ -1,12 +1,9 @@
 package edu.swarthmore.cs.cs71.swatify.controllers;
 
 import edu.swarthmore.cs.cs71.swatify.controllers.hibernateRoutes.*;
-import edu.swarthmore.cs.cs71.swatify.errors.NotFoundError;
 import edu.swarthmore.cs.cs71.swatify.models.Discussion;
 import edu.swarthmore.cs.cs71.swatify.models.Post;
 import edu.swarthmore.cs.cs71.swatify.util.GsonUtil;
-import edu.swarthmore.cs.cs71.swatify.util.HibernateUtil;
-import org.hibernate.Session;
 import spark.Request;
 import spark.Response;
 
@@ -83,24 +80,24 @@ public class DiscussionsController {
                 });
 
             });
+        });
 
-            post("", new CreateObjectRoute() {
-                @Override
-                protected Object createObject(Request request, Response response) {
-                    return GsonUtil.fromJson(Discussion.class, request.body());
-                }
-            });
+        post("", new CreateObjectRoute() {
+            @Override
+            protected Object createObject(Request request, Response response) {
+                return GsonUtil.fromJson(Discussion.class, request.body());
+            }
+        });
 
-            get("", new ListObjectsRoute() {
-                @Override
-                protected Class<?> getObjectClass() {
-                    return Discussion.class;
-                }
-            });
+        get("", new ListObjectsRoute() {
+            @Override
+            protected Class<?> getObjectClass() {
+                return Discussion.class;
+            }
+        });
 
-            exception(IllegalArgumentException.class, (e, req, res) -> {
-                res.status(400);
-            });
+        exception(IllegalArgumentException.class, (e, req, res) -> {
+            res.status(400);
         });
     }
 

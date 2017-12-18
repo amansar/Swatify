@@ -28,6 +28,12 @@ public class User {
     @NotBlank
     private String spotifyId;
 
+    @NotBlank
+    private String spotifyAccessToken;
+
+    @NotBlank
+    private String spotifyRefreshToken;
+
     public User() { }
 
     public User(String username, String email, String spotifyId) {
@@ -48,19 +54,23 @@ public class User {
         return email;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
     public String getSpotifyId() {
         return spotifyId;
     }
 
-    public void setSpotifyId(String spotifyId) {
-        this.spotifyId = spotifyId;
-    }
+    public String getSpotifyAccessToken() {
+        return spotifyAccessToken;
+    };
+
+    public String getSpotifyRefreshToken() {
+        return spotifyAccessToken;
+    };
+
+    public void setSpotifyAccessToken(String spotifyAccessToken) {
+        this.spotifyAccessToken = spotifyAccessToken;
+    };
+
+    public void setSpotifyRefreshToken(String spotifyRefreshToken) {
+        this.spotifyRefreshToken = spotifyRefreshToken;
+    };
 }
