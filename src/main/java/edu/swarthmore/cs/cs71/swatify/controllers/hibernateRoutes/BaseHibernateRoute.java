@@ -1,5 +1,6 @@
 package edu.swarthmore.cs.cs71.swatify.controllers.hibernateRoutes;
 
+import edu.swarthmore.cs.cs71.swatify.errors.Error;
 import edu.swarthmore.cs.cs71.swatify.errors.ForbiddenError;
 import edu.swarthmore.cs.cs71.swatify.errors.InternalServerError;
 import edu.swarthmore.cs.cs71.swatify.errors.NotFoundError;
@@ -31,6 +32,11 @@ public abstract class BaseRoute implements Route {
         finally {
             session.close();
         }
+
+        if (obj instanceof Error) {
+            response.status(((Error) obj).getStatus());
+        }
+
         return GsonUtil.toJson(obj);
     }
 
