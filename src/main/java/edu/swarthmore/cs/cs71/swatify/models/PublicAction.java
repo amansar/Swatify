@@ -14,7 +14,8 @@ public class PublicAction {
     @JoinColumn(name = "user_id")
     protected User user;
 
-    public PublicAction() { }
+    public PublicAction() {
+    }
 
     public PublicAction(User user) {
         this.user = user;

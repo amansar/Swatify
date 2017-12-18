@@ -11,7 +11,7 @@ public class RatingsController {
         path("/ratings", () -> {
             get("/:id", (request, response) -> getRating(Integer.parseInt(request.params("id"))), GsonUtil::toJson);
 
-            post("", (request, response) -> createRating(GsonUtil.fromJson(Rating.class, request.body())),  GsonUtil::toJson);
+            post("", (request, response) -> createRating(GsonUtil.fromJson(Rating.class, request.body())), GsonUtil::toJson);
 
             patch("/:id", (request, response) -> updateRating(GsonUtil.fromJson(Rating.class, request.body())), GsonUtil::toJson);
 

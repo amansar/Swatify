@@ -1,6 +1,6 @@
 package edu.swarthmore.cs.cs71.swatify.util;
 
-import org.json.*;
+import org.json.JSONObject;
 
 import java.io.IOException;
 
@@ -17,15 +17,14 @@ public class Secrets {
 
             spotifyClientId = jsonObj.getString("spotifyClientId");
             spotifyClientSecret = jsonObj.getString("spotifyClientSecret");
-        }
-        catch (IOException e) {
+        } catch (IOException e) {
             System.out.println("Could not find the secrets file");
             e.printStackTrace();
         }
     }
 
     public static String getSpotifyClientId() {
-        if(spotifyClientId == null){
+        if (spotifyClientId == null) {
             readJsonFromFile();
         }
 
@@ -33,7 +32,7 @@ public class Secrets {
     }
 
     public static String getSpotifyClientSecret() {
-        if(spotifyClientSecret == null){
+        if (spotifyClientSecret == null) {
             readJsonFromFile();
         }
 

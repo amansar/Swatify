@@ -5,7 +5,8 @@ import edu.swarthmore.cs.cs71.swatify.controllers.spotifyRoutes.BaseSpotifyRoute
 import spark.Request;
 import spark.Response;
 
-import static spark.Spark.*;
+import static spark.Spark.get;
+import static spark.Spark.path;
 
 public class ArtistsController {
     public ArtistsController() {

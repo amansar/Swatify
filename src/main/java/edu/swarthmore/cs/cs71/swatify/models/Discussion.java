@@ -1,11 +1,11 @@
 package edu.swarthmore.cs.cs71.swatify.models;
 
-import javax.persistence.*;
-import java.util.*;
-
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.DynamicUpdate;
 import org.hibernate.annotations.UpdateTimestamp;
+
+import javax.persistence.*;
+import java.util.Date;
 
 @Entity
 @Table
@@ -31,7 +31,8 @@ public class Discussion {
     @Column(name = "modify_date")
     private Date modifyDate;
 
-    public Discussion() { }
+    public Discussion() {
+    }
 
     public Discussion(String title, int userId) {
         this.userId = userId;
@@ -49,7 +50,9 @@ public class Discussion {
         return id;
     }
 
-    public int getUserId() { return userId; }
+    public int getUserId() {
+        return userId;
+    }
 
     public String getTitle() {
         return title;

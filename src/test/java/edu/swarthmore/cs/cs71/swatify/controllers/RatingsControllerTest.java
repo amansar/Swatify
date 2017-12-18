@@ -1,15 +1,10 @@
 package edu.swarthmore.cs.cs71.swatify.controllers;
 
-import edu.swarthmore.cs.cs71.swatify.models.Post;
 import edu.swarthmore.cs.cs71.swatify.models.Rating;
 import edu.swarthmore.cs.cs71.swatify.models.User;
-import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNull;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 public class RatingsControllerTest {
     public static final User user = new User("username", "accessToken", "refreshToken");
@@ -34,7 +29,7 @@ public class RatingsControllerTest {
 
     @Test
     public void updateRating() {
-        Rating rating = new Rating(user,3, "10");
+        Rating rating = new Rating(user, 3, "10");
 
         assertTrue(RatingsController.createRating(rating));
         int id = rating.getId();

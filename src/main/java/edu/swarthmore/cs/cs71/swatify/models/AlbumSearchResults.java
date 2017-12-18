@@ -25,7 +25,7 @@ public class AlbumSearchResults extends SearchResults {
         if (this.results.isEmpty()) {
             System.out.println("No results found");
         } else {
-            for(SimpleAlbum album : results){
+            for (SimpleAlbum album : results) {
                 System.out.printf("Name: %s\nSpotify ID: %s\n\n", album.getName(), album.getId());
             }
         }

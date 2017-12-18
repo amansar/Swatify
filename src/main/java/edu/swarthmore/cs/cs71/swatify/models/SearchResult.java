@@ -1,9 +1,5 @@
 package edu.swarthmore.cs.cs71.swatify.models;
 
-import com.wrapper.spotify.models.Artist;
-
-import java.util.List;
-
 public class SearchResult {
     private String name;
     private String spotifyId;

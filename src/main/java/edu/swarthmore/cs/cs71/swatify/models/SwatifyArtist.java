@@ -1,11 +1,8 @@
 package edu.swarthmore.cs.cs71.swatify.models;
 
-import edu.swarthmore.cs.cs71.swatify.util.HibernateUtil;
-import org.hibernate.Hibernate;
 import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.*;
-import java.util.List;
 
 @Entity
 @Table
@@ -21,8 +18,8 @@ public class SwatifyArtist {
     private int numFollowers;
 
 
-
-    public SwatifyArtist() { }
+    public SwatifyArtist() {
+    }
 
     public SwatifyArtist(String name, String spotifyId) {
         this.name = name;

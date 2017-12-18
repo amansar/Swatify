@@ -57,6 +57,7 @@ public class DiscussionsController {
                         protected Class<?> getObjectClass() {
                             return Post.class;
                         }
+
                         @Override
                         protected String getIdParamName() {
                             return "postId";

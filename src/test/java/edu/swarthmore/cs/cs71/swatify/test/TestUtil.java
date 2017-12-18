@@ -18,8 +18,9 @@ import static org.junit.Assert.fail;
 public class TestUtil {
     /**
      * Make an HTTP request to the local server.
-     * @param method The HTTP method to use.
-     * @param path The path (at localhost) to make the request to.
+     *
+     * @param method      The HTTP method to use.
+     * @param path        The path (at localhost) to make the request to.
      * @param requestBody The body of the request.
      * @return A TestResponse object containing the body and status of the response.
      */
@@ -48,8 +49,9 @@ public class TestUtil {
 
     /**
      * Make a body-less request to the server.
+     *
      * @param method The HTTP method to use.
-     * @param path The path (at localhost) to make the request to.
+     * @param path   The path (at localhost) to make the request to.
      * @return A TestResponse object containing the body and status of the response.
      */
     public static TestResponse request(String method, String path) {

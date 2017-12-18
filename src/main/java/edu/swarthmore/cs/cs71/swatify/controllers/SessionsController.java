@@ -21,10 +21,10 @@ import spark.Response;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
-
 import java.util.List;
 
-import static spark.Spark.*;
+import static spark.Spark.get;
+import static spark.Spark.path;
 
 public class SessionsController {
     public SessionsController() {
@@ -61,7 +61,7 @@ public class SessionsController {
                         public void onSuccess(AuthorizationCodeCredentials authorizationCodeCredentials) {
                             System.out.println("Successfully retrieved an access token! " + authorizationCodeCredentials.getAccessToken());
                             System.out.println("The access token expires in " + authorizationCodeCredentials.getExpiresIn() + " seconds");
-                            System.out.println("Luckily, I can refresh it using this refresh token! " +     authorizationCodeCredentials.getRefreshToken());
+                            System.out.println("Luckily, I can refresh it using this refresh token! " + authorizationCodeCredentials.getRefreshToken());
 
                             api.setAccessToken(authorizationCodeCredentials.getAccessToken());
                             api.setRefreshToken(authorizationCodeCredentials.getRefreshToken());
@@ -72,7 +72,7 @@ public class SessionsController {
 
                         @Override
                         public void onFailure(Throwable throwable) {
-                              errorMessageArray[0] = throwable.getMessage();
+                            errorMessageArray[0] = throwable.getMessage();
                         }
                     });
 
@@ -84,20 +84,18 @@ public class SessionsController {
                     CriteriaQuery<User> query = builder.createQuery(User.class);
                     Root<User> root = query.from(User.class);
                     query.select(root).where(builder.equal(root.get("spotifyRefreshToken"),
-                                                           credentials.getRefreshToken()));
+                            credentials.getRefreshToken()));
                     Query<User> q = session.createQuery(query);
                     List<User> resultList = q.getResultList();
 
                     User user;
                     if (resultList.size() > 0) {
                         user = resultList.get(0);
-                    }
-                    else {
+                    } else {
                         com.wrapper.spotify.models.User spotifyUser;
                         try {
                             spotifyUser = api.getMe().build().get();
-                        }
-                        catch (Exception e) {
+                        } catch (Exception e) {
                             return new UnauthorizedError(e.getMessage());
                         }
 

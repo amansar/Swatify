@@ -12,10 +12,11 @@ public class Post extends PublicAction {
     private String content;
 
     @ManyToOne
-    @JoinColumn(name="discussion_id", nullable=true)
+    @JoinColumn(name = "discussion_id", nullable = true)
     private Discussion discussion;
 
-    public Post() { }
+    public Post() {
+    }
 
     public Post(User user, Discussion discussion, String content) {
         super(user);
@@ -31,7 +32,9 @@ public class Post extends PublicAction {
         return content;
     }
 
-    public void setContent(String content) { this.content = content; }
+    public void setContent(String content) {
+        this.content = content;
+    }
 
     public Discussion getDiscussion() {
         return this.discussion;

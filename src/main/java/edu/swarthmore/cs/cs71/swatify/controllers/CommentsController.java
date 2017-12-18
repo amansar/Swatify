@@ -3,8 +3,6 @@ package edu.swarthmore.cs.cs71.swatify.controllers;
 import edu.swarthmore.cs.cs71.swatify.models.Comment;
 import edu.swarthmore.cs.cs71.swatify.util.GsonUtil;
 import edu.swarthmore.cs.cs71.swatify.util.HibernateUtil;
-import spark.Request;
-import spark.Response;
 
 import static spark.Spark.*;
 
@@ -13,7 +11,7 @@ public class CommentsController {
         path("/comments", () -> {
             get("/:id", (request, response) -> getComment(Integer.parseInt(request.params("id"))), GsonUtil::toJson);
 
-            post("", (request, response) -> createComment(GsonUtil.fromJson(Comment.class, request.body())),  GsonUtil::toJson);
+            post("", (request, response) -> createComment(GsonUtil.fromJson(Comment.class, request.body())), GsonUtil::toJson);
 
             patch("/:id", (request, response) -> updateComment(GsonUtil.fromJson(Comment.class, request.body())), GsonUtil::toJson);
 

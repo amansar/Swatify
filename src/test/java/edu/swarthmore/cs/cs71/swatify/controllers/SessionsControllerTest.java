@@ -1,12 +1,10 @@
 package edu.swarthmore.cs.cs71.swatify.controllers;
 
 import edu.swarthmore.cs.cs71.swatify.models.Discussion;
-import edu.swarthmore.cs.cs71.swatify.models.Post;
 import edu.swarthmore.cs.cs71.swatify.models.User;
 import edu.swarthmore.cs.cs71.swatify.test.ControllerTestBase;
 import edu.swarthmore.cs.cs71.swatify.test.TestUtil;
 import edu.swarthmore.cs.cs71.swatify.util.GsonUtil;
-import edu.swarthmore.cs.cs71.swatify.util.HibernateUtil;
 import org.junit.BeforeClass;
 import org.junit.Test;
 

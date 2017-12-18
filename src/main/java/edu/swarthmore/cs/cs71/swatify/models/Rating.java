@@ -16,7 +16,8 @@ public class Rating extends PublicAction {
     private int stars;
     private String spotifyId;
 
-    public Rating() { }
+    public Rating() {
+    }
 
     public Rating(User user, int stars, String spotifyId) {
         this.user = user;
@@ -28,7 +29,9 @@ public class Rating extends PublicAction {
         return this.id;
     }
 
-    public String getSpotifyId() { return spotifyId; }
+    public String getSpotifyId() {
+        return spotifyId;
+    }
 
     public int getStars() {
         return this.stars;

@@ -4,13 +4,12 @@ import com.wrapper.spotify.models.SimpleArtist;
 
 import java.util.List;
 
-public class TrackSearchResults extends SearchResults{
+public class TrackSearchResults extends SearchResults {
     private List<TrackSearchResult> results;
 
     public TrackSearchResults(List<TrackSearchResult> results) {
         this.results = results;
     }
-
 
 
     @Override
@@ -23,17 +22,17 @@ public class TrackSearchResults extends SearchResults{
         System.out.println("TRACKS");
         System.out.println("----------------------");
 
-        if(this.results.isEmpty()){
+        if (this.results.isEmpty()) {
             System.out.println("No results found");
         } else {
-            for(TrackSearchResult track : results){
+            for (TrackSearchResult track : results) {
                 System.out.printf("Name: %s\n", track.getName());
                 System.out.printf("Arists: ");
-                for(SimpleArtist trackArtist : track.getArtists()){
+                for (SimpleArtist trackArtist : track.getArtists()) {
                     System.out.printf("%s. ", trackArtist.getName());
                 }
                 System.out.println();
-                System.out.printf("Duration: %d:%02d\n", track.getDuration()/60000, (track.getDuration()/1000)%60);
+                System.out.printf("Duration: %d:%02d\n", track.getDuration() / 60000, (track.getDuration() / 1000) % 60);
                 System.out.printf("Album: %s\n", track.getAlbum().getName());
                 System.out.println();
             }

@@ -2,7 +2,6 @@ package edu.swarthmore.cs.cs71.swatify.models;
 
 import com.wrapper.spotify.models.Artist;
 
-
 import java.util.ArrayList;
 import java.util.List;
 

@@ -3,9 +3,6 @@ package edu.swarthmore.cs.cs71.swatify.models;
 import org.junit.Assert;
 import org.junit.Test;
 
-import java.util.List;
-import java.util.Set;
-
 public class DiscussionsTest {
     @Test
     public void createDiscussion() throws Exception {

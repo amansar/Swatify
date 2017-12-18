@@ -1,11 +1,12 @@
 package edu.swarthmore.cs.cs71.swatify.models;
 
-import com.wrapper.spotify.models.*;
+import com.wrapper.spotify.models.SimpleAlbum;
+import com.wrapper.spotify.models.SimpleArtist;
 import com.wrapper.spotify.models.Track;
 
 import java.util.List;
 
-public class TrackSearchResult extends SearchResult{
+public class TrackSearchResult extends SearchResult {
     private String name;
     private String spotifyId;
     private String url;

@@ -1,9 +1,5 @@
 package edu.swarthmore.cs.cs71.swatify.controllers;
 
-import com.wrapper.spotify.models.Artist;
-import com.wrapper.spotify.models.SimpleAlbum;
-import com.wrapper.spotify.models.SimpleArtist;
-import com.wrapper.spotify.models.Track;
 import edu.swarthmore.cs.cs71.swatify.models.AlbumSearchResults;
 import edu.swarthmore.cs.cs71.swatify.models.ArtistSearchResults;
 import edu.swarthmore.cs.cs71.swatify.models.SearchResults;
@@ -40,7 +36,7 @@ public class SearchControllerTest {
     @Test
     public void shouldGetAllResults() {
         List<SearchResults> searchResults = SearchController.search("Yes");
-        for(SearchResults resultCategory : searchResults) {
+        for (SearchResults resultCategory : searchResults) {
             resultCategory.printResults();
         }
 

@@ -1,10 +1,8 @@
 package edu.swarthmore.cs.cs71.swatify.models;
 
-import org.hibernate.annotations.*;
+import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.*;
-import javax.persistence.Entity;
-import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 
 @Entity
@@ -26,7 +24,8 @@ public class User {
     @NotBlank
     private String spotifyRefreshToken;
 
-    public User() { }
+    public User() {
+    }
 
     public User(String username, String spotifyAccessToken, String spotifyRefreshToken) {
         this.username = username;
@@ -44,17 +43,25 @@ public class User {
 
     public String getSpotifyAccessToken() {
         return spotifyAccessToken;
-    };
+    }
+
+    ;
 
     public String getSpotifyRefreshToken() {
         return spotifyRefreshToken;
-    };
+    }
+
+    ;
 
     public void setSpotifyAccessToken(String spotifyAccessToken) {
         this.spotifyAccessToken = spotifyAccessToken;
-    };
+    }
+
+    ;
 
     public void setSpotifyRefreshToken(String spotifyRefreshToken) {
         this.spotifyRefreshToken = spotifyRefreshToken;
-    };
+    }
+
+    ;
 }

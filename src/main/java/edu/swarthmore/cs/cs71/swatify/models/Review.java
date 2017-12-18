@@ -11,7 +11,7 @@ public class Review {
     private int id;
 
     @ManyToOne
-    @JoinColumn(name="user_id", nullable=true)
+    @JoinColumn(name = "user_id", nullable = true)
     private User user;
 
     private String content;
@@ -22,7 +22,8 @@ public class Review {
 //    @JoinColumn(name="discussion_id", nullable=true)
 //    private Discussion discussion;
 
-    public Review() { }
+    public Review() {
+    }
 
     public Review(String content, User user, String albumId, int stars) {
         this.user = user;
@@ -39,7 +40,9 @@ public class Review {
         return content;
     }
 
-    public void setContent(String content) { this.content = content; }
+    public void setContent(String content) {
+        this.content = content;
+    }
 
 //    public void setDiscussion(Discussion discussion) {
 //        this.discussion = discussion;

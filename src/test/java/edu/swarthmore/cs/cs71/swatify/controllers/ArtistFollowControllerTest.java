@@ -1,8 +1,6 @@
 package edu.swarthmore.cs.cs71.swatify.controllers;
 
-import edu.swarthmore.cs.cs71.swatify.models.ArtistFollow;
 import edu.swarthmore.cs.cs71.swatify.models.User;
-import org.junit.Assert;
 import org.junit.Test;
 
 public class ArtistFollowControllerTest {

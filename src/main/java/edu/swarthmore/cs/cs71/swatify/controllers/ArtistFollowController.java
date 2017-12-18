@@ -9,7 +9,7 @@ public class ArtistFollowController {
 
     }
 
-    public static boolean saveArtistFollow(ArtistFollow follow){
+    public static boolean saveArtistFollow(ArtistFollow follow) {
         return HibernateUtil.saveObject(follow);
 
     }
@@ -19,7 +19,7 @@ public class ArtistFollowController {
     }
 
 
-    public static ArtistFollow getArtistFollow(int id){
+    public static ArtistFollow getArtistFollow(int id) {
         return HibernateUtil.getObjectById(ArtistFollow.class, id);
     }
 }
