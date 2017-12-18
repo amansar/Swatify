@@ -56,7 +56,7 @@ public class ArtistsControllerTest {
         }
 
     }
-    
+
     @Test
     public void shouldGetArtistFollowers() {
         Artist knxwledge = ArtistsController.getArtist("17Zu03OgBVxgLxWmRUyNOJ");
