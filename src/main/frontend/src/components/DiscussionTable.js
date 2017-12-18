@@ -1,43 +1,53 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 import { Table } from "react-bootstrap";
-import { LinkContainer } from 'react-router-bootstrap';
-import "./DiscussionTable.css"
+import Loader from "./Loader";
+import "./DiscussionTable.css";
 
 export default class DiscussionTable extends Component {
-    constructor(props) {
-        super(props);
+    state = { loading: true }
 
-
-        fetch('/api/v1/albums/7gsWAHLeT0w7es6FofOXk1')
+    componentWillMount() {
+        fetch('/api/v1/discussions')
               .then(res => res.json())
-              .then(album => this.setState({ album: album.name,
-                                artist: album.artists[0].name,
-                                image: album.images[0].url} ));
+              .then(discussions => this.setState({ discussions: discussions,
+                                                   loading: false}));
+    }
+
+    renderDiscussionsList() {
+        var discussions = this.state.discussions;
+        return(
+            <tbody>
+              {discussions.map(function(discussion, index){
+                var title = discussion.title;
+                var userName = discussion.userName;
+                var modifyDate = discussion.modifyDate;
+                return <tr key={index}>
+                            <td class="col-md-7">{title}</td>
+                            <td class="col-md-3">{userName}</td>
+                            <td class="col-md-2">{modifyDate}</td>
+                       </tr>;
+                })}
+            </tbody>
+        );
     }
 
     render() {
-        return (
-            <div>
-                <Table striped={true} hover={true}>
-                  <thead>
-                    <tr>
-                      <th>Discussion Title</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td>Discussion 1</td>
-                    </tr>
-                    <tr>
-                      <td>Discussion 2</td>
-                    </tr>
-                    <tr>
-                      <td>Discussion 3</td>
-                    </tr>
-                  </tbody>
-                </Table>
-            </div>
-        );
+        if (this.state.loading === false) {
+            return (
+                <div>
+                    <Table striped={true} hover={true}>
+                      <thead>
+                        <tr>
+                          <th>Discussion Title</th>
+                        </tr>
+                      </thead>
+                      {this.renderDiscussionsList()}
+                    </Table>
+                </div>
+            );
+        }
+        else {
+            return (<Loader loading={this.state.loading} />);
+        }
     }
 }

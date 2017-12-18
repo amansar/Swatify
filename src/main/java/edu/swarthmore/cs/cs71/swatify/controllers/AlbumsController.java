@@ -13,7 +13,7 @@ import spark.Request;
 import spark.Response;
 
 
-import static edu.swarthmore.cs.cs71.swatify.controllers.ArtistsController.getArtist;
+//import static edu.swarthmore.cs.cs71.swatify.controllers.ArtistsController.getArtist;
 import static spark.Spark.*;
 
 public class AlbumsController {
@@ -23,42 +23,42 @@ public class AlbumsController {
             path("/:id", () -> {
                 get("", (request, response) -> getSpotifyAlbum((request.params("id"))), GsonUtil::toJson);
 
-                path("/reviews", () -> {
-                    get("/:reviewId", new GetObjectRoute() {
-                        @Override
-                        protected Class<?> getObjectClass() {
-                            return Post.class;
-                        }
-                    });
-
-                    post("", new CreateObjectRoute() {
-                        @Override
-                        protected Object createObject(Request request, Response response) {
-                            return GsonUtil.fromJson(Post.class, request.body());
-                        }
-                    });
-
-                    put("/:reviewId", new UpdateObjectRoute() {
-                        @Override
-                        protected Object createUpdatedObject(Request request, Response response) {
-                            return GsonUtil.fromJson(Post.class, request.body());
-                        }
-                    });
-
-                    delete("/:postId", new DeleteObjectRoute() {
-                        @Override
-                        protected Class<?> getObjectClass() {
-                            return Post.class;
-                        }
-                    });
-
-                    get("", new ListObjectsRoute() {
-                        @Override
-                        protected Class<?> getObjectClass() {
-                            return Post.class;
-                        }
-                    });
-                });
+//                path("/reviews", () -> {
+//                    get("/:reviewId", new GetObjectRoute() {
+//                        @Override
+//                        protected Class<?> getObjectClass() {
+//                            return Review.class;
+//                        }
+//                    });
+//
+//                    post("", new CreateObjectRoute() {
+//                        @Override
+//                        protected Object createObject(Request request, Response response) {
+//                            return GsonUtil.fromJson(Post.class, request.body());
+//                        }
+//                    });
+//
+//                    put("/:reviewId", new UpdateObjectRoute() {
+//                        @Override
+//                        protected Object createUpdatedObject(Request request, Response response) {
+//                            return GsonUtil.fromJson(Post.class, request.body());
+//                        }
+//                    });
+//
+//                    delete("/:reviewId", new DeleteObjectRoute() {
+//                        @Override
+//                        protected Class<?> getObjectClass() {
+//                            return Post.class;
+//                        }
+//                    });
+//
+//                    get("", new ListObjectsRoute() {
+//                        @Override
+//                        protected Class<?> getObjectClass() {
+//                            return Post.class;
+//                        }
+//                    });
+//                });
             });
 
 
