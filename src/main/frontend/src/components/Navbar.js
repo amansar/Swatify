@@ -17,10 +17,6 @@ export default class Navbar extends Component {
     me: null
   };
 
-  state = {
-    searchInput: ""
-  };
-
   handleChange(e) {
     this.setState({ searchInput: e.target.value });
   }
@@ -68,7 +64,7 @@ export default class Navbar extends Component {
       <BSNavbar inverse>
         <BSNavbar.Header>
           <BSNavbar.Brand>
-            <Link to="/feed" className="Navbar-link">
+            <Link to="/" className="Navbar-link">
               <img alt="Swatify" src="/logo.png" width="70" />
             </Link>
           </BSNavbar.Brand>
