@@ -4,7 +4,7 @@ import Loader from './Loader';
 import { Table } from "react-bootstrap";
 import Rating from "./Rating";
 import ReviewModal from "./ReviewModal";
-import "./Album.css";
+import "./AlbumPage.css";
 
 class Album extends Component {
     state = {loading: true}
@@ -12,7 +12,7 @@ class Album extends Component {
     //need timeout for fetch so we wait for all content to be received
 
     componentWillMount(){
-        fetch('/api/v1/albums/7gsWAHLeT0w7es6FofOXk1')
+        fetch('/api/v1/albums/' + this.props.match.params.id)
               .then(res => res.json())
               .then(album => this.setState({ albumName: album.name,
                                 artistName: album.artists[0].name,
