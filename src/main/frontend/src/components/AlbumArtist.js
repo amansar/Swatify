@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import Loader from "./Loader";
 import swatifyFetch from "../swatifyFetch";
 
 export default class AlbumArtist extends Component {

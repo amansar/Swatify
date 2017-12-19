@@ -28,9 +28,9 @@ export default class DiscussionTable extends Component {
           var modifyDate = discussion.modifyDate;
           return (
             <tr key={index}>
-              <td class="col-md-7">{title}</td>
-              <td class="col-md-3">{userName}</td>
-              <td class="col-md-2">{modifyDate}</td>
+              <td className="col-md-7">{title}</td>
+              <td className="col-md-3">{userName}</td>
+              <td className="col-md-2">{modifyDate}</td>
             </tr>
           );
         })}

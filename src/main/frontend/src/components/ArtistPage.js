@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import Loader from "./Loader";
-import NotFound from "./NotFound";
 import "./ArtistPage.css";
 import swatifyFetch from "../swatifyFetch";
 import { Redirect } from "react-router-dom";
