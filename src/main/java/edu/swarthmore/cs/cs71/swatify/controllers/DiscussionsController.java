@@ -21,8 +21,8 @@ public class DiscussionsController {
 
             get("", new ListObjectsHibernateRoute() {
                 @Override
-                protected Class<?> getObjectClass() {
-                    return Discussion.class;
+                protected String getQueryString() {
+                    return "from Discussion d";
                 }
             });
 
@@ -88,8 +88,8 @@ public class DiscussionsController {
 
                     get("", new ListObjectsHibernateRoute() {
                         @Override
-                        protected Class<?> getObjectClass() {
-                            return Post.class;
+                        protected String getQueryString() {
+                            return "select * from Post";
                         }
                     });
                 });

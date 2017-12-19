@@ -5,13 +5,14 @@ import spark.Request;
 import spark.Response;
 
 import javax.persistence.criteria.CriteriaBuilder;
+import java.util.List;
 
 public abstract class ListObjectsHibernateRoute extends BaseHibernateRoute {
     @Override
-    public Object doAction(Session session, Request request, Response response) {
-        CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
-        return criteriaBuilder.createQuery(getObjectClass()).getOrderList();
+    public List<Object> doAction(Session session, Request request, Response response) {
+        String query = getQueryString();
+        return session.createQuery(query).list();
     }
 
-    protected abstract Class<?> getObjectClass();
+    protected abstract String getQueryString();
 }
