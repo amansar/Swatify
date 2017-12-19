@@ -1,5 +1,6 @@
 package edu.swarthmore.cs.cs71.swatify.test;
 
+import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import spark.utils.IOUtils;
@@ -80,6 +81,17 @@ public class TestUtil {
             }
 
             return object;
+        }
+
+        public JsonArray jsonArray() {
+            JsonParser parser = new JsonParser();
+            JsonArray array = parser.parse(body).getAsJsonArray();
+
+            if (array == null) {
+                array = new JsonArray();
+            }
+
+            return array;
         }
     }
 }

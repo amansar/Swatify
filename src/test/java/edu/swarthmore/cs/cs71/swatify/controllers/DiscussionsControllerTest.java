@@ -1,5 +1,7 @@
 package edu.swarthmore.cs.cs71.swatify.controllers;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import edu.swarthmore.cs.cs71.swatify.models.Discussion;
 import edu.swarthmore.cs.cs71.swatify.models.Post;
 import edu.swarthmore.cs.cs71.swatify.models.User;
@@ -9,6 +11,10 @@ import edu.swarthmore.cs.cs71.swatify.util.GsonUtil;
 import edu.swarthmore.cs.cs71.swatify.util.HibernateUtil;
 import org.junit.BeforeClass;
 import org.junit.Test;
+
+import java.lang.reflect.Type;
+import java.util.ArrayList;
+import java.util.List;
 
 import static edu.swarthmore.cs.cs71.swatify.test.TestUtil.request;
 import static org.junit.Assert.assertEquals;
@@ -52,6 +58,20 @@ public class DiscussionsControllerTest extends ControllerTestBase {
 
         Discussion gottenDiscussion = GsonUtil.fromJson(Discussion.class, res.json().toString());
         assertEquals(gottenDiscussion.getId(), albumDiscussionFixture.getId());
+    }
+
+    @Test
+    public void getAllDiscussions() {
+        String url = "/api/v1/discussions";
+
+        TestUtil.TestResponse res = request("GET", url);
+        assertEquals(200, res.getStatus());
+        String temp = res.jsonArray().toString();
+
+        Type listType = new TypeToken<ArrayList<Discussion>>(){}.getType();
+
+        List<Discussion> gottenDiscussions = GsonUtil.fromJsonArray(listType, temp);
+        return;
     }
 
     @Test
