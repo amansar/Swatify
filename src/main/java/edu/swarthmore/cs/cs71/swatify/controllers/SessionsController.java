@@ -40,7 +40,8 @@ public class SessionsController {
                     return GsonUtil.toJson(new ForbiddenError("Already logged in"));
                 }
                 JSONObject jsonResponseBody = new JSONObject();
-                jsonResponseBody.put("authorizeUrl", SpotifyUtil.getAuthorizeUrl());
+                String authorizeUrl = SpotifyUtil.getAuthorizeUrl();
+                jsonResponseBody.put("authorizeUrl", authorizeUrl);
                 return jsonResponseBody.toString();
             }));
 

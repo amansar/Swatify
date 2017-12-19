@@ -12,12 +12,12 @@ import static org.junit.Assert.assertEquals;
 public class AlbumsControllerTest extends ControllerTestBase {
     @Test
     public void getAnAlbum() {
-        String escapeId = "wpzak9OmQfrjyksuGwp0";
-        TestUtil.TestResponse res = request("GET", "/api/v1/albums/" + escapeId);
+        String theLifeOfPabloId = "7gsWAHLeT0w7es6FofOXk1";
+        TestUtil.TestResponse res = request("GET", "/api/v1/albums/" + theLifeOfPabloId);
         assertEquals(200, res.getStatus());
 
-        Album escape = GsonUtil.fromJson(Album.class, res.json().toString());
-        assertEquals(escape.getId(), escapeId);
-        assertEquals(escape.getName(), "Escape");
+        Album theLifeOfPablo = GsonUtil.fromJson(Album.class, res.json().toString());
+        assertEquals(theLifeOfPabloId, theLifeOfPablo.getId());
+        assertEquals(theLifeOfPablo.getName(), "The Life Of Pablo");
     }
 }
