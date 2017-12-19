@@ -51,7 +51,7 @@ public class SessionsController {
                     String code = request.queryParams("code");
 
                     final AuthorizationCodeCredentials credentials = new AuthorizationCodeCredentials();
-                    Api api = SpotifyUtil.getApi();
+                    Api api = SpotifyUtil.getApi(null);
                     final SettableFuture<AuthorizationCodeCredentials> authorizationCodeCredentialsFuture = api.authorizationCodeGrant(code).build().getAsync();
 
                     final String[] errorMessageArray = new String[1];

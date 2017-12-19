@@ -35,7 +35,7 @@ public class User {
         this.username = username;
         this.spotifyAccessToken = spotifyAccessToken;
         this.spotifyRefreshToken = spotifyRefreshToken;
-        Api api = SpotifyUtil.getApi();
+        Api api = SpotifyUtil.getApi(null);
         api.setAccessToken(spotifyAccessToken);
         api.setRefreshToken(spotifyRefreshToken);
         try {
