@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import "./ArtistPage.css";
 import swatifyFetch from "../swatifyFetch";
 import { Redirect } from "react-router-dom";
+import Loader from "./Loader";
 
 class Logout extends Component {
   state = {
@@ -16,9 +17,10 @@ class Logout extends Component {
 
   render() {
     if (this.state.loggedOut) {
+      window.location.reload();
       return <Redirect to="/login" />;
     } else {
-      return <div />;
+      return <Loader loading={!this.state.loggedOut} />;
     }
   }
 }
