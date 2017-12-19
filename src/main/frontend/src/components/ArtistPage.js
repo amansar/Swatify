@@ -3,6 +3,7 @@ import Loader from "./Loader";
 import NotFound from "./NotFound";
 import "./ArtistPage.css";
 import swatifyFetch from "../swatifyFetch";
+import { Redirect } from "react-router-dom";
 
 class ArtistPage extends Component {
   state = {
@@ -14,7 +15,9 @@ class ArtistPage extends Component {
 
   componentDidMount() {
     swatifyFetch("/api/v1/artists/" + this.props.match.params.id)
-      .then(res => res.json())
+      .then(res => {
+        return res.status === 200 ? res.json() : null;
+      })
       .then(artist =>
         this.setState({
           artist: artist,
@@ -51,7 +54,11 @@ class ArtistPage extends Component {
             <img
               src={this.state.artist.images[1].url}
               height={200}
-              width={200 * this.state.artist.images[1].width / this.state.artist.images[1].height}
+              width={
+                200 *
+                this.state.artist.images[1].width /
+                this.state.artist.images[1].height
+              }
               alt={this.state.artist.name}
             />
             <div className="Related">
@@ -120,7 +127,7 @@ class ArtistPage extends Component {
         </div>
       );
     } else {
-      return <NotFound />;
+      return <Redirect to="/login" />;
     }
   }
 }
