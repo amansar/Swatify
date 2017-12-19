@@ -24,16 +24,18 @@ public class AlbumsController {
                     }
                 });
 
-                post("/reviews", new BaseHibernateRoute() {
-                    @Override
-                    protected Object doAction(Session session, Request request, Response response) {
-                        JSONObject jsonBody = new JSONObject(request.body());
-                        User user = session.get(User.class, jsonBody.getString("userId"));
-                        return new Review(jsonBody.getString("content"),
-                                user,
-                                jsonBody.getString("albumId"),
-                                Integer.parseInt(jsonBody.getString("stars")));
-                    }
+                path("/reviews", () -> {
+                    post("", new BaseHibernateRoute() {
+                        @Override
+                        protected Object doAction(Session session, Request request, Response response) {
+                            JSONObject jsonBody = new JSONObject(request.body());
+                            User user = session.get(User.class, jsonBody.getString("userId"));
+                            return new Review(jsonBody.getString("content"),
+                                    user,
+                                    jsonBody.getString("albumId"),
+                                    Integer.parseInt(jsonBody.getString("stars")));
+                        }
+                    });
                 });
             });
         });

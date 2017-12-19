@@ -18,6 +18,6 @@ public class AlbumsControllerTest extends ControllerTestBase {
 
         Album theLifeOfPablo = GsonUtil.fromJson(Album.class, res.json().toString());
         assertEquals(theLifeOfPabloId, theLifeOfPablo.getId());
-        assertEquals(theLifeOfPablo.getName(), "The Life Of Pablo");
+        assertEquals("The Life Of Pablo", theLifeOfPablo.getName());
     }
 }

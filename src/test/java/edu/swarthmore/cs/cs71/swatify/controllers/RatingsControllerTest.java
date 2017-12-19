@@ -2,11 +2,12 @@ package edu.swarthmore.cs.cs71.swatify.controllers;
 
 import edu.swarthmore.cs.cs71.swatify.models.Rating;
 import edu.swarthmore.cs.cs71.swatify.models.User;
+import edu.swarthmore.cs.cs71.swatify.test.ControllerTestBase;
 import org.junit.Test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
-public class RatingsControllerTest {
+public class RatingsControllerTest extends ControllerTestBase {
     public static final User user = new User("username", "accessToken", "refreshToken");
 
     @Test
