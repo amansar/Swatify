@@ -1,43 +1,50 @@
 package edu.swarthmore.cs.cs71.swatify.controllers;
 
+import edu.swarthmore.cs.cs71.swatify.controllers.hibernateRoutes.BaseHibernateRoute;
+import edu.swarthmore.cs.cs71.swatify.controllers.hibernateRoutes.GetObjectHibernateRoute;
 import edu.swarthmore.cs.cs71.swatify.models.Rating;
-import edu.swarthmore.cs.cs71.swatify.util.GsonUtil;
-import edu.swarthmore.cs.cs71.swatify.util.HibernateUtil;
+import edu.swarthmore.cs.cs71.swatify.models.User;
+import org.hibernate.Session;
+import org.json.JSONObject;
+import spark.Request;
+import spark.Response;
 
 import static spark.Spark.*;
 
 public class RatingsController {
     public RatingsController() {
         path("/ratings", () -> {
-            get("/:id", (request, response) -> getRating(Integer.parseInt(request.params("id"))), GsonUtil::toJson);
+            post("", new BaseHibernateRoute() {
+                @Override
+                protected Object doAction(Session session, Request request, Response response) {
+                    JSONObject requestBody = new JSONObject(request.body());
+                    User user = session.get(User.class, requestBody.getInt("userId"));
+                    Rating rating = new Rating(user, requestBody.getInt("stars"), requestBody.getString("spotifyId"));
+                    session.save(rating);
+                    return rating;
+                }
+            });
 
-            post("", (request, response) -> createRating(GsonUtil.fromJson(Rating.class, request.body())), GsonUtil::toJson);
+            path("/:id", () -> {
+                get("", new GetObjectHibernateRoute() {
+                    @Override
+                    protected Class<?> getObjectClass() {
+                        return Rating.class;
+                    }
+                });
 
-            patch("/:id", (request, response) -> updateRating(GsonUtil.fromJson(Rating.class, request.body())), GsonUtil::toJson);
-
-            delete("/:id", (request, response) -> deleteRating(Integer.parseInt(request.params("id"))), GsonUtil::toJson);
-
-            after((req, res) -> res.type("application/json"));
-
-            exception(IllegalArgumentException.class, (e, req, res) -> {
-                res.status(400);
+                patch("", new BaseHibernateRoute() {
+                    @Override
+                    protected Object doAction(Session session, Request request, Response response) {
+                        JSONObject requestBody = new JSONObject(request.body());
+                        User user = session.get(User.class, requestBody.getInt("userId"));
+                        Rating rating = session.get(Rating.class, Integer.parseInt(request.params("id")));
+                        rating.setStars((new JSONObject(request.body())).getInt("stars"));
+                        session.update(rating);
+                        return rating;
+                    }
+                });
             });
         });
-    }
-
-    public static Rating getRating(int id) {
-        return HibernateUtil.getObjectById(Rating.class, id);
-    }
-
-    public static boolean createRating(Rating rating) {
-        return HibernateUtil.saveObject(rating);
-    }
-
-    public static boolean updateRating(Rating rating) {
-        return HibernateUtil.updateObject(rating);
-    }
-
-    public static boolean deleteRating(int id) {
-        return HibernateUtil.deleteObject(Rating.class, id);
     }
 }
