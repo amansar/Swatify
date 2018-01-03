@@ -10,11 +10,11 @@ import swatifyFetch from "../swatifyFetch";
 import { Redirect } from "react-router";
 
 class Album extends Component {
-  state = { loading: true, albumName: "" };
+  state = { loading: true, albumName: "", showAlbum: false };
 
   //need timeout for fetch so we wait for all content to be received
 
-  componentDidMount() {
+  componentWillMount() {
     swatifyFetch("/api/v1/albums/" + this.props.match.params.id)
       .then(res => {
         return res.status === 200 ? res.json() : null;
@@ -28,7 +28,10 @@ class Album extends Component {
             artistId: album.artists[0].id,
             tracks: album.tracks.items,
             uri: album.uri,
-            albumId: album.id
+            albumId: album.id,
+            showAlbum: true,
+            loading: false
+
           });
         }
         this.setState({ loading: false });
@@ -72,9 +75,12 @@ class Album extends Component {
   }
 
   render() {
-    if (this.state.loading) {
-      return <Loader loading={this.state.loading} />;
-    } else if (this.state.albumName) {
+    if (this.state.loading == true) {
+      return (
+      <Loader loading={this.state.loading} />
+
+      );
+    } else if (this.state.showAlbum == true) {
       return (
         <div id="AlbumPage" className="Overlay">
           <div id="AlbumInfo" className="AlbumInfoAndLinkedAccounts">
@@ -104,6 +110,7 @@ class Album extends Component {
         </div>
       );
     }
+
     else {
       return <Redirect to="/login" />;
     }

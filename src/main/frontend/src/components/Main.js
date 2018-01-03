@@ -9,6 +9,7 @@ import Artists from "./Artists";
 import Albums from "./Albums";
 import Search from "./Search";
 import Home from "./Home";
+import UserProfile from "./UserProfile";
 
 export default class Main extends Component {
   render() {
@@ -23,6 +24,7 @@ export default class Main extends Component {
         <Route path="/artists" component={Artists} />
         <Route path="/albums" component={Albums} />
         <Route path="/search" component={Search} />
+        <Route path="/userProfile" component={UserProfile} />
       </Switch>
     );
   }
